@@ -10,7 +10,7 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='security_game_pretest', app_sequence=['consent', 'intro','security_game_pretest', 'questionnaires', 'payment_info'], num_demo_participants=1,
-        completionlink='https://app.prolific.co/submissions/complete?cc=11111111',
+        completionlink='https://app.prolific.co/submissions/complete?cc=3A727AE0',
     ),
 ]
 
@@ -42,7 +42,7 @@ ROOMS = [
     dict(
         name='security_game_pretest',
         display_name='security_game_pretest',
-        participant_label_file='_rooms/security_game.txt',
+        # participant_label_file='_rooms/security_game.txt',
     ),
 ]
 #
