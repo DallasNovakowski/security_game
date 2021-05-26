@@ -12,44 +12,6 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
     pass
 
-# def creating_session(subsession: Subsession):
-#     if subsession.round_number == 1:
-#         for p in subsession.get_players():
-#             p.participant.vars['label'] = p.request.GET.get('participant_label')
-#             print('label is', p.participant.label)
-#             print('p.participant.vars["label"] is:', p.participant.vars['label'])
-#             p.prolific_id = str(p.participant.vars['label'])
-#     pass
-
-
-    #
-    # def is_displayed(self):
-    #     self.player.prolific_id = self.participant.label
-    #     return self.subsession.round_number == 1
-    #     pass
-    # pass
-
-
-#
-#     for player in subsession.get_players():
-#         player.prolific_id = player.participant.label
-#
-# pass
-
-
-
-#
-# def creating_session(subsession: Subsession):
-#     for player in subsession.get_players():
-#         player.prolific_id = subsession.my_function()
-#         player.participant.vars['generated_code'] = player.completion_code
-# pass
-#
-#
-# def my_function(self):
-#     return "".join(random.choices(Constants.completion_codes, k=10))
-# pass
-
 
 class Group(BaseGroup):
     pass
