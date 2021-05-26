@@ -1,0 +1,20 @@
+{{ block title }}
+    Task intro
+{{ endblock }}
+{{ block content }}
+
+<p>
+    Imagine that you and another study participant each received ${{ Constants.endowment }}. In this scenario:
+
+    One of you will have the choice to try and steal money from the other, with a some chance of success.
+    If an attempted theft fails, the attacker will instead lose ${{ Constants.endowment }}, with the target losing nothing.
+
+    In this study, you will see a few different versions this game with different values.
+    Please read these scenarios and adjust your choices accordingly
+</p>
+
+{{ formfields }}
+
+{{ next_button }}
+
+{{ endblock }}

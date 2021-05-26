@@ -1,0 +1,94 @@
+{{ block title }}
+    The task
+{{ endblock }}
+
+
+{{ block content }}
+
+<label class="col-form-label">
+Each unit of security costs $<span id="price"> </span>,
+    and each unit reduces the chance of successful
+    thefts by <span id="efficacy"> </span>%.</label>
+<br></br>
+<p>Use the slider below to indicate how much security you
+    would purchase from a budget of $<span id="endowment" ></span>.</p>
+
+
+<br></br>
+<div style="width: 500px;margin: 0 auto; padding: 5px">
+			<p style="float:left"><strong>0</strong></p>
+			<p style="float:right"><strong>25 </strong></p>
+			</div>
+
+<div class="input-group" style="margin: 0 auto;">
+    <input type="range" name="security_consumed" min="0" max="25" value="0" id= "myRange" step="1" class="form-range">
+</div>
+
+
+<br></br>
+<p> Purchasing <strong><span id="security_consumed" ></span></strong> units of security. You will spend $<span class="fw-bold" id="paid"> </span> ,
+    with $<span class="fw-bold"  id="money_left"></span> remaining</p>
+
+<p>You will reduce your likelihood of being successfully attacked by <span class="fw-bold"  id="protection"></span>%</p>
+
+<p>After your security purchase, <span class="fw-bold"  id="new_prob"></span>% of attempted attacks against you will be successful
+    (with successful attacks stealing <span id="lost_from_attacks" ></span>$ from you, and failed attempts making your partner lose
+    <span id="failed_attack" ></span>$). </p>
+
+<p> Once you are satisfied with your decision, please click the "next" button to move to the next page </p>
+
+<script>
+let efficacy = js_vars.efficacy * 100;      // import and transform constants
+let price = js_vars.price;
+let base_prob = js_vars.theft_success * 100;
+let endowment = (Math.round(js_vars.endowment * 100) / 100).toFixed(2);
+let lost_from_attacks = Math.round(js_vars.lost_from_attacks);
+let failed_attack = (Math.round(js_vars.failed_attack * 100) / 100).toFixed(2)
+
+// create html objects from js_var
+document.getElementById("efficacy").innerHTML = efficacy;       // pass constants to html for in-text  BRINGING PRICE OBJECT BREAKS ALL HTML ITEMS - removing "= efficacy" doesn't seem to break things
+document.getElementById("endowment").innerHTML = endowment;
+document.getElementById('security_consumed').value;
+document.getElementById("price").innerHTML = price;
+document.getElementById("lost_from_attacks").innerHTML = lost_from_attacks;
+document.getElementById("failed_attack").innerHTML = failed_attack;
+
+// create html objects for use in real-time updating values based on slider responses
+let slider = document.getElementById("myRange");
+let output = document.getElementById("security_consumed");
+let protection = document.getElementById("protection");
+let paid = document.getElementById("paid");
+let new_prob = document.getElementById("new_prob");
+let money_left = document.getElementById("money_left");
+
+// without this, the text fields according to slider values start empty
+output.innerHTML = slider.value;
+(protection.innerHTML =Math.round((slider.value * efficacy)));  // this code rounds to a whole number
+(paid.innerHTML = (Math.round(slider.value * price * 100) / 100).toFixed(2));
+(new_prob.innerHTML = Math.round((base_prob - slider.value * efficacy)));
+if(new_prob.innerHTML < 0){
+    new_prob.innerHTML = 0
+    protection.innerHTML = base_prob
+}
+(money_left.innerHTML = (Math.round((endowment - slider.value * price) * (10 ^ 2)) / (10 ^ 2)).toFixed(2));  // this code rounds to exactly two decimal places
+
+
+// code for updating values based on slider
+slider.oninput = function() {
+  output.innerHTML = this.value;
+  protection.innerHTML =Math.round(this.value * efficacy);
+  paid.innerHTML = (Math.round(this.value * price * 100) / 100).toFixed(2);
+  new_prob.innerHTML = Math.round(base_prob - this.value * efficacy);
+  if(new_prob.innerHTML < 0){
+    new_prob.innerHTML = 0
+      protection.innerHTML = base_prob
+  };
+  money_left.innerHTML = (Math.round((endowment - this.value * price) * 100)  / 100).toFixed(2);
+}
+
+</script>
+
+
+    {{ next_button }}
+
+{{ endblock }}

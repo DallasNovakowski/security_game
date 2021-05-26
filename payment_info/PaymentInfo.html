@@ -1,0 +1,22 @@
+{{ block title }}Thank you{{ endblock }}
+{{ block content }}
+
+    <p>
+        <em>your completion code is {{player.completion_code}}</em>
+    </p>
+
+{{ session.config.completionlink }}
+
+<!--<script type="text/javascript">-->
+<!--window.location.replace("{{ session.config.completionlink }}")-->
+<!--</script>-->
+
+
+{{ formfields }}
+
+
+    {{ next_button }}
+
+
+{{ endblock }}
+

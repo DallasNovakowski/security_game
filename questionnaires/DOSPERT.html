@@ -1,0 +1,80 @@
+{{ block title }}Risk Attitudes{{ endblock }}
+{{ block content }}
+
+
+    <p>
+        For each of the following statements, please indicate the likelihood that you would engage in the
+described activity or behavior if you were to find yourself in that situation. Provide a rating from
+Extremely Unlikely to Extremely Likely, using the following scale:
+    </p>
+
+<style>
+    table, th, td {
+border: 1px solid grey;
+border-collapse: collapse;
+        margin: 1em 0;
+  text-align: center;
+  vertical-align: middle;
+  }
+
+    th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+        vertical-align: bottom;
+  background-color: #666;
+  color: #fff;
+}
+
+    th:not([scope=row]) {           /*gives sticky first column??   https://adrianroselli.com/2020/01/fixed-table-headers.html*/
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+    th[scope=row] {
+  background: linear-gradient(90deg, transparent 0%, transparent calc(100% - .05em), #d6d6d6 calc(100% - .05em), #d6d6d6 100%);
+}
+
+td {                                /*formats basic data, with padding and centered alignments*/
+  padding: 0.25em 0.5em 0.25em 1em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+tr:nth-child(even) {                              /*adds alternating coloring for cells */
+  background-color: rgba(0, 0, 0, 0.05);
+}
+tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+</style>
+
+<div class="tableFixHead">
+<table class="tableFixHead">
+        <thead ><tr>
+            <th style="width: 40%;"></th>
+            <th style="width: 8.57%;">1 Extremely Unlikely</th>
+            <th style="width: 8.57%;">2</th>
+           <th style="width: 8.57%;">3</th>
+            <th style="width: 8.57%;">4</th>
+            <th style="width: 8.57%;">5</th>
+            <th style="width: 8.57%;">6</th>
+            <th style="width: 8.57%;">7 Extremely Likely</th>
+    </tr></thead>
+    <tbody>
+    {{ for field in form }}
+        <tr>
+            <td>{{ field.label }} {{formfield_errors field.name}}</td>
+            {{ for choice in field }}
+                <td class="fixed">{{ choice }}</td>
+            {{ endfor }}
+        </tr>
+    {{ endfor }}
+    </tbody>
+</table>
+</div>
+
+    {{ next_button }}
+{{ endblock }}

@@ -1,0 +1,68 @@
+{{ block title }}
+    The task
+{{ endblock }}
+
+
+{{ block content }}
+
+<label class="col-form-label">
+At a price of ${{Constants.security_price}} per unit of security,
+    and with each unit reducing
+    the chance of successful
+    thefts by <span id="efficacy"> </span>%  how much security
+    would you like to purchase from
+    your endowment of ${{Constants.endowment}}?
+</label>
+
+<div class="input-group">
+    <label class="float-left">0</label><input type="range" name="security_consumed" min="0" max="25" id= "myRange" step="1" class="form-range">
+    <label class="float-right">25</label>
+</div>
+
+<p> Purchasing <strong><span id="security_consumed" ></span></strong> units of security.</p>
+
+<p> You will spend $<span class="fw-bold" id="paid"> </span> ,  with $<span class="fw-bold"  id="money_left"></span> remaining</p>
+
+You will reduce your likelihood of being successfully attacked (losing {{Constants.lost_from_attacks}}$) by <span class="fw-bold"  id="protection"></span>% to <span class="fw-bold"  id="new_prob"></span>%
+
+<script>
+let efficacy = js_vars.efficacy * 100;      // import and transform constants
+let price = js_vars.price;
+let base_prob = js_vars.theft_success * 100;
+let endowment = js_vars.endowment
+
+document.getElementById("efficacy").innerHTML = efficacy;       // pass constants to html for in-text  BRINGING PRICE OBJECT BREAKS ALL HTML ITEMS - removing "= efficacy" doesn't seem to break things
+
+document.getElementById('security_consumed').value;  // access an HTML element, JavaScript can use the document.getElementById(id) method. The id attribute defines the HTML element. The innerHTML property defines the HTML content:
+
+
+let slider = document.getElementById("myRange");
+let output = document.getElementById("security_consumed");
+let protection = document.getElementById("protection");
+let paid = document.getElementById("paid");
+let new_prob = document.getElementById("new_prob");
+let money_left = document.getElementById("money_left");
+
+// without this, the text field for the slider starts empty
+output.innerHTML = slider.value;
+(protection.innerHTML =Math.round((slider.value * efficacy)));  // this code rounds to a whole number
+(paid.innerHTML = slider.value * price);
+(new_prob.innerHTML = Math.round((base_prob - slider.value * efficacy)));
+(money_left.innerHTML = (Math.round((endowment - slider.value * price) * (10 ^ 2)) / (10 ^ 2)).toFixed(2));  // this code rounds to exactly two decimal places
+
+
+// code for updating values based on slider
+slider.oninput = function() {
+  output.innerHTML = this.value;
+  protection.innerHTML =Math.round(this.value * efficacy);
+  paid.innerHTML = this.value * price;
+  new_prob.innerHTML = Math.round(base_prob - this.value * efficacy);
+  money_left.innerHTML = (Math.round((endowment - this.value * price) * 100)  / 100).toFixed(2);
+}
+
+</script>
+
+
+    {{ next_button }}
+
+{{ endblock }}
