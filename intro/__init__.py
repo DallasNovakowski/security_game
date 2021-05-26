@@ -52,14 +52,15 @@ class Player(BasePlayer):
 class Demographics(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'education', "income"]
-
-    @staticmethod
-    def before_next_page(self, timeout_happened):
-        self.prolific_id = self.participant.label
     pass
 
 class Task_intro(Page):
     form_model = 'player'
+
+
+    @staticmethod
+    def before_next_page(self, timeout_happened):
+        self.prolific_id = self.participant.label
     pass
 
 page_sequence = [Demographics, Task_intro]
