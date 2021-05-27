@@ -46,11 +46,9 @@ class PaymentInfo(Page):
     form_model = 'player'
     form_fields = ['completion_code']
 
-    @staticmethod
-    def vars_for_template(player: Player):
-        participant = player.participant
-        return dict(redemption_code=participant.label or participant.code)
+class Study_end(Page)
+    form_model = 'player'
 
     form_fields = ['comments']
 
-page_sequence = [PaymentInfo]
+page_sequence = [PaymentInfo, Study_end]
