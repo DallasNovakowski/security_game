@@ -44,7 +44,7 @@ def creating_session(subsession: Subsession):
 # PAGES
 class PaymentInfo(Page):
     form_model = 'player'
-    form_fields = ['completion_code']
+    # form_fields = ['completion_code']
     pass
 
 
