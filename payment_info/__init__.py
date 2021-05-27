@@ -45,9 +45,12 @@ def creating_session(subsession: Subsession):
 class PaymentInfo(Page):
     form_model = 'player'
     form_fields = ['completion_code']
+    pass
+
 
 class Study_end(Page)
     form_model = 'player'
+    pass
 
     form_fields = ['comments']
 
