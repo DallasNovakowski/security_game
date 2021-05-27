@@ -48,7 +48,7 @@ class PaymentInfo(Page):
     pass
 
 
-class Study_end(Page)
+class Study_end(Page):
     form_model = 'player'
     pass
 
