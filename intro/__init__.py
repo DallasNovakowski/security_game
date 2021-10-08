@@ -1,4 +1,6 @@
 from otree.api import *
+# from django.contrib.messages import get_messages
+
 c = Currency  # old name for currency; you can delete this.
 
 
@@ -18,8 +20,8 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    prolific_id = models.StringField(default=str(" "))
-    age = models.IntegerField(label='What is your age?', min=13, max=125)
+    prolific_id = models.StringField(default=str(""))
+    age = models.IntegerField(label='What is your age?', min=13, max=125, isValid=True,)
     gender = models.StringField(
         choices=[['Male', 'Male'], ['Female', 'Female'], ['Other', 'Other']],
         label='What is your gender?',
@@ -31,6 +33,7 @@ class Player(BasePlayer):
                    "Master's degree", "Doctoral degree", "Professional degree (JD, MD)"],
         label = 'What is the highest level of school you have completed or the highest degree you have received?',
         widget = widgets.RadioSelect,
+        blank=True
     )
     income = models.StringField(
         choices=["Less than $10,000", "$10,000 to $19,999", "$20,000 to $29,999", "$30,000 to $39,999", "$40,000 to $49,999",
@@ -43,16 +46,80 @@ class Player(BasePlayer):
                  "$150,000 or more"],
         label='Please indicate the answer that includes your entire household income over the previous year (in USD) before taxes.',
         widget=widgets.RadioSelect,
+        blank=True
     )
 
+# functions
+# def get_response_data():
+#     return [
+#         dict(
+#             name='age',
+#             explanation="did you answer everything you needed to?.",
+#         ),
+#         dict(
+#             name='education',
+#             explanation="did you answer everything you needed to?. But better?",
+#         ),
+#     ]
 
-
-# FUNCTIONS
 # PAGES
 class Demographics(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'education', "income"]
+
+    @staticmethod
+    def js_vars(player):    # highlights variables/fields that do not need to be filled (but that we'll be displaying a one-time warning message if they're left blank)
+        return dict(optional_fields = Demographics.form_fields[2:4])
     pass
+
+    # @staticmethod
+    # def vars_for_template(player: Player):
+    #     fields = get_response_data()
+    #     for d in fields:
+    #         d['is_correct'] = not getattr(player,  d['name'])
+    #         return dict(fields=fields, show_solutions=True)
+
+    #
+    # @staticmethod
+    # def message(player: Player, values):
+    #     # since 'values' is a dict, yo[u could also do sum(values.values())
+    #     if ['age'] != 100:
+    #         return 'Numbers must add up to 100'
+
+    # messages.add_message(request, messages.INFO, 'Hello world.')
+
+    #
+    # @staticmethod
+    # def mess(player, values):
+    #     form_fields = dict(
+    #         quiz1=42,
+    #         quiz2='Ottawa',
+    #         quiz3='3.14',
+    #         quiz4='George Washington'
+    #     )
+    #
+    #     message = dict()
+    #
+    #     for field_name in form_fields:
+    #         if not values[field_name]:
+    #             message[field_name] = 'Wrong answer'
+    #
+    #     return message
+
+
+
+    # @staticmethod
+    # def done(request):
+    #     template = loader.get_template('maps/done.html')
+    #
+    # context = RequestContext(request, {
+    #     'reports_link': report_array, // I
+    # believe
+    # this is not correct.
+    # })
+    # pass
+
+
 
 class Task_intro(Page):
     form_model = 'player'

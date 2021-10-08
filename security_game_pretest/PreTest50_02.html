@@ -1,14 +1,15 @@
 {{ block title }}
-    The task
+    Scenario a
 {{ endblock }}
 
 
 {{ block content }}
 
 <label class="col-form-label">
-Each unit of security costs $<span id="price"> </span>,
+    To start, an attempted theft will succeed <u>50%</u> of the time. Each unit of security costs <u>$<span id="price"> </span></u>,
     and each unit reduces the chance of successful
-    thefts by <span id="efficacy"> </span>%.</label>
+    thefts by <span id="efficacy"> </span>%. A successful theft steals <span id="lost_from_attacks" ></span>$ from you, and a failed attempt will make your partner lose
+    <span id="failed_attack" ></span>$.</label>
 <br></br>
 <p>Use the slider below to indicate how much security you
     would purchase from a budget of $<span id="endowment" ></span>.</p>
@@ -31,9 +32,8 @@ Each unit of security costs $<span id="price"> </span>,
 
 <p>You will reduce your likelihood of being successfully attacked by <span class="fw-bold"  id="protection"></span>%</p>
 
-<p>After your security purchase, <span class="fw-bold"  id="new_prob"></span>% of attempted attacks against you will be successful
-    (with successful attacks stealing <span id="lost_from_attacks" ></span>$ from you, and failed attempts making your partner lose
-    <span id="failed_attack" ></span>$). </p>
+<p>After your security purchase, <span class="fw-bold"  id="new_prob"></span>% of attempted attacks against you will be successful.
+
 
 <p> Once you are satisfied with your decision, please click the "next" button to move to the next page </p>
 
@@ -42,7 +42,7 @@ let efficacy = js_vars.efficacy * 100;      // import and transform constants
 let price = js_vars.price;
 let base_prob = js_vars.theft_success * 100;
 let endowment = (Math.round(js_vars.endowment * 100) / 100).toFixed(2);
-let lost_from_attacks = Math.round(js_vars.lost_from_attacks);
+let lost_from_attacks = (Math.round(js_vars.lost_from_attacks * 100) / 100).toFixed(2);
 let failed_attack = (Math.round(js_vars.failed_attack * 100) / 100).toFixed(2)
 
 // create html objects from js_var

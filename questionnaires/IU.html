@@ -1,10 +1,186 @@
-{{ block title }}Attitudes Towards Uncertainty{{ endblock }}
+
 {{ block content }}
 
 
     <p>
-        Please select the number that best corresponds to how much you agree with each item
+        Please select the option that best corresponds to how much you agree with each item
     </p>
+
+
+<div class="tableFixHead">
+<table class="tableFixHead">
+        <thead ><tr>
+            <th style="width: 40%;"></th>
+            <th style="width: 12%;">Not at all characteristic of me</th>
+            <th style="width: 12%;">A little characteristic of me </th>
+             <th style="width: 12%;">Somewhat characteristic of me </th>
+             <th style="width: 12%;">Very characteristic of me </th>
+             <th style="width: 12%;">Entirely characteristic of me </th>
+
+    </tr></thead>
+    <tbody>
+
+        <tr>
+        <td>{{ form.iu_1.label }} {{ formfield_errors 'iu_1' }} <br> <span id="iu_1_message" style="color:#990000"></span></td>
+        {{ for choice in form.iu_1 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.iu_2.label }} {{ formfield_errors 'iu_2' }} <br> <span id="iu_2_message" style="color:#990000"></span></td>
+        {{ for choice in form.iu_2 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.iu_3.label }} {{ formfield_errors 'iu_3' }} <br> <span id="iu_3_message" style="color:#990000"></span></td>
+        {{ for choice in form.iu_3 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.iu_4.label }} {{ formfield_errors 'iu_4' }} <br> <span id="iu_4_message" style="color:#990000"></span></td>
+        {{ for choice in form.iu_4 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.iu_5.label }} {{ formfield_errors 'iu_5' }} <br> <span id="iu_5_message" style="color:#990000"></span></td>
+        {{ for choice in form.iu_5 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.iu_6.label }} {{ formfield_errors 'iu_6' }} <br> <span id="iu_6_message" style="color:#990000"></span></td>
+        {{ for choice in form.iu_6 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.iu_7.label }} {{ formfield_errors 'iu_7' }} <br> <span id="iu_7_message" style="color:#990000"></span></td>
+        {{ for choice in form.iu_7 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.iu_8.label }} {{ formfield_errors 'iu_8' }} <br> <span id="iu_8_message" style="color:#990000"></span></td>
+        {{ for choice in form.iu_8 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.iu_9.label }} {{ formfield_errors 'iu_9' }} <br> <span id="iu_9_message" style="color:#990000"></span></td>
+        {{ for choice in form.iu_9 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.iu_10.label }} {{ formfield_errors 'iu_10' }} <br> <span id="iu_10_message" style="color:#990000"></span></td>
+        {{ for choice in form.iu_10 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.iu_11.label }} {{ formfield_errors 'iu_11' }} <br> <span id="iu_11_message" style="color:#990000"></span></td>
+        {{ for choice in form.iu_11 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.iu_12.label }} {{ formfield_errors 'iu_12' }} <br> <span id="iu_12_message" style="color:#990000"></span></td>
+        {{ for choice in form.iu_12 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+
+
+    </tbody>
+</table>
+</div>
+
+
+
+<button type="button" class="btn btn-primary" onclick="Validate()">Next</button>
+
+
+<script>
+    let optional_fields = js_vars.optional_fields;
+    let times_submitted = 0;
+
+
+
+    function Validate() {
+        let items = []
+        let isValid = []
+        let messages = []
+
+        times_submitted++
+
+            for (i = 0; i < optional_fields.length; i++) {
+                isValid[i] = false
+                messages[i] = "Please fill out this field"
+
+                //Reference the Group of questions.
+                items.push(Array.from(document.getElementsByName(optional_fields[i])));
+
+                    //     //Loop and verify whether at-least one RadioButton is checked.
+                    for (var j = 0; j < items[i].length; j++) {
+                        if (items[i][j].checked) {
+                            // if at least one radio is checked for the question, return true
+                            isValid[i] = true;
+                            messages[i] = "";
+                            break;
+                        }
+                    }
+                }
+
+            // create summary items and flow after all the looping
+
+            let all_checked = isValid.every(x => x);  //flags whether all questions are checked
+
+            if (all_checked == true){        // branch submission or kicking participants to top of screen, depending on whether everything is checked and whether they have already tried submitting
+                form.submit()
+            } else {
+                if (times_submitted >= 2) {
+                    form.submit()
+                } else {
+                    scroll(0, 0)
+                }
+
+
+        }
+        //    assigns messages to html items
+        iu_1_message.innerHTML = messages[0]
+        iu_2_message.innerHTML = messages[1]
+        iu_3_message.innerHTML = messages[2]
+        iu_4_message.innerHTML = messages[3]
+        iu_5_message.innerHTML = messages[4]
+        iu_6_message.innerHTML = messages[5]
+        iu_7_message.innerHTML = messages[6]
+        iu_8_message.innerHTML = messages[7]
+        iu_9_message.innerHTML = messages[8]
+        iu_10_message.innerHTML = messages[9]
+        iu_11_message.innerHTML = messages[10]
+        iu_12_message.innerHTML = messages[11]
+
+        stuff.innerHTML = all_checked
+        // iu_3_message.innerHTML = messages[2]
+        // iu_4_message.innerHTML = messages[3]
+    }
+</script>
+
 
 
 <style>
@@ -49,39 +225,5 @@ tr:nth-child(odd) {
   background-color: rgba(255, 255, 255, 0.05);
 }
 </style>
-
-
-
-<div class="tableFixHead">
-<table class="tableFixHead">
-        <thead ><tr>
-            <th style="width: 40%;"></th>
-            <th style="width: 12%;">Not at all characteristic of me</th>
-            <th style="width: 12%;">A little characteristic of me </th>
-             <th style="width: 12%;">Somewhat characteristic of me </th>
-             <th style="width: 12%;">Very characteristic of me </th>
-             <th style="width: 12%;">Entirely characteristic of me </th>
-
-    </tr></thead>
-    <tbody>
-    {{ for field in form }}
-        <tr>
-            <td>{{ field.label }} {{formfield_errors field.name}}</td>
-            {{ for choice in field }}
-                <td>{{ choice }} </td>
-            {{ endfor }}
-
-        </tr>
-    {{ endfor }}
-
-
-    </tbody>
-</table>
-</div>
-
-
-
-
-    {{ next_button }}
 
 {{ endblock }}

@@ -1,5 +1,14 @@
+# from django.contrib import messages
 from os import environ
 
+
+# MESSAGE_TAGS = {
+#         messages.DEBUG: 'alert-secondary',
+#         messages.INFO: 'alert-info',
+#         messages.SUCCESS: 'alert-success',
+#         messages.WARNING: 'alert-warning',
+#         messages.ERROR: 'alert-danger',
+#  }
 
 SESSION_CONFIGS = [
     dict(
@@ -9,10 +18,12 @@ SESSION_CONFIGS = [
         name='security_game', app_sequence=['security_game'], num_demo_participants=1
     ),
     dict(
-        name='security_game_pretest', app_sequence=['consent', 'intro','security_game_pretest', 'questionnaires', 'payment_info'], num_demo_participants=1,
-        completionlink='https://app.prolific.co/submissions/complete?cc=3A727AE0',
+        name='security_game_pretest', app_sequence=['consent','intro', 'security_game_pretest', 'questionnaires', 'attention_check', 'payment_info'], num_demo_participants=1,
+        completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
     ),
 ]
+
+# 'consent', 'intro','security_game_pretest',
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
@@ -20,7 +31,7 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=0.00, participation_fee=0.00, doc=""
+    real_world_currency_per_point=0.00, participation_fee=2.00, doc=""
 )
 
 # ISO-639 code
@@ -61,3 +72,5 @@ Here are some oTree games.
 SECRET_KEY = '5812847175457'
 
 INSTALLED_APPS = ['otree']
+
+# 'django.contrib.messages'

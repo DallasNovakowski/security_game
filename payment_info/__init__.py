@@ -29,7 +29,8 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    comments = models.LongStringField(label="Please leave any of your comments about this study here", blank=True)
+    comments = models.LongStringField(label="Your participation in this task will help us to improve future studies. "
+                                            "Please leave any of your comments about this study here", blank=True)
     completion_code = models.StringField()
     pass
 
@@ -42,16 +43,10 @@ def creating_session(subsession: Subsession):
 
 
 # PAGES
-class PaymentInfo(Page):
-    form_model = 'player'
-    # form_fields = ['completion_code']
-    pass
-
-
 class Study_end(Page):
     form_model = 'player'
+    form_fields = ['comments']
     pass
 
-    form_fields = ['comments']
 
-page_sequence = [PaymentInfo, Study_end]
+page_sequence = [Study_end]

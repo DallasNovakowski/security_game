@@ -11,21 +11,6 @@ class Constants(BaseConstants):
 
 
 # # FUNCTIONS
-# def error_message(player):
-#     if player.iu_1 != 5:
-#         return 'Cannot offer more than your remaining budget'
-
-# def error_message(player: Player, values, form_fields):
-#     participant = player.participant
-#     if values[form_fields] + values['iu_1'] + values['iu_1'] != 100:
-#     return participant.error
-
-    # print('value is', values)
-    # if values['iu_1'] + values['iu_1'] + values['iu_1'] != 100:
-    #     error_message = 'The numbers must add up to 100'
-    #     return error_message
-#
-#
 # def make_questionnaire(label, varname, choices):
 #     for i in label:
 #         varname[i] =[i]
@@ -82,7 +67,8 @@ def make_iu(label):
                  [3, "Somewhat characteristic of me"],[4, "Very characteristic of me"],
                  [5, "Entirely characteristic of me"]],
         label=label,
-        widget=widgets.RadioSelectHorizontal
+        widget=widgets.RadioSelectHorizontal,
+        blank=True
     )
 
 def make_dospert(label):
@@ -91,14 +77,9 @@ def make_dospert(label):
                  [3, "3"],[4, "4"],
                  [5, "5"], [6, "6"], [7, "Extremely Likely"]],
         label=label,
-        widget=widgets.RadioSelectHorizontal
+        widget=widgets.RadioSelectHorizontal,
+        blank=True
     )
-
-
-# [[1,"Extremely Unlikely"],[2, "2"],
-#                  [3, "3"],[4, "4"],
-#                  [5, "5"], [6, "6"], [7, "Extremely Likely"]]
-
 
 class Subsession(BaseSubsession):
     pass
@@ -109,7 +90,8 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    # the_thing("blah{0}",blah_label,characteristic_5)
+    submit_missing = models.IntegerField(initial=0)
+    missing_too_many = models.BooleanField(initial=False)
 
     iu_1 = make_iu("Unforeseen events upset me greatly")
     iu_2 = make_iu("It frustrates me not having all the information I need.")
@@ -135,7 +117,7 @@ class Player(BasePlayer):
     dospert_9 = make_dospert("Having an affair with a married man/woman.")
     dospert_10 = make_dospert("Passing off somebody else’s work as your own. ")
     dospert_11 = make_dospert("Going down a ski run that is beyond your ability.")
-    dospert_12= make_dospert("Investing 5% of your annual income in a very speculative stock.")
+    dospert_12 = make_dospert("Investing 5% of your annual income in a very speculative stock.")
     dospert_13 = make_dospert("Going whitewater rafting at high water in the spring.")
     dospert_14 = make_dospert("Betting a day’s income on the outcome of a sporting event")
     dospert_15 = make_dospert("Engaging in unprotected sex.")
@@ -160,10 +142,13 @@ class Player(BasePlayer):
 # PAGES
 class IU(Page):
     form_model = 'player'
-    form_fields = ['iu_1','iu_2','iu_3','iu_4','iu_5',
-                   'iu_6','iu_7','iu_8','iu_9','iu_10','iu_11','iu_12']
+    form_fields = ['iu_1', 'iu_2', 'iu_3', 'iu_4', 'iu_5', 'iu_6', 'iu_7', 'iu_8', 'iu_9', 'iu_10', 'iu_11', 'iu_12']
 
 
+    @staticmethod
+    def js_vars(player):    # highlights variables/fields that do not need to be filled (but that we'll be displaying a one-time warning message if they're left blank)
+        return dict(optional_fields = IU.form_fields)
+    pass
     pass
 
 # any(len(ele) == 0 for ele in values):
@@ -176,6 +161,23 @@ class DOSPERT(Page):
                    'dospert_17','dospert_18','dospert_19','dospert_20','dospert_21',
                    'dospert_22','dospert_23','dospert_24','dospert_25','dospert_26',
                    'dospert_27','dospert_28','dospert_29','dospert_30']
+
+
+    @staticmethod
+    def error_message(player: Player, values):
+        errors = {f: 'Please fill in this field' for f in values if not values[f]}
+        if errors:
+            player.submit_missing += 1
+            if player.submit_missing < 2:
+                return errors
+
+
+    # use this function for resetting submit_missing
+    # @staticmethod
+    # def before_next_page(self, timeout_happened):
+    #     self.prolific_id = self.participant.label
+    # pass
+
     pass
 
 page_sequence = [IU,DOSPERT]
