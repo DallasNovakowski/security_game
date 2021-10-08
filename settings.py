@@ -1,6 +1,6 @@
 # from django.contrib import messages
 from os import environ
-
+from os import popen
 
 # MESSAGE_TAGS = {
 #         messages.DEBUG: 'alert-secondary',
@@ -18,8 +18,11 @@ SESSION_CONFIGS = [
         name='security_game', app_sequence=['security_game'], num_demo_participants=1
     ),
     dict(
-        name='security_game_pretest', app_sequence=['consent','intro', 'security_game_pretest', 'questionnaires', 'attention_check', 'payment_info'], num_demo_participants=1,
+        name='security_game_pretest',
+        app_sequence=['consent', 'intro', 'security_game_pretest', 'questionnaires', 'attention_check', 'payment_info'],
+        num_demo_participants=1,
         completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
+        oTree_version_used = popen('otree --version').read().strip()
     ),
 ]
 
@@ -58,7 +61,8 @@ ROOMS = [
 ]
 #
 # An easy thing you can do to store the Prolific PID in oTree is to set up a room without a participant label file
-# (https://otree.readthedocs.io/en/latest/rooms.html) and then add ?participant_label={{%PROLIFIC_PID%}} to your room-wide URL as the study URL on Prolific.
+# (https://otree.readthedocs.io/en/latest/rooms.html) and then add ?participant_label=
+# {{%PROLIFIC_PID%}} to your room-wide URL as the study URL on Prolific.
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable

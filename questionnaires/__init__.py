@@ -163,13 +163,6 @@ class DOSPERT(Page):
                    'dospert_27','dospert_28','dospert_29','dospert_30']
 
 
-    @staticmethod
-    def error_message(player: Player, values):
-        errors = {f: 'Please fill in this field' for f in values if not values[f]}
-        if errors:
-            player.submit_missing += 1
-            if player.submit_missing < 2:
-                return errors
 
 
     # use this function for resetting submit_missing
