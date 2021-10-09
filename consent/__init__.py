@@ -18,7 +18,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    oTree_version = models.StringField(initial=popen('otree --version').read().strip())
+
     consent = models.BooleanField(
     choices=[
         [False, 'No, I do not consent to participating in this study'],
