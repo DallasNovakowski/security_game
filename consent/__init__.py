@@ -36,12 +36,11 @@ class Player(BasePlayer):
     label = 'Please indicate whether you consent to participating in this study:'
 )
 
-
 # FUNCTIONS
 # PAGES
 class Consent(Page):
     form_model = 'player'
-    form_fields = ['consent', 'otree_version']
+    form_fields = ['consent']
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
