@@ -12,8 +12,8 @@ class Constants(BaseConstants):
 def creating_session(self):
     for p in self.get_players():
         otree_version = popen('otree --version').read().strip()
-        p.participant.vars['version_otree'] = otree_version
-        print('built under otree version:', p.participant.vars['version_otree'])
+        p.participant.vars['otree_version'] = otree_version
+        print('built under otree version:', p.participant.vars['otree_version'])
         p.otree_version = otree_version
 pass
 
@@ -41,7 +41,7 @@ class Player(BasePlayer):
 # PAGES
 class Consent(Page):
     form_model = 'player'
-    form_fields = ['consent']
+    form_fields = ['consent', 'otree_version']
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
