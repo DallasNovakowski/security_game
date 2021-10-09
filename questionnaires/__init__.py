@@ -90,8 +90,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    submit_missing = models.IntegerField(initial=0)
-    missing_too_many = models.BooleanField(initial=False)
 
     iu_1 = make_iu("Unforeseen events upset me greatly")
     iu_2 = make_iu("It frustrates me not having all the information I need.")
