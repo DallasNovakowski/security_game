@@ -153,7 +153,7 @@ class IU(Page):
 
 class DOSPERT(Page):
     form_model = 'player'
-    form_fields = ['submit_missing','dospert_1', 'dospert_2', 'dospert_3', 'dospert_4', 'dospert_5',
+    form_fields = ['dospert_1', 'dospert_2', 'dospert_3', 'dospert_4', 'dospert_5',
                    'dospert_6','dospert_7', 'dospert_8', 'dospert_9', 'dospert_10','dospert_11',
                    'dospert_12', 'dospert_13','dospert_14','dospert_15','dospert_16',
                    'dospert_17','dospert_18','dospert_19','dospert_20','dospert_21',
