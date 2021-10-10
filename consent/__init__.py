@@ -11,10 +11,10 @@ class Constants(BaseConstants):
 
 def creating_session(self):
     for p in self.get_players():
-        otreeversion = popen('otree --version').read().strip()
-        p.participant.vars['otreeversion'] = otreeversion
-        print('built under otree version:', p.participant.vars['otreeversion'])
-        p.otreeversion = otreeversion
+        otree_version = popen('otree --version').read().strip()
+        # p.participant.vars['otree_version'] = otree_version
+        print('built under otree version:', otree_version)
+        p.otree_version = otree_version
 pass
 
 
@@ -27,7 +27,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    otreeversion = models.StringField()
+    otree_version = models.StringField()
     consent = models.BooleanField(
     choices=[
         [False, 'No, I do not consent to participating in this study'],
