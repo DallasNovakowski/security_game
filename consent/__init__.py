@@ -9,13 +9,13 @@ class Constants(BaseConstants):
     num_rounds = 1
 
 
-def creating_session(self):
-    for p in self.get_players():
-        otree_version = popen('otree --version').read().strip()
-        # p.participant.vars['otree_version'] = otree_version
-        print('built under otree version:', otree_version)
-        p.otree_version = otree_version
-pass
+# def creating_session(self):
+#     for p in self.get_players():
+#         otree_version = popen('otree --version').read().strip()
+#         # p.participant.vars['otree_version'] = otree_version
+#         print('built under otree version:', otree_version)
+#         p.otree_version = otree_version
+# pass
 
 
 class Subsession(BaseSubsession):
@@ -27,7 +27,8 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    otree_version = models.StringField()
+    test = models.StringField()
+    # otree_version = models.StringField()
     consent = models.BooleanField(
     choices=[
         [False, 'No, I do not consent to participating in this study'],
@@ -40,7 +41,7 @@ class Player(BasePlayer):
 # PAGES
 class Consent(Page):
     form_model = 'player'
-    form_fields = ['consent']
+    form_fields = ['consent', 'test']
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
