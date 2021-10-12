@@ -159,7 +159,7 @@ class DOSPERT(Page):
                    'dospert_12', 'dospert_13','dospert_14','dospert_15','dospert_16',
                    'dospert_17','dospert_18','dospert_19','dospert_20','dospert_21',
                    'dospert_22','dospert_23','dospert_24','dospert_25','dospert_26',
-                   'dospert_27','dospert_28','dospert_29','dospert_30']
+                   'dospert_27','dospert_28','dospert_29','dospert_30','ts_dospert']
     pass
 
 page_sequence = [IU,DOSPERT]

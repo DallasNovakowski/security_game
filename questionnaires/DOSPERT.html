@@ -63,18 +63,248 @@ tr:nth-child(odd) {
             <th style="width: 10%;">6</th>
             <th style="width: 10%;">7 <br> Extremely Likely</th>
     </tr></thead>
-    <tbody>
-    {{ for field in form }}
+<tbody>
+
         <tr>
-            <td>{{ field.label }} {{formfield_errors field.name}}</td>
-            {{ for choice in field }}
-                <td class="fixed">{{ choice }}</td>
-            {{ endfor }}
+        <td>{{ form.dospert_1.label }} {{ formfield_errors 'dospert_1' }}</td>
+        {{ for choice in form.dospert_1 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
         </tr>
-    {{ endfor }}
+
+        <tr>
+        <td>{{ form.dospert_2.label }} {{ formfield_errors 'dospert_2' }} </td>
+        {{ for choice in form.dospert_2 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_3.label }} {{ formfield_errors 'dospert_3' }} </td>
+        {{ for choice in form.dospert_3 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_4.label }} {{ formfield_errors 'dospert_4' }} </td>
+        {{ for choice in form.dospert_4 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_5.label }} {{ formfield_errors 'dospert_5' }} </td>
+        {{ for choice in form.dospert_5 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_6.label }} {{ formfield_errors 'dospert_6' }} </td>
+        {{ for choice in form.dospert_6 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_7.label }} {{ formfield_errors 'dospert_7' }}</td>
+        {{ for choice in form.dospert_7 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_8.label }} {{ formfield_errors 'dospert_8' }} </td>
+        {{ for choice in form.dospert_8 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_9.label }} {{ formfield_errors 'dospert_9' }} </td>
+        {{ for choice in form.dospert_9 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_10.label }} {{ formfield_errors 'dospert_10' }} </td>
+        {{ for choice in form.dospert_10 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_11.label }} {{ formfield_errors 'dospert_11' }} </td>
+        {{ for choice in form.dospert_11 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_12.label }} {{ formfield_errors 'dospert_12' }} </td>
+        {{ for choice in form.dospert_12 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_13.label }} {{ formfield_errors 'dospert_13' }} </td>
+        {{ for choice in form.dospert_13 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_14.label }} {{ formfield_errors 'dospert_14' }} </td>
+        {{ for choice in form.dospert_14 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_15.label }} {{ formfield_errors 'dospert_15' }} </td>
+        {{ for choice in form.dospert_15 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_16.label }} {{ formfield_errors 'dospert_16' }} </td>
+        {{ for choice in form.dospert_16 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_17.label }} {{ formfield_errors 'dospert_17' }} </td>
+        {{ for choice in form.dospert_17 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_18.label }} {{ formfield_errors 'dospert_18' }} </td>
+        {{ for choice in form.dospert_18 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_19.label }} {{ formfield_errors 'dospert_19' }} </td>
+        {{ for choice in form.dospert_19 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_20.label }} {{ formfield_errors 'dospert_20' }} </td>
+        {{ for choice in form.dospert_20 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_21.label }} {{ formfield_errors 'dospert_21' }} </td>
+        {{ for choice in form.dospert_21 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_22.label }} {{ formfield_errors 'dospert_22' }} </td>
+        {{ for choice in form.dospert_22 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_23.label }} {{ formfield_errors 'dospert_23' }} </td>
+        {{ for choice in form.dospert_23 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_24.label }} {{ formfield_errors 'dospert_24' }} </td>
+        {{ for choice in form.dospert_24 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_25.label }} {{ formfield_errors 'dospert_25' }} </td>
+        {{ for choice in form.dospert_25 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_26.label }} {{ formfield_errors 'dospert_26' }} </td>
+        {{ for choice in form.dospert_26 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_27.label }} {{ formfield_errors 'dospert_27' }} </td>
+        {{ for choice in form.dospert_27 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_28.label }} {{ formfield_errors 'dospert_28' }} </td>
+        {{ for choice in form.dospert_28 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_29.label }} {{ formfield_errors 'dospert_29' }} </td>
+        {{ for choice in form.dospert_29 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.dospert_30.label }} {{ formfield_errors 'dospert_30' }} </td>
+        {{ for choice in form.dospert_30 }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+
     </tbody>
 </table>
 </div>
 
+<input type="hidden" name="ts_dospert" id="ts_dospert"/>
+
     {{ next_button }}
+
+
+<script>
+    //This bit creates 2 variables, one will function as a timer, the other will hold the timer output. They are set to 0 and -1 here to initialise them, these will not be the final outputs.
+var pageTimeElapsed = 0;
+var pageTimerID = -1;
+
+//This function automatically starts the timer when the page loads. In this case I want seconds so the interval is set to 1000, but I believe if you set it to 1 then it will count milliseconds - you will need to test this
+window.onload = function() {
+  if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1000);
+  }
+};
+
+//This function captures the timer output. When the timer starts it will increase 'pageTimeElapsed' every second and send this value to the 'timeSpent' variable that will be saved
+//When a person moves to the next page, or the page times out, the final value that the timer was on will be saved. The value resets each round/page.
+function pageTick() {
+  pageTimeElapsed++
+  document.getElementById("ts_dospert").value = pageTimeElapsed;
+}
+
+</script>
+
+
 {{ endblock }}
