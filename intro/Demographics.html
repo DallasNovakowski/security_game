@@ -29,8 +29,53 @@
 <button type="button" class="btn btn-primary" onclick="Validate()">Next</button>
 
 
+<span id="fields" style="color:#990000"></span>
+<span id="messages" style="color:#990000"></span>
+<span id="messages2" style="color:#990000"></span>
+
 <script>
-//This bit creates 2 variables, one will function as a timer, the other will hold the timer output. They are set to 0 and -1 here to initialise them, these will not be the final outputs.
+
+    let optional_fields = js_vars.optional_fields;
+    let times_submitted = 0;
+
+    fields.innerHTML = optional_fields
+    messages2.innerHTML = times_submitted
+
+    function Validate() {
+        var items = []
+        let isValid = []
+        let messages = []
+
+        //each time the next button is pressed, times submitted increments
+        times_submitted++
+        if (times_submitted >= 2) {
+            form.submit()   //optional submission - if next is hit twice or more, submit
+        } else { // if not hit more than twice...
+            messages.innerHTML = ['hey', 'ho']
+            for (i = 0; i < optional_fields.length; i++) {
+                isValid[i] = false
+                messages[i] = "Please fill out this field"
+
+                items.push(Array.from(document.getElementsByName(optional_fields[i])))        //Reference the Group of optional questions.
+
+                for (var j = 0; j < items[i].length; j++) {
+                    if (items[i][j].checked) {
+                        // if at least one radio is checked for the question, return true and change item's message to blank
+                        isValid[i] = true;
+                        messages[i] = "";
+                    } else {
+                        scroll(0, 0)
+                    }
+
+
+                }
+            }
+            education_message.innerHTML = messages[0]
+            income_message.innerHTML = messages[1]
+        }
+    }
+
+    //This bit creates 2 variables, one will function as a timer, the other will hold the timer output. They are set to 0 and -1 here to initialise them, these will not be the final outputs.
 var pageTimeElapsed = 0;
 var pageTimerID = -1;
 
@@ -48,72 +93,6 @@ function pageTick() {
   document.getElementById("ts_demo").value = pageTimeElapsed;
 }
 
-    let optional_fields = js_vars.optional_fields;
-    let times_submitted = 0;
-
-    function Validate() {
-        // let error_messages = []
-        var items = []
-        let isValid = []
-        let messages = []
-
-        times_submitted++
-
-        if (times_submitted >= 2) {
-                form.submit()
-            } else {
-
-            for (i = 0; i < optional_fields.length; i++) {
-                isValid[i] = false
-                messages[i] = "Please fill out this field"
-
-                //Reference the Group of questions.
-                // error_messages.push(optional_fields[i]);
-                items.push(Array.from(document.getElementsByName(optional_fields[i])));
-
-                // branches for radio (div) vs. text input (input, probably) items
-                if (document.getElementById(optional_fields[i]).tagName == "DIV") {
-                    //Loop and verify whether at-least one RadioButton is checked.
-                    for (var j = 0; j < items[i].length; j++) {
-                        if (items[i][j].checked) {
-                            // if at least one radio is checked for the question, return true
-                            isValid[i] = true;
-                            messages[i] = "";
-                            break;
-                        } else {
-                            scroll(0,0)
-                        }
-                    }
-                } else {    // tests valid entry for non-div (i.e., text entry) items
-                    if (document.getElementById(optional_fields[i]).value) {
-                        isValid[i] = true;
-                        messages[i] = "";
-                    } else {
-                        scroll(0,0)
-                    }
-                }
-            }
-        }
-                // create summary items and flow after all the looping
-
-        let all_checked = isValid.every(x => x);  //flags whether all questions are checked
-
-        if (all_checked == true){        // branch submission or kicking participants to top of screen, depending on whether everything is checked and whether they have already tried submitting
-            form.submit()
-        } else {
-            if (times_submitted >= 2) {
-                form.submit()
-            } else {
-                scroll(0, 0)
-            }
-
-
-        }
-
-        error_message.innerHTML = isValid
-        education_message.innerHTML = messages[0]
-        income_message.innerHTML = messages[1]
-    }
 </script>
 
 
