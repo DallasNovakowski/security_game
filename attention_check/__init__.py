@@ -27,13 +27,13 @@ class Player(BasePlayer):
                                                       ['Needlework', 'Needlework'], ['Cooking', 'Cooking'], ['Gardening', 'Gardening'], ['Computer Games', 'Computer Games'],
                                                       ['Hiking', 'Hiking'], ['Board or Card Games', 'Board or Card Games'], ['Other:', 'Other:']],
                                    widget=widgets.RadioSelect)
-    Other = models.StringField(label="", blank = True)
-
+    other = models.StringField(label="", blank = True)
+    ts_atncheck = models.FloatField(blank=True)
     # pass
 
 class attention_check(Page):
     form_model = 'player'
-    form_fields = ['atn_check', 'Other']
+    form_fields = ['atn_check', 'other', 'ts_atncheck']
     pass
 
 

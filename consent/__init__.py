@@ -17,7 +17,6 @@ def creating_session(self):
         p.otree_version = otree_version
 pass
 
-
 class Subsession(BaseSubsession):
     pass
 

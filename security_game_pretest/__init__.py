@@ -45,6 +45,13 @@ def creating_session(subsession: Subsession):
 pass
 
 
+class Player(BasePlayer):
+    security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
+    page_in_round = models.StringField()
+    ts_security = models.FloatField(blank=True)
+    pass
+
+
 class Group(BaseGroup):
     pass
 
@@ -52,7 +59,7 @@ class Group(BaseGroup):
 # PAGES
 class PreTest50_04(Page):
     form_model = 'player'
-    form_fields = ['security_consumed']     # allows for security responses in page to ber recorded
+    form_fields = ['security_consumed', 'ts_security']     # allows for security responses in page to ber recorded
 
 
     def is_displayed(self):         # this function passes the randomly-generated number for page-number pairing
@@ -74,7 +81,7 @@ class PreTest50_04(Page):
 
 class PreTest50_02(Page):
     form_model = 'player'
-    form_fields = ['security_consumed']
+    form_fields = ['security_consumed', 'ts_security']
 
 
     def is_displayed(self):
@@ -95,7 +102,7 @@ class PreTest50_02(Page):
 
 class PreTest60_02(Page):
     form_model = 'player'
-    form_fields = ['security_consumed']
+    form_fields = ['security_consumed', 'ts_security']
 
     def is_displayed(self):
         return self.round_number == self.participant.vars['task_rounds']['PreTest60_02']
@@ -117,7 +124,7 @@ class PreTest60_02(Page):
 
 class PreTest60_04(Page):
     form_model = 'player'
-    form_fields = ['security_consumed']
+    form_fields = ['security_consumed', 'ts_security']
 
 
     def is_displayed(self):
@@ -139,7 +146,7 @@ class PreTest60_04(Page):
 
 class PreTest75_02(Page):
     form_model = 'player'
-    form_fields = ['security_consumed']
+    form_fields = ['security_consumed', 'ts_security']
 
 
     def is_displayed(self):
@@ -161,7 +168,7 @@ class PreTest75_02(Page):
 
 class PreTest75_04(Page):
     form_model = 'player'
-    form_fields = ['security_consumed']
+    form_fields = ['security_consumed', 'ts_security']
 
 
     def is_displayed(self):
@@ -180,9 +187,6 @@ class PreTest75_04(Page):
         )
     pass
 
-class Player(BasePlayer):
-    security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
-    page_in_round = models.StringField()
-    pass
+
 
 page_sequence = [PreTest50_04, PreTest50_02, PreTest60_04, PreTest60_02, PreTest75_04, PreTest75_02]
