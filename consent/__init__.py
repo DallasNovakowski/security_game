@@ -28,6 +28,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     otree_version = models.StringField()
+    ts_consent = models.FloatField(blank=True)
     consent = models.BooleanField(
     choices=[
         [False, 'No, I do not consent to participating in this study'],
@@ -40,7 +41,7 @@ class Player(BasePlayer):
 # PAGES
 class Consent(Page):
     form_model = 'player'
-    form_fields = ['consent']
+    form_fields = ['consent', 'ts_consent']
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):

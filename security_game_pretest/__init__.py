@@ -137,7 +137,6 @@ class PreTest60_04(Page):
     pass
 
 
-
 class PreTest75_02(Page):
     form_model = 'player'
     form_fields = ['security_consumed']
