@@ -10,57 +10,6 @@ class Constants(BaseConstants):
 
 
 
-# # FUNCTIONS
-# def make_questionnaire(label, varname, choices):
-#     for i in label:
-#         varname[i] =[i]
-#         varname[i].append(i+1)
-#         return models.IntegerField(
-#             choices= choices,
-#             label = label,
-#             widget = widgets.RadioSelectHorizontal
-#         )
-#
-# def thing2(label, name):
-#     d = dict()
-#     for i in label:
-#         d[name{0}.format(i)] = label[i]
-#
-#
-#         x[] = x[]
-#         x[i] = label.format(i)
-#         print(x[i])
-#
-# x = dict()
-# for i in label:
-#     x[i] = 100 / i
-#     print(x[i])
-#
-# def the_thing(varname,label,choices):
-#     dict = {} #empty dictionary
-#     for x in label: #for looping
-#         dict[label.format(x)] = dict[varname.format(x)]
-#         return models.IntegerField(
-#                 choices= choices,
-#                 label = dict[label.format(x)],
-#                 widget = widgets.RadioSelectHorizontal
-#             )
-#     print(dict)
-#
-# blah_label = ["Admitting that your tastes are different from those of a friend. ","Going camping in the wilderness.", "Betting a day’s income at the horse races."]
-#
-# characteristic_5 = [[1,"Not at all characteristic of me"],[2, "A little characteristic of me"],
-#                  [3, "Somewhat characteristic of me"],[4, "Very characteristic of me"],
-#                  [5, "Entirely characteristic of me"]]
-
-    #{'string1': 'Variable1', 'string2': 'Variable1', 'string3': 'Variable1', 'string4': 'Variable1',
-     #'string5': 'Variable1', 'string6': 'Variable1', 'string7': 'Variable1', 'string8': 'Variable1',
-     #'string9': 'Variable1'}
-
-    # [[1, "Not at all characteristic of me"], [2, "A little characteristic of me"],
-    #  [3, "Somewhat characteristic of me"], [4, "Very characteristic of me"],
-    #  [5, "Entirely characteristic of me"]],
-
 def make_iu(label):
     return models.IntegerField(
         choices=[[1,"Not at all characteristic of me"],[2, "A little characteristic of me"],
@@ -90,6 +39,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    submit_missing = models.IntegerField(initial=0)
     ts_iu = models.FloatField(blank=True)
     iu_1 = make_iu("Unforeseen events upset me greatly")
     iu_2 = make_iu("It frustrates me not having all the information I need.")
@@ -146,18 +96,16 @@ class IU(Page):
     @staticmethod
     def error_message(player: Player, values):
         errors = {f: 'Please fill in this field' for f in values if not values[f]}
-        submit_missing = 0
         if errors:
-            submit_missing += 1
-            if submit_missing < 2:
+            player.submit_missing += 1
+            if player.submit_missing < 2:
                 return errors
 
     @staticmethod
-    def js_vars(player):    # highlights variables/fields that do not need to be filled (but that we'll be displaying a one-time warning message if they're left blank)
-        return dict(optional_fields = IU.form_fields)
+    def before_next_page(player, timeout_happened):
+        player.submit_missing = 0
+
     pass
-
-
 # any(len(ele) == 0 for ele in values):
 
 class DOSPERT(Page):
@@ -168,6 +116,20 @@ class DOSPERT(Page):
                    'dospert_17','dospert_18','dospert_19','dospert_20','dospert_21',
                    'dospert_22','dospert_23','dospert_24','dospert_25','dospert_26',
                    'dospert_27','dospert_28','dospert_29','dospert_30','ts_dospert']
+
+    @staticmethod
+    def error_message(player: Player, values):
+        errors = {f: 'Please fill in this field' for f in values if not values[f]}
+        if errors:
+            player.submit_missing += 1
+            if player.submit_missing < 2:
+                return errors
+
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        player.submit_missing = 0
+
     pass
+
 
 page_sequence = [IU,DOSPERT]

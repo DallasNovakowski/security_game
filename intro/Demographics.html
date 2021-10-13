@@ -63,11 +63,6 @@ function pageTick() {
     let required_fields = js_vars.required_fields;
     let optional_fields = js_vars.optional_fields;
     let times_submitted = 0;
-    //
-    // required.innerHTML = required_fields
-    // fields.innerHTML = optional_fields
-    // messages2.innerHTML = times_submitted
-
 
     function Validate() {
         var items = []
@@ -76,9 +71,8 @@ function pageTick() {
         let reqValid = []
         let messages = []
         let req_messages = []
-        let test = []
 
-        let checker = arr => arr.every(v => v === true)
+        let checker = arr => arr.every(v => v === true)  // this function checks whether all elements in an array are true
 
         //each time the next button is pressed, times submitted increments
         times_submitted++
@@ -111,20 +105,16 @@ function pageTick() {
             }
                 }
             }
-
+        // export messages to html
         age_message.innerHTML = req_messages[0]
         gender_message.innerHTML = req_messages[1]
-        // requir.innerHTML = reqValid
-        // requir1.innerHTML = checker(reqValid)
-        // if (reqValid.some == false){}
 
         //for optional variables
         if (times_submitted >= 2) {
             if(checker(reqValid) == true) {
                 form.submit()   //optional submission - if next is hit twice or more, submit
             }
-        } else { // if not hit more than twice...
-
+        } else { // if next not hit more than twice...
             for (i = 0; i < optional_fields.length; i++) {
                 isValid[i] = false
                 messages[i] = "Please fill out this field"
@@ -138,7 +128,6 @@ function pageTick() {
                         // if at least one radio is checked for the question, return true and change item's message to blank
                             isValid[i] = true;
                             messages[i] = "";
-                            test = "blorp"
                             break;
                     } else {
                         scroll(0, 0)
@@ -158,7 +147,6 @@ function pageTick() {
             }
             education_message.innerHTML = messages[0]
             income_message.innerHTML = messages[1]
-            // blep.innerHTML = test
         }
     }
 

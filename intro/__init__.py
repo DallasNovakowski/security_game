@@ -22,11 +22,12 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     submit_missing = models.IntegerField(initial=0)
     prolific_id = models.StringField(default=str(""))
-    age = models.IntegerField(label='What is your age?', min=13, max=125)
+    age = models.IntegerField(label='What is your age?', min=13, max=125, blank=True)
     gender = models.StringField(
         choices=[['Male', 'Male'], ['Female', 'Female'], ['Other', 'Other']],
         label='What is your gender?',
         widget=widgets.RadioSelect,
+     blank = True
     )
     education = models.StringField(
         choices = ['Less than high school degree', "High school graduate (high school diploma or equivalent including GED)",
@@ -52,26 +53,10 @@ class Player(BasePlayer):
     ts_demo = models.FloatField(blank=True)
     ts_intro = models.FloatField(blank=True)
 
-
-# functions
-# def get_response_data():
-#     return [
-#         dict(
-#             name='age',
-#             explanation="did you answer everything you needed to?.",
-#         ),
-#         dict(
-#             name='education',
-#             explanation="did you answer everything you needed to?. But better?",
-#         ),
-#     ]
-
 # PAGES
 class Demographics(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'education', "income", 'ts_demo']
-
-
 
     @staticmethod
     def js_vars(player):    # highlights variables/fields that do not need to be filled (but that we'll be displaying a one-time warning message if they're left blank)
