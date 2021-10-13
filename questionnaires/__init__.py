@@ -143,6 +143,14 @@ class IU(Page):
     form_model = 'player'
     form_fields = ['iu_1', 'iu_2', 'iu_3', 'iu_4', 'iu_5', 'iu_6', 'iu_7', 'iu_8', 'iu_9', 'iu_10', 'iu_11', 'iu_12', 'ts_iu']
 
+    @staticmethod
+    def error_message(player: Player, values):
+        errors = {f: 'Please fill in this field' for f in values if not values[f]}
+        submit_missing = 0
+        if errors:
+            submit_missing += 1
+            if submit_missing < 2:
+                return errors
 
     @staticmethod
     def js_vars(player):    # highlights variables/fields that do not need to be filled (but that we'll be displaying a one-time warning message if they're left blank)

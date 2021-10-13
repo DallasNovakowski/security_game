@@ -39,6 +39,9 @@
 
 <input type="hidden" name="ts_security" id="ts_security"/>
 
+    {{ next_button }}
+
+
 <script>
 //This bit creates 2 variables, one will function as a timer, the other will hold the timer output. They are set to 0 and -1 here to initialise them, these will not be the final outputs.
 var pageTimeElapsed = 0;
@@ -107,8 +110,5 @@ slider.oninput = function() {
 }
 
 </script>
-
-
-    {{ next_button }}
 
 {{ endblock }}

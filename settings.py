@@ -59,11 +59,11 @@ ROOMS = [
         # participant_label_file='_rooms/security_game.txt',
     ),
 ]
-#
+
+
 # An easy thing you can do to store the Prolific PID in oTree is to set up a room without a participant label file
 # (https://otree.readthedocs.io/en/latest/rooms.html) and then add ?participant_label=
 # {{%PROLIFIC_PID%}} to your room-wide URL as the study URL on Prolific.
-
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
