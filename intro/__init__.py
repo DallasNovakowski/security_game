@@ -20,8 +20,9 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    submit_missing = models.IntegerField(initial=0)
     prolific_id = models.StringField(default=str(""))
-    age = models.IntegerField(label='What is your age?', min=13, max=125, isValid=True,)
+    age = models.IntegerField(label='What is your age?', min=13, max=125)
     gender = models.StringField(
         choices=[['Male', 'Male'], ['Female', 'Female'], ['Other', 'Other']],
         label='What is your gender?',
@@ -70,9 +71,12 @@ class Demographics(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'education', "income", 'ts_demo']
 
+
+
     @staticmethod
     def js_vars(player):    # highlights variables/fields that do not need to be filled (but that we'll be displaying a one-time warning message if they're left blank)
-        return dict(optional_fields = Demographics.form_fields[2:4])
+        return dict(optional_fields = Demographics.form_fields[2:4],
+                    required_fields = Demographics.form_fields[0:2])
     pass
 
     # @staticmethod
