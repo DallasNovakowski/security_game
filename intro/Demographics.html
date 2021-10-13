@@ -36,8 +36,8 @@
 <!--<span id="fields" style="color:#990000"></span>-->
 <!--<span id="blep" style="color:#990000"></span>-->
 <!--<span id="messages2" style="color:#990000"></span>-->
-<span id="requir" style="color:#990000"></span>
-<span id="requir1" style="color:#990000"></span>
+<!--<span id="requir" style="color:#990000"></span>-->
+<!--<span id="requir1" style="color:#990000"></span>-->
 
 
 <script>
@@ -63,10 +63,10 @@ function pageTick() {
     let required_fields = js_vars.required_fields;
     let optional_fields = js_vars.optional_fields;
     let times_submitted = 0;
-
-    required.innerHTML = required_fields
-    fields.innerHTML = optional_fields
-    messages2.innerHTML = times_submitted
+    //
+    // required.innerHTML = required_fields
+    // fields.innerHTML = optional_fields
+    // messages2.innerHTML = times_submitted
 
 
     function Validate() {
@@ -78,7 +78,7 @@ function pageTick() {
         let req_messages = []
         let test = []
 
-        let checker = arr => arr.every(v => v === false)
+        let checker = arr => arr.every(v => v === true)
 
         //each time the next button is pressed, times submitted increments
         times_submitted++
@@ -114,13 +114,13 @@ function pageTick() {
 
         age_message.innerHTML = req_messages[0]
         gender_message.innerHTML = req_messages[1]
-        requir.innerHTML = reqValid
-        requir1.innerHTML = checker(reqValid)
+        // requir.innerHTML = reqValid
+        // requir1.innerHTML = checker(reqValid)
         // if (reqValid.some == false){}
 
         //for optional variables
         if (times_submitted >= 2) {
-            if(checker(reqValid) == false) {
+            if(checker(reqValid) == true) {
                 form.submit()   //optional submission - if next is hit twice or more, submit
             }
         } else { // if not hit more than twice...
@@ -153,12 +153,12 @@ function pageTick() {
             }
                 }
             }
-            if(checker(reqValid) == false && checker(isValid) == false) {
+            if(checker(reqValid) == true && checker(isValid) == true) {
                 form.submit()   //optional submission - if next is hit twice or more, submit
             }
             education_message.innerHTML = messages[0]
             income_message.innerHTML = messages[1]
-            blep.innerHTML = test
+            // blep.innerHTML = test
         }
     }
 
