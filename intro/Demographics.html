@@ -135,6 +135,9 @@
             }
                 }
             }
+            if(checker(reqValid) == false && checker(isValid) == false) {
+                form.submit()   //optional submission - if next is hit twice or more, submit
+            }
             education_message.innerHTML = messages[0]
             income_message.innerHTML = messages[1]
             blep.innerHTML = test
