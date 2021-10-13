@@ -6,10 +6,12 @@
 <p>{{ form.age.label }}<br><br>
 {{ form.age }}
     {{ formfield_errors 'age' }}</p>
+<span id="age_message" style="color:#990000"></span></p>
 
 <p>{{ form.gender.label }}
 {{ form.gender }}
     {{ formfield_errors 'gender' }}</p>
+    <span id="gender_message" style="color:#990000"></span></p>
 
 <p>{{ form.education.label }}
 {{ form.education }}
@@ -29,51 +31,117 @@
 <button type="button" class="btn btn-primary" onclick="Validate()">Next</button>
 
 
-<span id="fields" style="color:#990000"></span>
-<span id="messages" style="color:#990000"></span>
-<span id="messages2" style="color:#990000"></span>
+<!--<span id="test" style="color:#990000"></span>-->
+<!--<span id="required" style="color:#990000"></span>-->
+<!--<span id="fields" style="color:#990000"></span>-->
+<!--<span id="blep" style="color:#990000"></span>-->
+<!--<span id="messages2" style="color:#990000"></span>-->
+<span id="requir" style="color:#990000"></span>
+<span id="requir1" style="color:#990000"></span>
+
 
 <script>
 
+    let required_fields = js_vars.required_fields;
     let optional_fields = js_vars.optional_fields;
     let times_submitted = 0;
 
+    required.innerHTML = required_fields
     fields.innerHTML = optional_fields
     messages2.innerHTML = times_submitted
 
+
     function Validate() {
         var items = []
+        let reqitems = []
         let isValid = []
+        let reqValid = []
         let messages = []
+        let req_messages = []
+        let test = []
+
+        let checker = arr => arr.every(v => v === false)
 
         //each time the next button is pressed, times submitted increments
         times_submitted++
+
+        // required variable error flagging
+        for (i = 0; i < required_fields.length; i++) {
+                reqValid[i] = false
+                req_messages[i] = "Please fill out this field"
+
+                reqitems.push(Array.from(document.getElementsByName(required_fields[i])))        //Reference the Group of optional questions.
+
+                // branches for radio (div) vs. text input (input, probably) items
+                if (document.getElementById("id_" + required_fields[i]).tagName == "DIV"){
+                    for (var j = 0; j < reqitems[i].length; j++) {
+                        if (reqitems[i][j].checked) {
+                        // if at least one radio is checked for the question, return true and change item's message to blank
+                            reqValid[i] = true;
+                            req_messages[i] = "";
+                            break;
+                    } else {
+                        scroll(0, 0)
+                    }
+                }
+                } else {
+                    if (document.getElementById("id_" + required_fields[i]).value) {
+                reqValid[i] = true;
+                req_messages[i] = "";
+            } else {
+                scroll(0,0)
+            }
+                }
+            }
+
+        age_message.innerHTML = req_messages[0]
+        gender_message.innerHTML = req_messages[1]
+        requir.innerHTML = reqValid
+        requir1.innerHTML = checker(reqValid)
+        // if (reqValid.some == false){}
+
+        //for optional variables
         if (times_submitted >= 2) {
-            form.submit()   //optional submission - if next is hit twice or more, submit
+            if(checker(reqValid) == false) {
+                form.submit()   //optional submission - if next is hit twice or more, submit
+            }
         } else { // if not hit more than twice...
-            messages.innerHTML = ['hey', 'ho']
+
             for (i = 0; i < optional_fields.length; i++) {
                 isValid[i] = false
                 messages[i] = "Please fill out this field"
 
                 items.push(Array.from(document.getElementsByName(optional_fields[i])))        //Reference the Group of optional questions.
 
-                for (var j = 0; j < items[i].length; j++) {
-                    if (items[i][j].checked) {
+                // branches for radio (div) vs. text input (input, probably) items
+                if (document.getElementById("id_" + optional_fields[i]).tagName == "DIV"){
+                    for (var j = 0; j < items[i].length; j++) {
+                        if (items[i][j].checked) {
                         // if at least one radio is checked for the question, return true and change item's message to blank
-                        isValid[i] = true;
-                        messages[i] = "";
+                            isValid[i] = true;
+                            messages[i] = "";
+                            test = "blorp"
+                            break;
                     } else {
                         scroll(0, 0)
                     }
-
-
+                }
+                } else {
+                    if (document.getElementById("id_" + optional_fields[i]).value) {
+                isValid[i] = true;
+                messages[i] = "";
+            } else {
+                scroll(0,0)
+            }
                 }
             }
             education_message.innerHTML = messages[0]
             income_message.innerHTML = messages[1]
+            blep.innerHTML = test
         }
     }
+
+
 
     //This bit creates 2 variables, one will function as a timer, the other will hold the timer output. They are set to 0 and -1 here to initialise them, these will not be the final outputs.
 var pageTimeElapsed = 0;
