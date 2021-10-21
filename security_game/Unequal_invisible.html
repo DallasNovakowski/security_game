@@ -1,22 +1,22 @@
 {{ block title }}
-    Task intro
+    Unequal intro
 {{ endblock }}
 {{ block content }}
 
 <p>
-    In the following task, you will be given money and paired with another participant. You will then be randomly assigned to different roles: Yellow or Blue.
+    You have been assigned to Yellow.
 <br>
     <br>
+    You have each been given ${{ Constants.endowment }}, but your partner (Blue) has been given ${{Constants.other_end}}. Blue does NOT know how much money you have received.
+<br>
+    <br>
+    Shortly, Blue will decide whether they will try to steal ${{ Constants.lost_from_attacks }} from you. If Blue attempts to steal, but fails, you will lose nothing, and they will lose ${{Constants.failed_attack}}.
+<br>
+    <br>
+Before Blue makes the choice to attack, you will have the opportunity to spend some of your money on a security product. Each unit purchased will reduce Blue's chance of successfully stealing. After your purchasing decision, Blue will see their updated chances of success/failure.
 
-
-    Blue will have the option to try stealing money from Yellow. If Blue tries and fails to steal, Blue loses money instead, with Yellow losing nothing.
-<br>
-    <br>
-    Before Blue makes their choice, Yellow will have the chance to purchase a “security product.” The security product will cost money, but each unit purchased will reduce Blue's chance of successfully stealing.
-<br>
-    <br>
-    After Yellow makes their purchasing decision, Blue will see the updated chances of success/failure.
 </p>
+
 
 <input type="hidden" name="ts_intro" id="ts_intro"/>
 
