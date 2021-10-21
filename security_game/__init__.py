@@ -40,22 +40,63 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    #Utility variables
     prolific_id = models.StringField(default=str(""))
-    security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
+    ts_preamble = models.FloatField(blank=True)
     ts_intro = models.FloatField(blank=True)
     ts_security = models.FloatField(blank=True)
+    #Study variables
     visible = models.BooleanField(blank=True)
     inequality = models.BooleanField(blank=True)
+    security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
     pass
 
 
 
 # PAGES
+class Task_intro(Page):
+    form_model = 'player'
+    form_fields = ['ts_preamble']
+
+    @staticmethod
+    def before_next_page(self, timeout_happened):
+        self.prolific_id = self.participant.label
+    pass
+
+
+class Equal_visible(Page):
+    form_model = 'player'
+    form_fields = ['ts_intro']
+
+    def is_displayed(self):         # this function passes the randomly-generated number for page-number pairing
+        return self.inequality == False & self.visible == True
+
+
+class Equal_invisible(Page):
+    form_model = 'player'
+    form_fields = ['ts_intro']
+
+    def is_displayed(self):
+        return self.inequality == False & self.visible == False
+
+class Unequal_visible(Page):
+    form_model = 'player'
+    form_fields = ['ts_intro']
+
+    def is_displayed(self):
+        return self.inequality == True & self.visible == True
+
+class Unequal_invisible(Page):
+    form_model = 'player'
+    form_fields = ['ts_intro']
+
+    def is_displayed(self):
+        return self.inequality == True & self.visible == False
+
+
 class Security_game(Page):
     form_model = 'player'
     form_fields = ['security_consumed', 'ts_security']     # allows for security responses in page to ber recorded
-
-
 
     @staticmethod               # this function passes constants to javascript for manipulation in-page
     def js_vars(player):
@@ -67,61 +108,6 @@ class Security_game(Page):
             lost_from_attacks=Constants.lost_from_attacks,
             failed_attack=Constants.failed_attack,
         )
-    pass
-
-class Task_intro(Page):
-    form_model = 'player'
-    form_fields = ['ts_intro']
-
-
-class Equal_invisible(Page):
-    form_model = 'player'
-    form_fields = ['ts_intro']
-
-    def is_displayed(self):
-        return self.inequality == False & self.visible == False
-
-
-    @staticmethod
-    def before_next_page(self, timeout_happened):
-        self.prolific_id = self.participant.label
-    pass
-
-class Equal_visible(Page):
-    form_model = 'player'
-    form_fields = ['ts_intro']
-
-    def is_displayed(self):         # this function passes the randomly-generated number for page-number pairing
-        return self.inequality == False & self.visible == True
-
-    @staticmethod
-    def before_next_page(self, timeout_happened):
-        self.prolific_id = self.participant.label
-    pass
-
-class Unequal_invisible(Page):
-    form_model = 'player'
-    form_fields = ['ts_intro']
-
-    def is_displayed(self):
-        return self.inequality == True & self.visible == False
-
-
-    @staticmethod
-    def before_next_page(self, timeout_happened):
-        self.prolific_id = self.participant.label
-    pass
-
-class Unequal_visible(Page):
-    form_model = 'player'
-    form_fields = ['ts_intro']
-
-    def is_displayed(self):         # this function passes the randomly-generated number for page-number pairing
-        return self.inequality == True & self.visible == True
-
-    @staticmethod
-    def before_next_page(self, timeout_happened):
-        self.prolific_id = self.participant.label
     pass
 
 

@@ -7,7 +7,10 @@ SESSION_CONFIGS = [
         name='intro', app_sequence=['intro', 'payment_info'], num_demo_participants=1,
     ),
     dict(
-        name='security_game', app_sequence=['security_game'], num_demo_participants=20
+        name='inequality_visibility_security',
+        app_sequence=['security_game'],
+        num_demo_participants=20,
+        completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682'
     ),
     dict(
         name='security_game_pretest',

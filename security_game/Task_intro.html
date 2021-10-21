@@ -1,5 +1,5 @@
 {{ block title }}
-    Task intro
+    Task preamble
 {{ endblock }}
 {{ block content }}
 
@@ -18,7 +18,7 @@
     After Yellow makes their purchasing decision, Blue will see the updated chances of success/failure.
 </p>
 
-<input type="hidden" name="ts_intro" id="ts_intro"/>
+<input type="hidden" name="ts_preamble" id="ts_preamble"/>
 
 
 {{ next_button }}
@@ -40,7 +40,7 @@ window.onload = function() {
 //When a person moves to the next page, or the page times out, the final value that the timer was on will be saved. The value resets each round/page.
 function pageTick() {
   pageTimeElapsed++
-  document.getElementById("ts_intro").value = pageTimeElapsed;
+  document.getElementById("ts_preamble").value = pageTimeElapsed;
 }
 </script>
 
