@@ -64,54 +64,6 @@ class Demographics(Page):
                     required_fields = Demographics.form_fields[0:2])
     pass
 
-    # @staticmethod
-    # def vars_for_template(player: Player):
-    #     fields = get_response_data()
-    #     for d in fields:
-    #         d['is_correct'] = not getattr(player,  d['name'])
-    #         return dict(fields=fields, show_solutions=True)
-
-    #
-    # @staticmethod
-    # def message(player: Player, values):
-    #     # since 'values' is a dict, yo[u could also do sum(values.values())
-    #     if ['age'] != 100:
-    #         return 'Numbers must add up to 100'
-
-    # messages.add_message(request, messages.INFO, 'Hello world.')
-
-    #
-    # @staticmethod
-    # def mess(player, values):
-    #     form_fields = dict(
-    #         quiz1=42,
-    #         quiz2='Ottawa',
-    #         quiz3='3.14',
-    #         quiz4='George Washington'
-    #     )
-    #
-    #     message = dict()
-    #
-    #     for field_name in form_fields:
-    #         if not values[field_name]:
-    #             message[field_name] = 'Wrong answer'
-    #
-    #     return message
-
-
-
-    # @staticmethod
-    # def done(request):
-    #     template = loader.get_template('maps/done.html')
-    #
-    # context = RequestContext(request, {
-    #     'reports_link': report_array, // I
-    # believe
-    # this is not correct.
-    # })
-    # pass
-
-
 
 class Task_intro(Page):
     form_model = 'player'

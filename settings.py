@@ -2,14 +2,6 @@
 from os import environ
 from os import popen
 
-# MESSAGE_TAGS = {
-#         messages.DEBUG: 'alert-secondary',
-#         messages.INFO: 'alert-info',
-#         messages.SUCCESS: 'alert-success',
-#         messages.WARNING: 'alert-warning',
-#         messages.ERROR: 'alert-danger',
-#  }
-
 SESSION_CONFIGS = [
     dict(
         name='intro', app_sequence=['intro', 'payment_info'], num_demo_participants=1,
@@ -25,8 +17,8 @@ SESSION_CONFIGS = [
         oTree_version_used = popen('otree --version').read().strip()
     ),
 ]
-
-# 'consent', 'intro','security_game_pretest',
+# for bots (need something - consent.tests?)
+# otree test mysession 6
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.

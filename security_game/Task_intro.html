@@ -1,0 +1,42 @@
+{{ block title }}
+    Task intro
+{{ endblock }}
+{{ block content }}
+
+<p>
+    Imagine that you and another study participant each received ${{ Constants.endowment }}. In this scenario: <br> <br>
+
+    One of you will have the choice to try and steal $1 from the other, with some chance of success.
+    If an attempted theft fails, the attacker will instead lose $1, with the target losing nothing.
+
+    In this study, you will see a few different versions this game with different values.<br> <br>
+    Please read these scenarios and adjust your choices accordingly
+</p>
+
+<input type="hidden" name="ts_intro" id="ts_intro"/>
+
+
+{{ next_button }}
+
+
+<script>
+//This bit creates 2 variables, one will function as a timer, the other will hold the timer output. They are set to 0 and -1 here to initialise them, these will not be the final outputs.
+var pageTimeElapsed = 0;
+var pageTimerID = -1;
+
+//This function automatically starts the timer when the page loads. In this case I want seconds so the interval is set to 1000, but I believe if you set it to 1 then it will count milliseconds - you will need to test this
+window.onload = function() {
+  if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1000);
+  }
+};
+
+//This function captures the timer output. When the timer starts it will increase 'pageTimeElapsed' every second and send this value to the 'timeSpent' variable that will be saved
+//When a person moves to the next page, or the page times out, the final value that the timer was on will be saved. The value resets each round/page.
+function pageTick() {
+  pageTimeElapsed++
+  document.getElementById("ts_intro").value = pageTimeElapsed;
+}
+</script>
+
+{{ endblock }}

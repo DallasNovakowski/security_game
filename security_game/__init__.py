@@ -11,12 +11,16 @@ class Constants(BaseConstants):
     name_in_url = 'security_game'
     players_per_group = None
     num_rounds = 1
-    security_efficacy = .02
     security_price = .04
-    base_theft_success = .6
-    lost_from_attacks = 1
+    security_efficacy = .01
+    security_price_04 = .04
+    base_theft_success_50 = .5
     endowment = 2
-
+    security_price_02 = .02
+    base_theft_success_75 = .75
+    failed_attack = 1
+    base_theft_success_60 = .6
+    lost_from_attacks = 1
 
 class Subsession(BaseSubsession):
     pass
@@ -27,38 +31,46 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    age = models.IntegerField(label="What is your age?")
-    gender = models.StringField(label="What is your gender?",
-                                choices=[["Male", "Male"], ["Female", "Female"], ["Other", "Other"]])
+    prolific_id = models.StringField(default=str(""))
     security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
+    ts_intro = models.FloatField(blank=True)
+    ts_security = models.FloatField(blank=True)
+    inequality = models.BooleanField()
     pass
+
+
+    def creating_session(subsession):
+        import random
+        for player in subsession.get_players():
+            player.inequality = random.choice([True, False])
+            print('set inequality to', player.inequality)
 
 
 # PAGES
-class Demo(Page):
+class security_game(Page):
     form_model = 'player'
-    form_fields = ['age', 'gender']
-    pass
+    form_fields = ['security_consumed', 'ts_security']     # allows for security responses in page to ber recorded
 
-
-class Intro(Page):
-    form_model = 'player'
-    pass
-
-
-class SampleGame(Page):
-    form_model = 'player'
-    form_fields = ['security_consumed']
-
-    @staticmethod
+    @staticmethod               # this function passes constants to javascript for manipulation in-page
     def js_vars(player):
         return dict(
             efficacy=Constants.security_efficacy,
-            price=Constants.security_price,
-            theft_success=Constants.base_theft_success,
-            endowment=Constants.endowment
+            endowment=Constants.endowment,
+            price=Constants.security_price_04,
+            theft_success=Constants.base_theft_success_50,
+            lost_from_attacks=Constants.lost_from_attacks,
+            failed_attack=Constants.failed_attack,
         )
     pass
 
 
-page_sequence = [SampleGame]
+class Task_intro(Page):
+    form_model = 'player'
+    form_fields = ['ts_intro']
+
+    @staticmethod
+    def before_next_page(self, timeout_happened):
+        self.prolific_id = self.participant.label
+    pass
+
+page_sequence = [Task_intro, security_game]
