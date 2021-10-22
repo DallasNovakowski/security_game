@@ -23,6 +23,7 @@ class Constants(BaseConstants):
     base_theft_success_60 = .6
     lost_from_attacks = 1
 
+
 class Subsession(BaseSubsession):
     pass
 
@@ -33,24 +34,24 @@ def creating_session(subsession):
     for player in subsession.get_players():
         player.inequality = random.choice([True, False])
         player.visible = random.choice([True, False])
-        print('set inequality to', player.inequality,'and visibility to', player.visible)
+        print('set inequality to', player.inequality, 'and visibility to', player.visible)
+
 
 class Group(BaseGroup):
     pass
 
 
 class Player(BasePlayer):
-    #Utility variables
+    # Utility variables
     prolific_id = models.StringField(default=str(""))
     ts_preamble = models.FloatField(blank=True)
     ts_intro = models.FloatField(blank=True)
     ts_security = models.FloatField(blank=True)
-    #Study variables
+    # Study variables
     visible = models.BooleanField(blank=True)
     inequality = models.BooleanField(blank=True)
     security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
     pass
-
 
 
 # PAGES
@@ -69,7 +70,7 @@ class Equal_visible(Page):
     form_fields = ['ts_intro']
 
     def is_displayed(self):         # this function passes the randomly-generated number for page-number pairing
-        return self.inequality == False & self.visible == True
+        return self.inequality == False and self.visible == True
 
 
 class Equal_invisible(Page):
@@ -77,21 +78,23 @@ class Equal_invisible(Page):
     form_fields = ['ts_intro']
 
     def is_displayed(self):
-        return self.inequality == False & self.visible == False
+        return self.inequality == False and self.visible == False
 
-class Unequal_visible(Page):
-    form_model = 'player'
-    form_fields = ['ts_intro']
-
-    def is_displayed(self):
-        return self.inequality == True & self.visible == True
 
 class Unequal_invisible(Page):
     form_model = 'player'
     form_fields = ['ts_intro']
 
     def is_displayed(self):
-        return self.inequality == True & self.visible == False
+        return self.inequality == True and self.visible == False
+
+
+class Unequal_visible(Page):
+    form_model = 'player'
+    form_fields = ['ts_intro']
+
+    def is_displayed(self):
+        return self.inequality == True and self.visible == True
 
 
 class Security_game(Page):
@@ -109,7 +112,6 @@ class Security_game(Page):
             failed_attack=Constants.failed_attack,
         )
     pass
-
 
 
 page_sequence = [Task_intro, Equal_visible, Equal_invisible, Unequal_visible, Unequal_invisible, Security_game]
