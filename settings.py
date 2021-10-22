@@ -19,6 +19,12 @@ SESSION_CONFIGS = [
         completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
         oTree_version_used = popen('otree --version').read().strip()
     ),
+    dict(
+        name="sliders",
+        display_name="RET Slider task",
+        num_demo_participants=1,
+        app_sequence=["slider_task"],
+    )
 ]
 # for bots (need something - consent.tests?)
 # otree test mysession 6
@@ -31,6 +37,8 @@ SESSION_CONFIGS = [
 SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=0.00, participation_fee=2.00, doc=""
 )
+
+SESSION_FIELDS = ['params']
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
