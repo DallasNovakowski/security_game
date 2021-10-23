@@ -1,0 +1,158 @@
+{{ block content }}
+
+
+<body>
+
+<p>{{ form.age.label }}<br><br>
+{{ form.age }}
+    {{ formfield_errors 'age' }}</p>
+<span id="age_message" style="color:#990000"></span></p>
+
+<p>{{ form.gender.label }}
+{{ form.gender }}
+    {{ formfield_errors 'gender' }}</p>
+    <span id="gender_message" style="color:#990000"></span></p>
+
+<p>{{ form.education.label }}
+{{ form.education }}
+{{ formfield_errors 'education' }}
+    <span id="education_message" style="color:#990000"></span></p>
+
+<p>{{ form.income.label }}
+{{ form.income }}
+{{ formfield_errors 'income' }}
+    <span id="income_message" style="color:#990000"></span></p>
+
+
+</body>
+
+<input type="hidden" name="ts_demo" id="ts_demo"/>
+
+<button type="button" class="btn btn-primary" onclick="Validate()">Next</button>
+
+
+<!--<span id="test" style="color:#990000"></span>-->
+<!--<span id="required" style="color:#990000"></span>-->
+<!--<span id="fields" style="color:#990000"></span>-->
+<!--<span id="blep" style="color:#990000"></span>-->
+<!--<span id="messages2" style="color:#990000"></span>-->
+<!--<span id="requir" style="color:#990000"></span>-->
+<!--<span id="requir1" style="color:#990000"></span>-->
+
+
+<script>
+    //This bit creates 2 variables, one will function as a timer, the other will hold the timer output. They are set to 0 and -1 here to initialise them, these will not be the final outputs.
+var pageTimeElapsed = 0;
+var pageTimerID = -1;
+
+//This function automatically starts the timer when the page loads. In this case I want seconds so the interval is set to 1000, but I believe if you set it to 1 then it will count milliseconds - you will need to test this
+window.onload = function() {
+  if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1000);
+  }
+};
+
+//This function captures the timer output. When the timer starts it will increase 'pageTimeElapsed' every second and send this value to the 'timeSpent' variable that will be saved
+//When a person moves to the next page, or the page times out, the final value that the timer was on will be saved. The value resets each round/page.
+function pageTick() {
+  pageTimeElapsed++
+  document.getElementById("ts_demo").value = pageTimeElapsed;
+}
+
+
+    let required_fields = js_vars.required_fields;
+    let optional_fields = js_vars.optional_fields;
+    let times_submitted = 0;
+
+    function Validate() {
+        var items = []
+        let reqitems = []
+        let isValid = []
+        let reqValid = []
+        let messages = []
+        let req_messages = []
+
+        let checker = arr => arr.every(v => v === true)  // this function checks whether all elements in an array are true
+
+        //each time the next button is pressed, times submitted increments
+        times_submitted++
+
+        // required variable error flagging
+        for (i = 0; i < required_fields.length; i++) {
+                reqValid[i] = false
+                req_messages[i] = "Please fill out this field"
+
+                reqitems.push(Array.from(document.getElementsByName(required_fields[i])))        //Reference the Group of optional questions.
+
+                // branches for radio (div) vs. text input (input, probably) items
+                if (document.getElementById("id_" + required_fields[i]).tagName == "DIV"){
+                    for (var j = 0; j < reqitems[i].length; j++) {
+                        if (reqitems[i][j].checked) {
+                        // if at least one radio is checked for the question, return true and change item's message to blank
+                            reqValid[i] = true;
+                            req_messages[i] = "";
+                            break;
+                    } else {
+                        scroll(0, 0)
+                    }
+                }
+                } else {
+                    if (document.getElementById("id_" + required_fields[i]).value) {
+                reqValid[i] = true;
+                req_messages[i] = "";
+            } else {
+                scroll(0,0)
+            }
+                }
+            }
+        // export messages to html
+        age_message.innerHTML = req_messages[0]
+        gender_message.innerHTML = req_messages[1]
+
+        //for optional variables
+        if (times_submitted >= 2) {
+            if(checker(reqValid) == true) {
+                form.submit()   //optional submission - if next is hit twice or more, submit
+            }
+        } else { // if next not hit more than twice...
+            for (i = 0; i < optional_fields.length; i++) {
+                isValid[i] = false
+                messages[i] = "Please fill out this field"
+
+                items.push(Array.from(document.getElementsByName(optional_fields[i])))        //Reference the Group of optional questions.
+
+                // branches for radio (div) vs. text input (input, probably) items
+                if (document.getElementById("id_" + optional_fields[i]).tagName == "DIV"){
+                    for (var j = 0; j < items[i].length; j++) {
+                        if (items[i][j].checked) {
+                        // if at least one radio is checked for the question, return true and change item's message to blank
+                            isValid[i] = true;
+                            messages[i] = "";
+                            break;
+                    } else {
+                        scroll(0, 0)
+                    }
+                }
+                } else {
+                    if (document.getElementById("id_" + optional_fields[i]).value) {
+                isValid[i] = true;
+                messages[i] = "";
+            } else {
+                scroll(0,0)
+            }
+                }
+            }
+            if(checker(reqValid) == true && checker(isValid) == true) {
+                form.submit()   //optional submission - if next is hit twice or more, submit
+            }
+            education_message.innerHTML = messages[0]
+            income_message.innerHTML = messages[1]
+        }
+    }
+
+
+
+</script>
+
+
+{{ endblock }}

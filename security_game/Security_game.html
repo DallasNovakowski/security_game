@@ -8,8 +8,8 @@
 <label class="col-form-label">
     To start, an attempted theft will succeed <u>50%</u> of the time. Each unit of security costs <u>$<span id="price"> </span></u>,
     and each unit reduces the chance of successful
-    thefts by <span id="efficacy"> </span>%. A successful theft steals <span id="lost_from_attacks" ></span>$ from you, and a failed attempt will make your partner lose
-    <span id="failed_attack" ></span>$. </label>
+    thefts by <span id="efficacy"> </span>%. A successful theft steals <span id="lost_from_attacks" ></span>$ from you,
+    and a failed attempt to steal will make your partner lose <span id="failed_attack" ></span>$. </label>
 <br>
 <p>Use the slider below to indicate how much security you
     would purchase from a budget of $<span id="endowment" ></span>.</p>
@@ -42,18 +42,22 @@
 
 
 <script>
-//This bit creates 2 variables, one will function as a timer, the other will hold the timer output. They are set to 0 and -1 here to initialise them, these will not be the final outputs.
+//This bit creates 2 variables, one will function as a timer, the other will hold the timer output.
+// They are set to 0 and -1 here to initialise them, these will not be the final outputs.
 var pageTimeElapsed = 0;
 var pageTimerID = -1;
 
-//This function automatically starts the timer when the page loads. In this case I want seconds so the interval is set to 1000, but I believe if you set it to 1 then it will count milliseconds - you will need to test this
+//This function automatically starts the timer when the page loads.
+// In this case I want seconds so the interval is set to 1000, but I believe if you set it to 1 then it will count milliseconds -
+// you will need to test this
 window.onload = function() {
   if(pageTimerID == -1){
     pageTimerID = setInterval(pageTick, 1000);
   }
 };
 
-//This function captures the timer output. When the timer starts it will increase 'pageTimeElapsed' every second and send this value to the 'timeSpent' variable that will be saved
+//This function captures the timer output.
+// When the timer starts it will increase 'pageTimeElapsed' every second and send this value to the 'timeSpent' variable that will be saved
 //When a person moves to the next page, or the page times out, the final value that the timer was on will be saved. The value resets each round/page.
 function pageTick() {
   pageTimeElapsed++

@@ -1,26 +1,24 @@
 {{ block title }}
-    Equal visible intro
+    Task preamble
 {{ endblock }}
 {{ block content }}
 
 <p>
-    You have been assigned to Yellow.
+    In the following task, you will be given money and paired with another participant. You will then be randomly assigned to different roles: Yellow or Blue.
 <br>
     <br>
-    You and your partner (Blue) have each been given ${{ session.config.endowment }}. Blue knows how much money you each have received.
-<br>
-    <br>
-    Shortly, Blue will decide whether they will try to steal ${{ session.config.lost_from_attacks }} from you.
-    If Blue attempts to steal, but fails, you will lose nothing, and they will lose ${{session.config.failed_attack}}.
-<br>
-    <br>
-Before Blue makes the choice whether to attack, you will have the opportunity to spend some of your money on a security product.
-    Each unit purchased will reduce Blue's chance of successfully stealing.
-    After your purchasing decision, Blue will see their updated chances of success/failure.
 
+
+    Blue will have the option to try stealing money from Yellow. If Blue tries and fails to steal, Blue loses money instead, with Yellow losing nothing.
+<br>
+    <br>
+    Before Blue makes their choice, Yellow will have the chance to purchase a “security product.” The security product will cost money, but each unit purchased will reduce Blue's chance of successfully stealing.
+<br>
+    <br>
+    After Yellow makes their purchasing decision, Blue will see the updated chances of success/failure.
 </p>
 
-<input type="hidden" name="ts_intro" id="ts_intro"/>
+<input type="hidden" name="ts_preamble" id="ts_preamble"/>
 
 
 {{ next_button }}
@@ -42,7 +40,7 @@ window.onload = function() {
 //When a person moves to the next page, or the page times out, the final value that the timer was on will be saved. The value resets each round/page.
 function pageTick() {
   pageTimeElapsed++
-  document.getElementById("ts_intro").value = pageTimeElapsed;
+  document.getElementById("ts_preamble").value = pageTimeElapsed;
 }
 </script>
 

@@ -29,7 +29,7 @@ def creating_session(subsession):
     session.lost_from_attacks = session.config['lost_from_attacks']
     session.failed_attack = session.config['failed_attack']
     print("endowment for session is", session.endowment, ", and lost_from_attacks is",
-          session.config['lost_from_attacks'], "and failed_attack is", session.config['failed_attack'])
+          session.config['lost_from_attacks'], ", and failed_attack is", session.config['failed_attack'])
 
 # session.params = {}
 

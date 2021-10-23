@@ -2,33 +2,33 @@
 from os import environ
 from os import popen
 
+# 'intro',
+
 SESSION_CONFIGS = [
     dict(
         name='security_game_pretest',
-        app_sequence=['consent', 'intro', 'security_game_pretest', 'questionnaires', 'attention_check', 'payment_info'],
+        app_sequence=['consent',  'security_game_pretest', 'questionnaires', 'attention_check', 'payment_info'],
         num_demo_participants=1,
         completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
         oTree_version_used=popen('otree --version').read().strip()
-    ),
-    dict(
-        name='intro', app_sequence=['intro', 'payment_info'], num_demo_participants=1,
     ),
     dict(
         name='inequality_visibility_security',
         app_sequence=['inequality_visibility', 'security_game'],
         num_demo_participants=20,
         completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
-        endowment=12345435,
-        lost_from_attacks=10002,
-        failed_attack=13232
+        endowment=2,
+        lost_from_attacks=1,
+        failed_attack=1
     ),
-
     dict(
         name="security_game_merit",
         display_name="meritocracy_manip",
         num_demo_participants=1,
-        app_sequence=["slider_task", 'security_game'],
-
+        app_sequence=["intro_notask","slider_task", 'merit_manip', 'security_game'],
+        endowment=2,
+        lost_from_attacks=1,
+        failed_attack=1
     )
 ]
 # for bots (need something - consent.tests?)
@@ -43,7 +43,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=0.00, participation_fee=2.00, doc=""
 )
 
-SESSION_FIELDS = ['params','svars']
+# SESSION_FIELDS = ['params','svars']
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
