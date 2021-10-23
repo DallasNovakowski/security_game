@@ -4,26 +4,31 @@ from os import popen
 
 SESSION_CONFIGS = [
     dict(
-        name='intro', app_sequence=['intro', 'payment_info'], num_demo_participants=1,
-    ),
-    dict(
-        name='inequality_visibility_security',
-        app_sequence=['security_game'],
-        num_demo_participants=20,
-        completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682'
-    ),
-    dict(
         name='security_game_pretest',
         app_sequence=['consent', 'intro', 'security_game_pretest', 'questionnaires', 'attention_check', 'payment_info'],
         num_demo_participants=1,
         completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
-        oTree_version_used = popen('otree --version').read().strip()
+        oTree_version_used=popen('otree --version').read().strip()
     ),
     dict(
-        name="sliders",
-        display_name="RET Slider task",
+        name='intro', app_sequence=['intro', 'payment_info'], num_demo_participants=1,
+    ),
+    dict(
+        name='inequality_visibility_security',
+        app_sequence=['inequality_visibility', 'security_game'],
+        num_demo_participants=20,
+        completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
+        endowment=12345435,
+        lost_from_attacks=10002,
+        failed_attack=13232
+    ),
+
+    dict(
+        name="security_game_merit",
+        display_name="meritocracy_manip",
         num_demo_participants=1,
-        app_sequence=["slider_task"],
+        app_sequence=["slider_task", 'security_game'],
+
     )
 ]
 # for bots (need something - consent.tests?)
@@ -38,7 +43,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=0.00, participation_fee=2.00, doc=""
 )
 
-SESSION_FIELDS = ['params']
+SESSION_FIELDS = ['params','svars']
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans

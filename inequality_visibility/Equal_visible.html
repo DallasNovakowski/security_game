@@ -1,5 +1,5 @@
 {{ block title }}
-    Unequal INvisible
+    Equal visible intro
 {{ endblock }}
 {{ block content }}
 
@@ -7,16 +7,15 @@
     You have been assigned to Yellow.
 <br>
     <br>
-    You have each been given ${{ Constants.endowment }}, but your partner (Blue) has been given ${{Constants.other_end}}. Blue does NOT know how much money you have received.
+    You and your partner (Blue) have each been given ${{ player.subsession.session.config.endowment }}. Blue knows how much money you each have received.
 <br>
     <br>
-    Shortly, Blue will decide whether they will try to steal ${{ Constants.lost_from_attacks }} from you. If Blue attempts to steal, but fails, you will lose nothing, and they will lose ${{Constants.failed_attack}}.
+    Shortly, Blue will decide whether they will try to steal ${{ player.subsession.session.config.lost_from_attacks }} from you. If Blue attempts to steal, but fails, you will lose nothing, and they will lose ${{player.subsession.session.config.failed_attack}}.
 <br>
     <br>
-Before Blue makes the choice to attack, you will have the opportunity to spend some of your money on a security product. Each unit purchased will reduce Blue's chance of successfully stealing. After your purchasing decision, Blue will see their updated chances of success/failure.
+Before Blue makes the choice whether to attack, you will have the opportunity to spend some of your money on a security product. Each unit purchased will reduce Blue's chance of successfully stealing. After your purchasing decision, Blue will see their updated chances of success/failure.
 
 </p>
-
 
 <input type="hidden" name="ts_intro" id="ts_intro"/>
 

@@ -10,12 +10,12 @@
     and each unit reduces the chance of successful
     thefts by <span id="efficacy"> </span>%. A successful theft steals <span id="lost_from_attacks" ></span>$ from you, and a failed attempt will make your partner lose
     <span id="failed_attack" ></span>$. </label>
-<br></br>
+<br>
 <p>Use the slider below to indicate how much security you
     would purchase from a budget of $<span id="endowment" ></span>.</p>
 
 
-<br></br>
+<br>
 <div style="width: 500px;margin: 0 auto; padding: 5px">
 			<p style="float:left"><strong>0</strong></p>
 			<p style="float:right"><strong>25 </strong></p>
@@ -26,7 +26,7 @@
 </div>
 
 
-<br></br>
+<br>
 <p> Purchasing <strong><span id="security_consumed" ></span></strong> units of security. You will spend $<span class="fw-bold" id="paid"> </span> ,
     with $<span class="fw-bold"  id="money_left"></span> remaining</p>
 
@@ -104,7 +104,7 @@ slider.oninput = function() {
   if(new_prob.innerHTML < 0){
     new_prob.innerHTML = 0
       protection.innerHTML = base_prob
-  };
+  }
   money_left.innerHTML = (Math.round((endowment - this.value * price) * 100)  / 100).toFixed(2);
 }
 
