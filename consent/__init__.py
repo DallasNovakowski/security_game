@@ -12,7 +12,6 @@ class Constants(BaseConstants):
 def creating_session(self):
     for p in self.get_players():
         otree_version = popen('otree --version').read().strip()
-        # p.participant.vars['otree_version'] = otree_version
         print('built under otree version:', otree_version)
         p.otree_version = otree_version
 pass
@@ -43,9 +42,27 @@ class Consent(Page):
     form_model = 'player'
     form_fields = ['consent', 'ts_consent']
 
+    # Control whether consent page is displayed based on name in config
+    def is_displayed(player: Player):
+        session = player.subsession.session
+        return session.config['name'] == "security_game_pretest"
+
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
         if not player.consent:
             return upcoming_apps[-1]
 
-page_sequence = [Consent]
+
+class ExpConsent(Page):
+    form_model = 'player'
+    form_fields =['consent', 'ts_consent']
+
+
+# Control whether consent page is displayed based on name in config
+    def is_displayed(player : Player):
+        session = player.subsession.session
+        return session.config['name'] == "security_game_merit" or session.config['name'] == "inequality_visibility_security" or \
+               session.config['name'] == 'security_game_group'
+pass
+
+page_sequence = [Consent, ExpConsent]

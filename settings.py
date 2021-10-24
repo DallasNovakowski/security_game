@@ -7,16 +7,16 @@ from os import popen
 SESSION_CONFIGS = [
     dict(
         name='security_game_pretest',
-        app_sequence=['consent',  'security_game_pretest', 'questionnaires', 'attention_check', 'payment_info'],
+        app_sequence=['consent', 'security_game_pretest', 'questionnaires', 'attention_check', 'payment_info'],
         num_demo_participants=1,
         completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
         oTree_version_used=popen('otree --version').read().strip()
     ),
     dict(
         name='inequality_visibility_security',
-        app_sequence=['inequality_visibility', 'security_game'],
+        app_sequence=["consent", 'inequality_visibility', 'security_game', 'attention_check', 'payment_info'],
         num_demo_participants=20,
-        completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
+        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
         failed_attack=1
@@ -24,8 +24,20 @@ SESSION_CONFIGS = [
     dict(
         name="security_game_merit",
         display_name="meritocracy_manip",
-        num_demo_participants=1,
-        app_sequence=["intro_notask","slider_task", 'merit_manip', 'security_game'],
+        num_demo_participants=10,
+        app_sequence=["consent", "intro_notask", "slider_task", 'merit_manip', 'security_game', 'attention_check', 'payment_info'],
+        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+        endowment=2,
+        lost_from_attacks=1,
+        failed_attack=1
+    ),
+    dict(
+        name="security_game_group",
+        display_name="group_agent",
+        num_demo_participants=10,
+        app_sequence=["consent","intro_notask", "group_manip", 'security_game', 'attention_check',
+                      'payment_info'],
+        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
         failed_attack=1
@@ -43,7 +55,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=0.00, participation_fee=2.00, doc=""
 )
 
-# SESSION_FIELDS = ['params','svars']
+SESSION_FIELDS = ['params']
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
