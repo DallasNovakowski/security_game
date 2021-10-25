@@ -10,38 +10,38 @@ SESSION_CONFIGS = [
         app_sequence=['consent', 'security_game_pretest', 'questionnaires', 'attention_check', 'payment_info'],
         num_demo_participants=1,
         completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
-        oTree_version_used=popen('otree --version').read().strip()
-    ),
-    dict(
-        name='inequality_visibility_security',
-        app_sequence=["consent", 'inequality_visibility', 'security_game', 'attention_check', 'payment_info'],
-        num_demo_participants=20,
-        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-        endowment=2,
-        lost_from_attacks=1,
-        failed_attack=1
-    ),
-    dict(
-        name="security_game_merit",
-        display_name="meritocracy_manip",
-        num_demo_participants=10,
-        app_sequence=["consent", "intro_notask", "slider_task", 'merit_manip', 'security_game', 'attention_check', 'payment_info'],
-        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-        endowment=2,
-        lost_from_attacks=1,
-        failed_attack=1
-    ),
-    dict(
-        name="security_game_group",
-        display_name="group_agent",
-        num_demo_participants=10,
-        app_sequence=["consent","intro_notask", "group_manip", 'security_game', 'attention_check',
-                      'payment_info'],
-        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-        endowment=2,
-        lost_from_attacks=1,
-        failed_attack=1
-    )
+        oTree_version_used=popen('otree --version').read().strip())
+    # ),
+    # dict(
+    #     name='inequality_visibility_security',
+    #     app_sequence=["consent", 'inequality_visibility', 'security_game', 'attention_check', 'payment_info'],
+    #     num_demo_participants=20,
+    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+    #     endowment=2,
+    #     lost_from_attacks=1,
+    #     failed_attack=1
+    # ),
+    # dict(
+    #     name="security_game_merit",
+    #     display_name="meritocracy_manip",
+    #     num_demo_participants=10,
+    #     app_sequence=["consent", "intro_notask", "slider_task", 'merit_manip', 'security_game', 'attention_check', 'payment_info'],
+    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+    #     endowment=2,
+    #     lost_from_attacks=1,
+    #     failed_attack=1
+    # ),
+    # dict(
+    #     name="security_game_group",
+    #     display_name="group_agent",
+    #     num_demo_participants=10,
+    #     app_sequence=["consent","intro_notask", "group_manip", 'security_game', 'attention_check',
+    #                   'payment_info'],
+    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+    #     endowment=2,
+    #     lost_from_attacks=1,
+    #     failed_attack=1
+    # )
 ]
 # for bots (need something - consent.tests?)
 # otree test mysession 6
