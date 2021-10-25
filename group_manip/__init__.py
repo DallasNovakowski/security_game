@@ -20,13 +20,15 @@ class Constants(BaseConstants):
 class Player(BasePlayer):
     # Utility variables
     prolific_id = models.StringField(default=str(""))
-    num_dots = models.FloatField(blank=True)
+    ts_desc = models.FloatField(blank=True)
+    ts_img = models.FloatField(blank=True)
     ts_dots = models.FloatField(blank=True)
     ts_preamble = models.FloatField(blank=True)
     ts_intro = models.FloatField(blank=True)
     ts_secintro = models.FloatField(blank=True)
 
     # Study variables
+    num_dots = models.IntegerField(label='How many dots were in the image?', min=5, max=100)
     agentic = models.BooleanField(blank=True)
     outgroup = models.BooleanField(blank=True)
     pass
@@ -41,6 +43,35 @@ class Group(BaseGroup):
 
 
 # PAGES
+class group_wait(Page):
+    form_model = 'player'
+    timeout_seconds = 5
+    pass
+
+class partner_wait(Page):
+    form_model = 'player'
+    timeout_seconds = 5
+    pass
+
+class stim_desc(Page):
+    form_model = 'player'
+    form_fields = ['ts_desc']
+    pass
+
+
+class group_stim(Page):
+    form_model = 'player'
+    form_fields = ['ts_img']
+    timeout_seconds = 4
+    pass
+
+
+class num_dots(Page):
+    form_model = 'player'
+    form_fields = ['num_dots', 'ts_dots']
+    pass
+
+
 class Task_intro(Page):
     form_model = 'player'
     form_fields = ['ts_preamble']
@@ -51,6 +82,7 @@ class Task_intro(Page):
     pass
 
 
+# conditional pages by treatment
 class outgroup_agent(Page):
     form_model = 'player'
     form_fields = ['ts_intro']
@@ -70,13 +102,14 @@ class outgroup_random(Page):
         return self.outgroup == True and self.agentic == False
     pass
 
+
 class ingroup_agent(Page):
     form_model = 'player'
     form_fields = ['ts_intro']
 
 
     def is_displayed(self):
-        return self.ingroup == True and self.agentic == True
+        return self.outgroup == False and self.agentic == True
     pass
 
 
@@ -86,7 +119,7 @@ class ingroup_random(Page):
 
 
     def is_displayed(self):
-        return self.outgroup == True and self.agentic == False
+        return self.outgroup == False and self.agentic == False
     pass
 
 
@@ -96,4 +129,5 @@ class security_intro(Page):
     pass
 
 
-page_sequence = [Task_intro, outgroup_agent, outgroup_random, ingroup_agent, ingroup_random, security_intro]
+page_sequence = [group_wait, stim_desc, group_stim, num_dots, partner_wait, Task_intro, outgroup_agent, outgroup_random,
+                 ingroup_agent, ingroup_random, security_intro]

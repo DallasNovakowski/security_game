@@ -1,25 +1,17 @@
 {{ block title }}
-    Ingroup Agent
+    Description
 {{ endblock }}
 {{ block content }}
 
-You have been paired with an Overestimator.
+<p>
+    On the next page, you will see an image, which will expire in five seconds.
 <br>
-<br>
-    You have been given ${{ session.config.endowment }}, but your partner has been given ${{Constants.other_end}}.
-    Your partner knows how much money you each have received.
-<br>
-<br>
-The money given to you and your partner was decided by another random participant in this session.
-<br>
-<br>
-This participant (an Overestimator) chose between evenly splitting the money between you and and your partner,
-or giving one person more than the other ($1 for one, $2 for the other).
+    <br>
+    You will then be asked to report how many dots you saw in the image. Please proceed to the next page when you are ready.
+</p>
+    <input type="hidden" name="ts_desc" id="ts_desc"/>
 
 
-<input type="hidden" name="ts_intro" id="ts_intro"/>
-<br>
-<br>
 {{ next_button }}
 
 
@@ -39,7 +31,7 @@ window.onload = function() {
 //When a person moves to the next page, or the page times out, the final value that the timer was on will be saved. The value resets each round/page.
 function pageTick() {
   pageTimeElapsed++
-  document.getElementById("ts_intro").value = pageTimeElapsed;
+  document.getElementById("ts_desc").value = pageTimeElapsed;
 }
 </script>
 
