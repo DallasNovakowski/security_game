@@ -19,17 +19,17 @@ SESSION_CONFIGS = [
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
+        failed_attack=1
+    ),
+    dict(
+        name="security_game_merit",
+        display_name="meritocracy_manip",
+        num_demo_participants=10,
+        app_sequence=["consent", "intro_notask", "slider_task", 'merit_manip', 'security_game', 'attention_check', 'payment_info'],
+        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+        endowment=2,
+        lost_from_attacks=1,
         failed_attack=1)
-    # ),
-    # dict(
-    #     name="security_game_merit",
-    #     display_name="meritocracy_manip",
-    #     num_demo_participants=10,
-    #     app_sequence=["consent", "intro_notask", "slider_task", 'merit_manip', 'security_game', 'attention_check', 'payment_info'],
-    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-    #     endowment=2,
-    #     lost_from_attacks=1,
-    #     failed_attack=1
     # ),
     # dict(
     #     name="security_game_group",
