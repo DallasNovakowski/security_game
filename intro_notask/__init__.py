@@ -5,7 +5,7 @@ c = Currency  # old name for currency; you can delete this.
 
 
 class Constants(BaseConstants):
-    name_in_url = 'intro'
+    name_in_url = 'intro1'
     players_per_group = None
     num_rounds = 1
     endowment = 2
