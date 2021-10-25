@@ -10,16 +10,16 @@ SESSION_CONFIGS = [
         app_sequence=['consent', 'security_game_pretest', 'questionnaires', 'attention_check', 'payment_info'],
         num_demo_participants=1,
         completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
-        oTree_version_used=popen('otree --version').read().strip())
-    # ),
-    # dict(
-    #     name='inequality_visibility_security',
-    #     app_sequence=["consent", 'inequality_visibility', 'security_game', 'attention_check', 'payment_info'],
-    #     num_demo_participants=20,
-    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-    #     endowment=2,
-    #     lost_from_attacks=1,
-    #     failed_attack=1
+        oTree_version_used=popen('otree --version').read().strip()
+    ),
+    dict(
+        name='inequality_visibility_security',
+        app_sequence=["consent", 'inequality_visibility', 'security_game', 'attention_check', 'payment_info'],
+        num_demo_participants=20,
+        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+        endowment=2,
+        lost_from_attacks=1,
+        failed_attack=1)
     # ),
     # dict(
     #     name="security_game_merit",
