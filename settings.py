@@ -21,16 +21,16 @@ SESSION_CONFIGS = [
         lost_from_attacks=1,
         failed_attack=1
     ),
-    # dict(
-    #     name="security_game_merit",
-    #     display_name="meritocracy_manip",
-    #     num_demo_participants=10,
-    #     app_sequence=["consent", "intro_notask", "slider_task", 'merit_manip', 'security_game', 'attention_check', 'payment_info'],
-    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-    #     endowment=2,
-    #     lost_from_attacks=1,
-    #     failed_attack=1
-    # ),
+    dict(
+        name="security_game_merit",
+        display_name="meritocracy_manip",
+        num_demo_participants=10,
+        app_sequence=["consent", "intro_notask", 'merit_manip', 'security_game', 'attention_check', 'payment_info'],
+        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+        endowment=2,
+        lost_from_attacks=1,
+        failed_attack=1
+    ),
     dict(
         name="security_game_group",
         display_name="group_agent",
@@ -45,7 +45,7 @@ SESSION_CONFIGS = [
 ]
 # for bots (need something - consent.tests?)
 # otree test mysession 6
-
+# "slider_task",
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
 # the session config can be accessed from methods in your apps as self.session.config,
