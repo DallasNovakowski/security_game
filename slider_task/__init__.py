@@ -264,6 +264,6 @@ class Results(Page):
     pass
 
 
-page_sequence = [Game]
+page_sequence = [Results]
 
-# , Results
+# Game,
