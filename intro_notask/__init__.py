@@ -50,13 +50,12 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect,
         blank=True
     )
-    ts_demo = models.FloatField(blank=True)
 
 
 # PAGES
 class Demographics(Page):
     form_model = 'player'
-    form_fields = ['age', 'gender', 'education', "income", 'ts_demo']
+    form_fields = ['age', 'gender', 'education', "income"]
 
     @staticmethod
     def before_next_page(self, timeout_happened):

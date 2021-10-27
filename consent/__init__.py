@@ -27,7 +27,6 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     otree_version = models.StringField()
-    ts_consent = models.FloatField(blank=True)
     consent = models.BooleanField(
     choices=[
         [False, 'No, I do not consent to participating in this study'],
@@ -40,7 +39,7 @@ class Player(BasePlayer):
 # PAGES
 class Consent(Page):
     form_model = 'player'
-    form_fields = ['consent', 'ts_consent']
+    form_fields = ['consent']
 
     # Control whether consent page is displayed based on name in config
     def is_displayed(player: Player):
@@ -55,7 +54,7 @@ class Consent(Page):
 
 class ExpConsent(Page):
     form_model = 'player'
-    form_fields =['consent', 'ts_consent']
+    form_fields =['consent']
 
 
 # Control whether consent page is displayed based on name in config

@@ -20,8 +20,6 @@ class Constants(BaseConstants):
 class Player(BasePlayer):
     # Utility variables
     prolific_id = models.StringField(default=str(""))
-    ts_preamble = models.FloatField(blank=True)
-    ts_intro = models.FloatField(blank=True)
 
     # Study variables
     visible = models.BooleanField(blank=True)
@@ -40,7 +38,6 @@ class Group(BaseGroup):
 # PAGES
 class Task_intro(Page):
     form_model = 'player'
-    form_fields = ['ts_preamble']
 
     @staticmethod
     def before_next_page(self, timeout_happened):
@@ -50,7 +47,6 @@ class Task_intro(Page):
 
 class Equal_visible(Page):
     form_model = 'player'
-    form_fields = ['ts_intro']
 
     def is_displayed(self):         # this function passes the randomly-generated number for page-number pairing
         return self.inequality == False and self.visible == True
@@ -58,7 +54,6 @@ class Equal_visible(Page):
 
 class Equal_invisible(Page):
     form_model = 'player'
-    form_fields = ['ts_intro']
 
     def is_displayed(self):
         return self.inequality == False and self.visible == False
@@ -66,7 +61,6 @@ class Equal_invisible(Page):
 
 class Unequal_invisible(Page):
     form_model = 'player'
-    form_fields = ['ts_intro']
 
     def is_displayed(self):
         return self.inequality == True and self.visible == False
@@ -74,7 +68,6 @@ class Unequal_invisible(Page):
 
 class Unequal_visible(Page):
     form_model = 'player'
-    form_fields = ['ts_intro']
 
     def is_displayed(self):
         return self.inequality == True and self.visible == True

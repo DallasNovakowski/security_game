@@ -55,26 +55,23 @@ class partner_wait(Page):
 
 class stim_desc(Page):
     form_model = 'player'
-    form_fields = ['ts_desc']
     pass
 
 
 class group_stim(Page):
     form_model = 'player'
-    form_fields = ['ts_img']
     timeout_seconds = 4
     pass
 
 
 class num_dots(Page):
     form_model = 'player'
-    form_fields = ['num_dots', 'ts_dots']
+    form_fields = ['num_dots']
     pass
 
 
 class Task_intro(Page):
     form_model = 'player'
-    form_fields = ['ts_preamble']
 
     @staticmethod
     def before_next_page(self, timeout_happened):
@@ -85,7 +82,6 @@ class Task_intro(Page):
 # conditional pages by treatment
 class outgroup_agent(Page):
     form_model = 'player'
-    form_fields = ['ts_intro']
 
 
     def is_displayed(self):
@@ -95,7 +91,6 @@ class outgroup_agent(Page):
 
 class outgroup_random(Page):
     form_model = 'player'
-    form_fields = ['ts_intro']
 
 
     def is_displayed(self):
@@ -105,7 +100,6 @@ class outgroup_random(Page):
 
 class ingroup_agent(Page):
     form_model = 'player'
-    form_fields = ['ts_intro']
 
 
     def is_displayed(self):
@@ -115,7 +109,6 @@ class ingroup_agent(Page):
 
 class ingroup_random(Page):
     form_model = 'player'
-    form_fields = ['ts_intro']
 
 
     def is_displayed(self):
@@ -125,7 +118,6 @@ class ingroup_random(Page):
 
 class security_intro(Page):
     form_model = 'player'
-    form_fields = ['ts_secintro']
     pass
 
 

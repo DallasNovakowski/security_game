@@ -39,7 +39,6 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     # Utility variables
-    ts_security = models.FloatField(blank=True)
     # Study variables
     security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
     pass
@@ -48,7 +47,7 @@ class Player(BasePlayer):
 # Pages
 class Security_game(Page):
     form_model = 'player'
-    form_fields = ['security_consumed', 'ts_security']     # allows for security responses in page to ber recorded
+    form_fields = ['security_consumed']     # allows for security responses in page to ber recorded
 
     @staticmethod               # this function passes constants to javascript for manipulation in-page
     def js_vars(player):

@@ -20,9 +20,6 @@ class Constants(BaseConstants):
 class Player(BasePlayer):
     # Utility variables
     prolific_id = models.StringField(default=str(""))
-    ts_preamble = models.FloatField(blank=True)
-    ts_intro = models.FloatField(blank=True)
-
     # Study variables
     merit = models.BooleanField(blank=True)
     inequality = models.BooleanField(blank=True)
@@ -40,7 +37,6 @@ class Group(BaseGroup):
 # PAGES
 class Task_intro(Page):
     form_model = 'player'
-    form_fields = ['ts_preamble']
 
     @staticmethod
     def before_next_page(self, timeout_happened):
@@ -50,7 +46,6 @@ class Task_intro(Page):
 
 class Equal_merit(Page):
     form_model = 'player'
-    form_fields = ['ts_intro']
 
     def is_displayed(self):         # this function passes the randomly-generated number for page-number pairing
         return self.inequality == False and self.merit == True
@@ -58,7 +53,6 @@ class Equal_merit(Page):
 
 class Equal_random(Page):
     form_model = 'player'
-    form_fields = ['ts_intro']
 
     def is_displayed(self):
         return self.inequality == False and self.merit == False
@@ -66,7 +60,6 @@ class Equal_random(Page):
 
 class Unequal_merit(Page):
     form_model = 'player'
-    form_fields = ['ts_intro']
 
     def is_displayed(self):
         return self.inequality == True and self.merit == True
@@ -74,7 +67,6 @@ class Unequal_merit(Page):
 
 class Unequal_random(Page):
     form_model = 'player'
-    form_fields = ['ts_intro']
 
     def is_displayed(self):
         return self.inequality == True and self.merit == False

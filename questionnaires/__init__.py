@@ -40,7 +40,6 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     submit_missing = models.IntegerField(initial=0)
-    ts_iu = models.FloatField(blank=True)
     iu_1 = make_iu("Unforeseen events upset me greatly")
     iu_2 = make_iu("It frustrates me not having all the information I need.")
     iu_3 = make_iu("Uncertainty keeps me from living a full life.")
@@ -54,7 +53,6 @@ class Player(BasePlayer):
     iu_11 = make_iu("I should be able to organize everything in advance.")
     iu_12 = make_iu("I must get away from all uncertain situations.")
 
-    ts_dospert = models.FloatField(blank=True)
     dospert_1 = make_dospert("Admitting that your tastes are different from those of a friend. ")
     dospert_2 = make_dospert("Going camping in the wilderness.")
     dospert_3 = make_dospert("Betting a day’s income at the horse races.")
@@ -91,7 +89,7 @@ class Player(BasePlayer):
 # PAGES
 class IU(Page):
     form_model = 'player'
-    form_fields = ['iu_1', 'iu_2', 'iu_3', 'iu_4', 'iu_5', 'iu_6', 'iu_7', 'iu_8', 'iu_9', 'iu_10', 'iu_11', 'iu_12', 'ts_iu']
+    form_fields = ['iu_1', 'iu_2', 'iu_3', 'iu_4', 'iu_5', 'iu_6', 'iu_7', 'iu_8', 'iu_9', 'iu_10', 'iu_11', 'iu_12']
 
     @staticmethod
     def error_message(player: Player, values):
@@ -115,7 +113,7 @@ class DOSPERT(Page):
                    'dospert_12', 'dospert_13','dospert_14','dospert_15','dospert_16',
                    'dospert_17','dospert_18','dospert_19','dospert_20','dospert_21',
                    'dospert_22','dospert_23','dospert_24','dospert_25','dospert_26',
-                   'dospert_27','dospert_28','dospert_29','dospert_30','ts_dospert']
+                   'dospert_27','dospert_28','dospert_29','dospert_30']
 
     @staticmethod
     def error_message(player: Player, values):

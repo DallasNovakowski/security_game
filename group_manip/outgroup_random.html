@@ -16,31 +16,9 @@ The money given to you and your partner was randomly assigned.
 This random process chose between evenly splitting the money between you and and your partner,
 or giving one person more than the other ($1 for one, $2 for the other).
 
-
-<input type="hidden" name="ts_intro" id="ts_intro"/>
 <br>
 <br>
 {{ next_button }}
 
-
-<script>
-//This bit creates 2 variables, one will function as a timer, the other will hold the timer output. They are set to 0 and -1 here to initialise them, these will not be the final outputs.
-var pageTimeElapsed = 0;
-var pageTimerID = -1;
-
-//This function automatically starts the timer when the page loads. In this case I want seconds so the interval is set to 1000, but I believe if you set it to 1 then it will count milliseconds - you will need to test this
-window.onload = function() {
-  if(pageTimerID == -1){
-    pageTimerID = setInterval(pageTick, 1000);
-  }
-};
-
-//This function captures the timer output. When the timer starts it will increase 'pageTimeElapsed' every second and send this value to the 'timeSpent' variable that will be saved
-//When a person moves to the next page, or the page times out, the final value that the timer was on will be saved. The value resets each round/page.
-function pageTick() {
-  pageTimeElapsed++
-  document.getElementById("ts_intro").value = pageTimeElapsed;
-}
-</script>
 
 {{ endblock }}

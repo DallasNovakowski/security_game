@@ -38,26 +38,8 @@
 <p> Once you are satisfied with your decision, please click the "next" button to move to the next page </p>
 
 
-<input type="hidden" name="ts_security" id="ts_security"/>
 
 <script>
-//This bit creates 2 variables, one will function as a timer, the other will hold the timer output. They are set to 0 and -1 here to initialise them, these will not be the final outputs.
-var pageTimeElapsed = 0;
-var pageTimerID = -1;
-
-//This function automatically starts the timer when the page loads. In this case I want seconds so the interval is set to 1000, but I believe if you set it to 1 then it will count milliseconds - you will need to test this
-window.onload = function() {
-  if(pageTimerID == -1){
-    pageTimerID = setInterval(pageTick, 1000);
-  }
-};
-
-//This function captures the timer output. When the timer starts it will increase 'pageTimeElapsed' every second and send this value to the 'timeSpent' variable that will be saved
-//When a person moves to the next page, or the page times out, the final value that the timer was on will be saved. The value resets each round/page.
-function pageTick() {
-  pageTimeElapsed++
-  document.getElementById("ts_security").value = pageTimeElapsed;
-}
 
 let efficacy = js_vars.efficacy * 100;      // import and transform constants
 let price = js_vars.price;
