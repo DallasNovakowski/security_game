@@ -119,11 +119,13 @@
 
 
 <script>
-    //This bit creates 2 variables, one will function as a timer, the other will hold the timer output. They are set to 0 and -1 here to initialise them, these will not be the final outputs.
+    //This bit creates 2 variables, one will function as a timer, the other will hold the timer output.
+    // They are set to 0 and -1 here to initialise them, these will not be the final outputs.
 var pageTimeElapsed = 0;
 var pageTimerID = -1;
 
-//This function automatically starts the timer when the page loads. In this case I want seconds so the interval is set to 1000, but I believe if you set it to 1 then it will count milliseconds - you will need to test this
+//This function automatically starts the timer when the page loads.
+    // In this case I want seconds so the interval is set to 1000, but I believe if you set it to 1 then it will count milliseconds - you will need to test this
 window.onload = function() {
   if(pageTimerID == -1){
     pageTimerID = setInterval(pageTick, 1000);
