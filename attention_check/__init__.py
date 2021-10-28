@@ -27,15 +27,27 @@ class Player(BasePlayer):
                                                       ['Needlework', 'Needlework'], ['Cooking', 'Cooking'], ['Gardening', 'Gardening'], ['Computer Games', 'Computer Games'],
                                                       ['Hiking', 'Hiking'], ['Board or Card Games', 'Board or Card Games'], ['Other:', 'Other:']],
                                    widget=widgets.RadioSelect)
-    other = models.StringField(label="", blank = True)
+    atn_other = models.StringField(label="", blank = True)
+    comp_check = models.StringField(label="What best describes your partner's role in this study?",
+                                    choices=[['Deciding whether to accept an offer from me', 'Deciding whether to accept an offer from me'],
+                                             ['Placing a bid', 'Placing a bid'],
+                                             ['Deciding whether to try stealing from me', 'Deciding whether to try stealing from me'],
+                                             ['Deciding whether to purchase a security product', 'Deciding whether to purchase a security product'],
+                                             ['Donating funds to a shared project', 'Donating funds to a shared project']],
+                                   widget=widgets.RadioSelect)
     # pass
 
 class attention_check(Page):
     form_model = 'player'
-    form_fields = ['atn_check', 'other']
+    form_fields = ['atn_check', 'atn_other']
+    pass
+
+class comprehension_check(Page):
+    form_model = 'player'
+    form_fields = ['comp_check']
     pass
 
 
-page_sequence = [attention_check]
+page_sequence = [attention_check, comprehension_check]
 
 

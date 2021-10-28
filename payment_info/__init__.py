@@ -32,6 +32,14 @@ class Player(BasePlayer):
     comments = models.LongStringField(label="Your participation in this task will help us to improve future studies. "
                                             "Please leave any of your comments about this study here", blank=True)
     completion_code = models.StringField()
+    reconsent = models.BooleanField(
+        choices=[
+            [True, 'Yes, I re-consent to my data being used in this study'],
+            [False, 'No, I wish to withdraw my data from this study'],
+        ],
+        label='Given the use of deception in this study, you may have changed your willingness to participate in this study. '
+              'Please indicate whether you consent to your data being used in this study, or you would prefer to withdraw your data (which will not affect your compensation).'
+    )
     pass
 
 
@@ -43,10 +51,24 @@ def creating_session(subsession: Subsession):
 
 
 # PAGES
-class Study_end(Page):
+class Comments(Page):
     form_model = 'player'
     form_fields = ['comments']
     pass
 
 
-page_sequence = [Study_end]
+class Security_Debrief(Page):
+    form_model = 'player'
+    form_fields = ['reconsent']
+    def is_displayed(player : Player):
+        session = player.subsession.session
+        return session.config['name'] == "security_game_merit" or session.config['name'] == "inequality_visibility_security" or \
+               session.config['name'] == 'security_game_group'
+pass
+
+class PaymentInfo(Page):
+    form_model = 'player'
+    pass
+
+
+page_sequence = [Security_Debrief, Comments, PaymentInfo]

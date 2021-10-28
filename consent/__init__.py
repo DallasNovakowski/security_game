@@ -57,6 +57,11 @@ class ExpConsent(Page):
     form_fields =['consent']
 
 
+    @staticmethod
+    def app_after_this_page(player, upcoming_apps):
+        if not player.consent:
+            return upcoming_apps[-1]
+
 # Control whether consent page is displayed based on name in config
     def is_displayed(player : Player):
         session = player.subsession.session
