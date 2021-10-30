@@ -38,7 +38,7 @@ def creating_session(subsession: Subsession):
             round_numbers = list(range(1, Constants.num_rounds+1))
             random.shuffle(round_numbers)
             p.participant.vars['task_rounds'] = dict(zip(Constants.tasks, round_numbers))
-            print('p.participant.vars["task_rounds"] is:', p.participant.vars['task_rounds'])
+            # print('p.participant.vars["task_rounds"] is:', p.participant.vars['task_rounds'])
             p.participant.vars['rounds_task'] = dict(zip(round_numbers, Constants.tasks))
     for p in subsession.get_players():
         p.page_in_round = str(p.participant.vars['rounds_task'][subsession.round_number])

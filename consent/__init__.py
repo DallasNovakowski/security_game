@@ -12,7 +12,7 @@ class Constants(BaseConstants):
 def creating_session(self):
     for p in self.get_players():
         otree_version = popen('otree --version').read().strip()
-        print('built under otree version:', otree_version)
+        # print('built under otree version:', otree_version)
         p.otree_version = otree_version
 pass
 
