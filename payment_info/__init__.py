@@ -29,8 +29,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    comments = models.LongStringField(label="Your participation in this task will help us to improve future studies. "
-                                            "Please leave any of your comments about this study here", blank=True)
+    comments = models.LongStringField(label="Please leave any of your comments about this study here", blank=True)
     completion_code = models.StringField()
     reconsent = models.BooleanField(
         choices=[
