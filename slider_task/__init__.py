@@ -28,8 +28,8 @@ def creating_session(subsession: Subsession):
     defaults = dict(
         trial_delay=1.0,
         retry_delay=0.1,
-        num_sliders=48,
-        num_columns=3,
+        num_sliders=40,
+        num_columns=2,
         attempts_per_slider=10
     )
     session.params = {}
@@ -232,7 +232,7 @@ def play_game(player: Player, message: dict):
 
 
 class Game(Page):
-    timeout_seconds = 120
+    timeout_seconds = 60
 
     live_method = play_game
 
@@ -263,5 +263,9 @@ class Game(Page):
 class Results(Page):
     pass
 
+class Slider_Intro(Page):
+    pass
 
-page_sequence = [Game, Results]
+
+
+page_sequence = [Slider_Intro, Game, Results]
