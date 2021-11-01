@@ -8,7 +8,7 @@ SESSION_CONFIGS = [
     dict(
         name='security_game_pretest',
         app_sequence=['consent', 'intro', 'security_game_pretest', 'questionnaires', 'attention_check', 'payment_info', 'study_end'],
-        num_demo_participants=300,
+        num_demo_participants=5,
         completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
         oTree_version_used=popen('otree --version').read().strip()
     ),
@@ -56,6 +56,8 @@ SESSION_CONFIG_DEFAULTS = dict(
 )
 
 SESSION_FIELDS = ['params']
+
+PARTICIPANT_FIELDS =['consent']
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans

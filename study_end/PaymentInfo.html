@@ -1,10 +1,6 @@
 {{ block title }}Thank you{{ endblock }}
 {{ block content }}
 
-<!--    <p>-->
-<!--        <em>your completion code is {{player.completion_code}}</em>-->
-<!--    </p>-->
-
 
 <!--<script type="text/javascript">-->
 <!--window.location.replace("{{ session.config.completionlink }}")-->
@@ -14,11 +10,13 @@ Your completion code is available at:
 
 <a href="url">{{ session.config.completionlink }}</a>
 
+<script>
+    window.onload = function(){
+        window.location.href="https://app.prolific.co/submissions/complete?cc=7A7A0682";
+    }
+</script>
 
 {{ formfields }}
-
-
-    {{ next_button }}
 
 
 {{ endblock }}

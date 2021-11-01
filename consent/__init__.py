@@ -47,6 +47,11 @@ class Consent(Page):
         return session.config['name'] == "security_game_pretest"
 
     @staticmethod
+    def before_next_page(player: Player, timeout_happened):
+        participant = player.participant
+        participant.consent = player.consent
+
+    @staticmethod
     def app_after_this_page(player, upcoming_apps):
         if not player.consent:
             return upcoming_apps[-1]
@@ -56,17 +61,18 @@ class ExpConsent(Page):
     form_model = 'player'
     form_fields =['consent']
 
+    # Control whether consent page is displayed based on name in config
+    def is_displayed(player: Player):
+        session = player.subsession.session
+        return session.config['name'] == "security_game_merit" or session.config[
+            'name'] == "inequality_visibility_security" or \
+               session.config['name'] == 'security_game_group'
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
         if not player.consent:
             return upcoming_apps[-1]
 
-# Control whether consent page is displayed based on name in config
-    def is_displayed(player : Player):
-        session = player.subsession.session
-        return session.config['name'] == "security_game_merit" or session.config['name'] == "inequality_visibility_security" or \
-               session.config['name'] == 'security_game_group'
 pass
 
 page_sequence = [Consent, ExpConsent]

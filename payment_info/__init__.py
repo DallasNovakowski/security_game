@@ -29,7 +29,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    comments = models.LongStringField(label="Please leave any of your comments about this study here", blank=True)
     completion_code = models.StringField()
     reconsent = models.BooleanField(
         choices=[
@@ -50,10 +49,6 @@ def creating_session(subsession: Subsession):
 
 
 # PAGES
-class Comments(Page):
-    form_model = 'player'
-    form_fields = ['comments']
-    pass
 
 
 class Security_Debrief(Page):
@@ -65,9 +60,6 @@ class Security_Debrief(Page):
                session.config['name'] == 'security_game_group'
 pass
 
-class PaymentInfo(Page):
-    form_model = 'player'
-    pass
 
 
-page_sequence = [Security_Debrief, Comments, PaymentInfo]
+page_sequence = [Security_Debrief]

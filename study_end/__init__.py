@@ -27,11 +27,23 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    comments = models.LongStringField(label="Please leave any of your comments about this study here", blank=True)
     pass
 
-
-class Study_End(Page):
+class Comments(Page):
     form_model = 'player'
+    form_fields = ['comments']
     pass
 
-page_sequence = [Study_End]
+
+class PaymentInfo(Page):
+    form_model = 'player'
+
+    def is_displayed(player):
+        participant = player.participant
+        return participant.consent == True
+    pass
+
+
+
+page_sequence = [Comments, PaymentInfo]
