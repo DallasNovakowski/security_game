@@ -11,7 +11,7 @@ def creating_session(subsession):
 
 
 class Constants(BaseConstants):
-    name_in_url = 'merit_manip'
+    name_in_url = 'MTI'
     players_per_group = None
     num_rounds = 1
     other_end = 1
@@ -44,32 +44,36 @@ class Task_intro(Page):
     pass
 
 
-class Equal_merit(Page):
+class EM(Page):
     form_model = 'player'
+    template_name = 'consent/Equal_merit.html'
 
     def is_displayed(self):         # this function passes the randomly-generated number for page-number pairing
         return self.inequality == False and self.merit == True
 
 
-class Equal_random(Page):
+class ER(Page):
     form_model = 'player'
+    template_name = 'consent/Equal_random.html'
 
     def is_displayed(self):
         return self.inequality == False and self.merit == False
 
 
-class Unequal_merit(Page):
+class UM(Page):
     form_model = 'player'
+    template_name = 'consent/Unequal_merit.html'
 
     def is_displayed(self):
         return self.inequality == True and self.merit == True
 
 
-class Unequal_random(Page):
+class UR(Page):
     form_model = 'player'
+    template_name = 'consent/Unequal_random.html'
 
     def is_displayed(self):
         return self.inequality == True and self.merit == False
 
 
-page_sequence = [Task_intro, Equal_merit, Equal_random, Unequal_merit, Unequal_random]
+page_sequence = [Task_intro, EM, ER, UM, UR]

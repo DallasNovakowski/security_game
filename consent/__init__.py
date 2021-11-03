@@ -34,8 +34,15 @@ class Player(BasePlayer):
     ],
     label = 'Please indicate whether you consent to participating in this study:'
 )
+    atn_boost = models.IntegerField(
+        choices=[[1,"Extremely Unlikely"],[2, "2"],
+                 [3, "3"],[4, "4"],
+                 [5, "5"], [6, "6"], [7, "Extremely Likely"]],
+        label='Please indicate your likelihood of paying full attention during this study:',
+        widget=widgets.RadioSelect
+    )
 
-# FUNCTIONS
+
 # PAGES
 class Consent(Page):
     form_model = 'player'
@@ -46,20 +53,20 @@ class Consent(Page):
         session = player.subsession.session
         return session.config['name'] == "security_game_pretest"
 
-    @staticmethod
+    @staticmethod       # populates a participant variable with the respondent's consent status (for use across apps)
     def before_next_page(player: Player, timeout_happened):
         participant = player.participant
         participant.consent = player.consent
 
-    @staticmethod
+    @staticmethod       # sends nonconsenting participants to the last app
     def app_after_this_page(player, upcoming_apps):
         if not player.consent:
             return upcoming_apps[-1]
 
-
-class ExpConsent(Page):
+class ExCo(Page):
     form_model = 'player'
     form_fields =['consent']
+    template_name = 'consent/ExpConsent.html'
 
     # Control whether consent page is displayed based on name in config
     def is_displayed(player: Player):
@@ -68,11 +75,24 @@ class ExpConsent(Page):
             'name'] == "inequality_visibility_security" or \
                session.config['name'] == 'security_game_group'
 
-    @staticmethod
+    @staticmethod       # populates a participant variable with the respondent's consent status (for use across apps)
+    def before_next_page(player: Player, timeout_happened):
+        participant = player.participant
+        participant.consent = player.consent
+
+
+    @staticmethod       # sends nonconsenting participants to the last app
     def app_after_this_page(player, upcoming_apps):
         if not player.consent:
             return upcoming_apps[-1]
 
 pass
 
-page_sequence = [Consent, ExpConsent]
+
+class AtBo(Page):
+    form_model = 'player'
+    form_fields = ['atn_boost']
+    template_name = 'consent/AttentionBoost.html'
+
+
+page_sequence = [Consent, ExCo, AtBo]

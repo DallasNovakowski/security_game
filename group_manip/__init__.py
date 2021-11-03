@@ -11,7 +11,7 @@ def creating_session(subsession):
 
 
 class Constants(BaseConstants):
-    name_in_url = 'group_manip'
+    name_in_url = 'gm'
     players_per_group = None
     num_rounds = 1
     other_end = 1
@@ -20,12 +20,6 @@ class Constants(BaseConstants):
 class Player(BasePlayer):
     # Utility variables
     prolific_id = models.StringField(default=str(""))
-    ts_desc = models.FloatField(blank=True)
-    ts_img = models.FloatField(blank=True)
-    ts_dots = models.FloatField(blank=True)
-    ts_preamble = models.FloatField(blank=True)
-    ts_intro = models.FloatField(blank=True)
-    ts_secintro = models.FloatField(blank=True)
 
     # Study variables
     num_dots = models.IntegerField(label='How many dots were in the image?', min=5, max=100)
@@ -43,34 +37,36 @@ class Group(BaseGroup):
 
 
 # PAGES
-class group_wait(Page):
+class GroupWait(Page):
     form_model = 'player'
     timeout_seconds = 5
     pass
 
-class partner_wait(Page):
+class PartnerWait(Page):
     form_model = 'player'
     timeout_seconds = 5
     pass
 
-class stim_desc(Page):
+class ImageDesc(Page):
     form_model = 'player'
+    template_name = 'group_manip/stim_desc.html'
     pass
 
 
-class group_stim(Page):
+class Dots(Page):
     form_model = 'player'
     timeout_seconds = 4
+    template_name = 'group_manip/group_stim.html'
     pass
 
 
-class num_dots(Page):
+class NumDots(Page):
     form_model = 'player'
     form_fields = ['num_dots']
     pass
 
 
-class Task_intro(Page):
+class TaskIntro(Page):
     form_model = 'player'
 
     @staticmethod
@@ -80,17 +76,18 @@ class Task_intro(Page):
 
 
 # conditional pages by treatment
-class outgroup_agent(Page):
+class OA(Page):
     form_model = 'player'
-
+    template_name = 'group_manip/outgroup_agent.html'
 
     def is_displayed(self):
         return self.outgroup == True and self.agentic == True
     pass
 
 
-class outgroup_random(Page):
+class OR(Page):
     form_model = 'player'
+    template_name = 'group_manip/outgroup_random.html'
 
 
     def is_displayed(self):
@@ -98,8 +95,9 @@ class outgroup_random(Page):
     pass
 
 
-class ingroup_agent(Page):
+class IA(Page):
     form_model = 'player'
+    template_name = 'group_manip/ingroup_agent.html'
 
 
     def is_displayed(self):
@@ -107,8 +105,9 @@ class ingroup_agent(Page):
     pass
 
 
-class ingroup_random(Page):
+class IR(Page):
     form_model = 'player'
+    template_name = 'group_manip/ingroup_random.html'
 
 
     def is_displayed(self):
@@ -121,5 +120,5 @@ class security_intro(Page):
     pass
 
 
-page_sequence = [group_wait, stim_desc, group_stim, num_dots, partner_wait, Task_intro, outgroup_agent, outgroup_random,
-                 ingroup_agent, ingroup_random, security_intro]
+page_sequence = [GroupWait, ImageDesc, Dots, NumDots, PartnerWait, TaskIntro, OA, OR,
+                 IA, IR, security_intro]

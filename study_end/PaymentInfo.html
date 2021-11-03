@@ -11,8 +11,10 @@ Your completion code is available at:
 <a href="url">{{ session.config.completionlink }}</a>
 
 <script>
+    let completionlink = js_vars.completionlink;
+
     window.onload = function(){
-        window.location.href="https://app.prolific.co/submissions/complete?cc=7A7A0682";
+        window.location.href=completionlink;
     }
 </script>
 

@@ -11,7 +11,7 @@ def creating_session(subsession):
 
 
 class Constants(BaseConstants):
-    name_in_url = 'preamble'
+    name_in_url = 'TI'
     players_per_group = None
     num_rounds = 1
     other_end = 1
@@ -45,32 +45,35 @@ class Task_intro(Page):
     pass
 
 
-class Equal_visible(Page):
+class EV(Page):
     form_model = 'player'
-
+    template_name = 'consent/Equal_visible.html'
     def is_displayed(self):         # this function passes the randomly-generated number for page-number pairing
         return self.inequality == False and self.visible == True
 
 
-class Equal_invisible(Page):
+class EI(Page):
     form_model = 'player'
+    template_name = 'consent/Equal_invisible.html'
 
     def is_displayed(self):
         return self.inequality == False and self.visible == False
 
 
-class Unequal_invisible(Page):
+class UI(Page):
     form_model = 'player'
+    template_name = 'consent/Unequal_invisible.html'
 
     def is_displayed(self):
         return self.inequality == True and self.visible == False
 
 
-class Unequal_visible(Page):
+class UV(Page):
     form_model = 'player'
+    template_name = 'consent/Unequal_visible.html'
 
     def is_displayed(self):
         return self.inequality == True and self.visible == True
 
 
-page_sequence = [Task_intro, Equal_visible, Equal_invisible, Unequal_visible, Unequal_invisible]
+page_sequence = [Task_intro, EV, EI, UI, UV]

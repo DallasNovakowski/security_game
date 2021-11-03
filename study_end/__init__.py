@@ -17,6 +17,7 @@ class Constants(BaseConstants):
     num_rounds = 1
     pass
 
+
 class Subsession(BaseSubsession):
     pass
 
@@ -25,10 +26,10 @@ class Group(BaseGroup):
     pass
 
 
-
 class Player(BasePlayer):
     comments = models.LongStringField(label="Please leave any of your comments about this study here", blank=True)
     pass
+
 
 class Comments(Page):
     form_model = 'player'
@@ -42,6 +43,12 @@ class PaymentInfo(Page):
     def is_displayed(player):
         participant = player.participant
         return participant.consent == True
+
+    @staticmethod
+    def js_vars(player):
+        return dict(
+            completionlink=player.subsession.session.config['completionlink']
+        )
     pass
 
 

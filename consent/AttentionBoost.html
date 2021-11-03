@@ -1,0 +1,38 @@
+{{ block content }}
+
+    <p>
+        It is important for the quality of our research that participants focus as they complete this short study.
+        Please close any other tabs or windows that you might have open, turn off any music or distracting media,
+        and give this study your full attention.
+    </p>
+
+<br>
+<br>
+
+{{ form.atn_boost.label }}
+<br>
+<table class="table">
+        <thead ><tr>
+            <th style="width: 10%;">1: Extremely Unlikely</th>
+            <th style="width: 10%;">2</th>
+           <th style="width: 10%;">3</th>
+            <th style="width: 10%;">4</th>
+            <th style="width: 10%;">5</th>
+            <th style="width: 10%;">6</th>
+            <th style="width: 10%;">7: Extremely Likely</th>
+    </tr></thead>
+<tr>
+    {% for choice in form.atn_boost %}
+        <td>{{ choice }}</td>
+    {% endfor %}
+</tr>
+</table>
+
+
+<!--{{ formfields }}-->
+<br><br>
+
+
+    {{ next_button }}
+{{ endblock }}
+

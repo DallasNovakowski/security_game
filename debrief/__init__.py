@@ -12,7 +12,7 @@ Examples are given for the lab and Amazon Mechanical Turk (AMT).
 
 
 class Constants(BaseConstants):
-    name_in_url = 'payment_info'
+    name_in_url = 'debrief'
     players_per_group = None
     num_rounds = 1
     completion_codes = ['5sbhyjd', 'fvb^GWEV^', 'BFD%%$y','SDvnklk_','SdfNNMM<<%', 'sdfHHSeC', 'asdfea.>>>','doug_rides_bulls', '4dfsg##d']

@@ -1,0 +1,22 @@
+
+{{ block content }}
+
+
+This question, like the previous page, is meant to make sure you are reading the instructions carefully.
+Please ignore the items below about trust, and instead select the option "other," and type "yes" in field below. <br><br>
+
+    'Based on the information in the preceding paragraph, when do you tend to be most distrustful of people?'
+<br>
+
+
+{{ form.atn_check2.label }} {{ form.atn_check2}} {{ formfield_errors 'atn_check2' }}
+
+{{ form.atn_other2.label }} {{ form.atn_other2}} {{ formfield_errors 'atn_other2' }}
+
+        <br>
+
+    {{ next_button }}
+
+
+{{ endblock }}
+

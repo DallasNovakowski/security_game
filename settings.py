@@ -7,14 +7,14 @@ from os import popen
 SESSION_CONFIGS = [
     dict(
         name='security_game_pretest',
-        app_sequence=['consent', 'intro', 'security_game_pretest', 'questionnaires', 'attention_check', 'payment_info', 'study_end'],
+        app_sequence=['consent', 'intro', 'security_game_pretest', 'questionnaires', 'attention_check', 'debrief', 'study_end'],
         num_demo_participants=5,
         completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
         oTree_version_used=popen('otree --version').read().strip()
     ),
     dict(
         name='inequality_visibility_security',
-        app_sequence=["consent", 'inequality_visibility', 'security_game', 'attention_check', 'payment_info', 'study_end'],
+        app_sequence=["consent", 'inequality_visibility', 'security_game', 'attention_check', 'debrief', 'study_end'],
         num_demo_participants=20,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
@@ -25,7 +25,7 @@ SESSION_CONFIGS = [
         name="security_game_merit",
         display_name="meritocracy_manip",
         num_demo_participants=10,
-        app_sequence=["consent", "intro_notask", "slider_task", 'merit_manip', 'security_game', 'attention_check', 'payment_info', 'study_end'],
+        app_sequence=["consent", "intro_notask", "slider_task", 'merit_manip', 'security_game', 'attention_check', 'debrief', 'study_end'],
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
@@ -36,7 +36,7 @@ SESSION_CONFIGS = [
         display_name="group_agent",
         num_demo_participants=10,
         app_sequence=["consent","intro_notask", "group_manip", 'security_game', 'attention_check',
-                      'payment_info', 'study_end'],
+                      'debrief', 'study_end'],
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
