@@ -9,7 +9,7 @@ SESSION_CONFIGS = [
         name='security_game_pretest',
         app_sequence=['consent', 'intro', 'security_game_pretest', 'questionnaires', 'attention_check', 'debrief', 'study_end'],
         num_demo_participants=5,
-        completionlink='https://app.prolific.co/submissions/complete?cc=7A7A0682',
+        completionlink='https://app.prolific.co/submissions/complete?cc=4E991BA2',
         oTree_version_used=popen('otree --version').read().strip()
     ),
     dict(

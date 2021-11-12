@@ -37,10 +37,41 @@ class Group(BaseGroup):
     pass
 
 
+def make_likert(label):
+    return models.IntegerField(
+        choices=[[1,"Strongly Disagree"],[2, "2"],
+                 [3, "3"],[4, "4"],
+                 [5, "5"], [6, "6"], [7, "Strongly Agree"]],
+        label=label,
+        widget=widgets.RadioSelectHorizontal,
+        blank=True
+    )
+
+
 class Player(BasePlayer):
-    # Utility variables
-    # Study variables
+    # game
     security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
+
+    # pre game
+    pre_partner_know = make_likert("I know whether my partner will try stealing from me")
+
+    pre_partner_attempt = make_likert("My partner is probably going to try stealing from me")
+    pre_success_prob = make_likert("If my partner tries to steal from me, they'll probably succeed")
+
+    fair_game = make_likert("This game is fair")
+    fair_distribution = make_likert("The way incomes were given for this game is fair")
+    deserved_income = make_likert("I deserve my income for this game")
+    deserved_role = make_likert("I deserve my role for this game")
+
+    partner_fair = make_likert("My partner probably thinks this game is fair")
+    partner_envy = make_likert("My partner probably feels envious of me")
+    partner_jealous = make_likert("My partner probably feels jealous")
+    partner_admiration = make_likert("My partner probably admires me")
+    partner_frustrated = make_likert("My partner probably feels frustrated")
+
+    # post game
+    post_partner_attempt = make_likert("My partner is probably going to try stealing from me")
+    post_success_prob = make_likert("If my partner tries to steal from me, they'll probably succeed")
     pass
 
 
@@ -61,7 +92,12 @@ class Security_game(Page):
         )
     pass
 
+class GameQs(Page):
+    form_model = 'player'
+    form_fields = ['security_consumed']     # allows for security responses in page to ber recorded
 
+
+    pass
 
 
 page_sequence = [Security_game]
