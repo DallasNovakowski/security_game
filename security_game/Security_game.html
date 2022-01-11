@@ -5,6 +5,33 @@
 
 {{ block content }}
 
+ <style>
+        .mgslider-wrapper {
+            border-spacing: 10px;
+        }
+        .mgslider-limit {
+            width: 10%;
+            min-width: 75px;
+            height: 40px;
+            margin: 100px;
+            text-align: center;
+            background: #eee;
+            border: 1px solid #888;
+        }
+        .mgslider-limit, .mgslider-value {
+            font-variant-numeric: tabular-nums;
+        }
+        .mgslider-before {
+            height: 16px;
+            width: 100%;
+            background: #1e5bff;
+        }
+    </style>
+
+
+
+
+
 <label class="col-form-label">
     For this scenario, an attempted theft will succeed <u>50%</u> of the time. Each unit of security costs <u>$<span id="price"> </span></u>,
     and each unit reduces the chance of successful
@@ -20,14 +47,36 @@
 
 
 <br>
-<div style="width: 500px;margin: 0 auto; padding: 5px">
-			<p style="float:left"><strong>0</strong></p>
-			<p style="float:right"><strong>25 </strong></p>
-			</div>
+<!--<div style="width: 500px;margin: 0 auto; padding: 5px">-->
+<!--			<p style="float:left"><strong>0</strong></p>-->
+<!--			<p style="float:right"><strong>25 </strong></p>-->
+<!--			</div>-->
 
-<div class="input-group" style="margin: 0 auto;">
-    <input type="range" name="security_consumed" min="0" max="25" value="0" id= "myRange" step="1" class="form-range">
-</div>
+<!--<div class="input-group" style="margin: 0 auto;">-->
+<!--    <input type="range" name="security_consumed" min="0" max="25" value="0" id= "myRange" step="1" class="form-range">-->
+<!--</div>-->
+
+
+Did you touch? <span id="slider_status" ></span>
+
+
+    {{ formfield_errors 'security_consumed' }}
+
+    <p>Click the blue bars to reveal the sliders.</p>
+
+    <div id="sliders_here"></div>
+
+    <script src="{{ static 'mgslider.js' }}"></script>
+
+    <script>
+        $(document).ready(function (event) {
+            slider1 = new mgslider("security_consumed", 0, 25, 1);
+            slider1.print(document.getElementById("sliders_here"));
+        });
+    </script>
+
+
+
 
 
 <br>
@@ -52,6 +101,7 @@ let endowment = (Math.round(js_vars.endowment * 100) / 100).toFixed(2);
 let lost_from_attacks = (Math.round(js_vars.lost_from_attacks * 100) / 100).toFixed(2);
 let failed_attack = (Math.round(js_vars.failed_attack * 100) / 100).toFixed(2)
 
+
 // create html objects from js_var
 document.getElementById("efficacy").innerHTML = efficacy;       // pass constants to html for in-text  BRINGING PRICE OBJECT BREAKS ALL HTML ITEMS - removing "= efficacy" doesn't seem to break things
 document.getElementById("endowment").innerHTML = endowment;
@@ -60,15 +110,19 @@ document.getElementById("price").innerHTML = price;
 document.getElementById("lost_from_attacks").innerHTML = lost_from_attacks;
 document.getElementById("failed_attack").innerHTML = failed_attack;
 
-// create html objects for use in real-time updating values based on slider responses
-let slider = document.getElementById("myRange");
+
+// create html elements and their JS objects for use in real-time updating values based on slider responses
+let slider = document.getElementById("sliders_here");
 let output = document.getElementById("security_consumed");
 let protection = document.getElementById("protection");
 let paid = document.getElementById("paid");
 let new_prob = document.getElementById("new_prob");
 let money_left = document.getElementById("money_left");
+let slider_status = document.getElementById("slider_status")
+
 
 // without this, the text fields according to slider values start empty
+slider_status.innerHTML = false
 output.innerHTML = slider.value;
 (protection.innerHTML =Math.round((slider.value * efficacy)));  // this code rounds to a whole number
 (paid.innerHTML = (Math.round(slider.value * price * 100) / 100).toFixed(2));
@@ -82,15 +136,17 @@ if(new_prob.innerHTML < 0){
 
 // code for updating values based on slider
 slider.oninput = function() {
-  output.innerHTML = this.value;
-  protection.innerHTML =Math.round(this.value * efficacy);
-  paid.innerHTML = (Math.round(this.value * price * 100) / 100).toFixed(2);
-  new_prob.innerHTML = Math.round(base_prob - this.value * efficacy);
+    console.log(this.children[1]["value"]);
+    slider_status.innerHTML = true;
+    output.innerHTML = this.children[1]["value"];
+  protection.innerHTML =Math.round(this.children[1]["value"] * efficacy);
+  paid.innerHTML = (Math.round(this.children[1]["value"] * price * 100) / 100).toFixed(2);
+  new_prob.innerHTML = Math.round(base_prob - this.children[1]["value"] * efficacy);
   if(new_prob.innerHTML < 0){
     new_prob.innerHTML = 0
       protection.innerHTML = base_prob
   }
-  money_left.innerHTML = (Math.round((endowment - this.value * price) * 100)  / 100).toFixed(2);
+  money_left.innerHTML = (Math.round((endowment - this.children[1]["value"] * price) * 100)  / 100).toFixed(2);
 }
 
 </script>
