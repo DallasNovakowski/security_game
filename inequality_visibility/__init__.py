@@ -47,14 +47,14 @@ class Task_intro(Page):
 
 class EV(Page):
     form_model = 'player'
-    template_name = 'consent/Equal_visible.html'
+    template_name = 'inequality_visibility/Equal_visible.html'
     def is_displayed(self):         # this function passes the randomly-generated number for page-number pairing
         return self.inequality == False and self.visible == True
 
 
 class EI(Page):
     form_model = 'player'
-    template_name = 'consent/Equal_invisible.html'
+    template_name = 'inequality_visibility/Equal_invisible.html'
 
     def is_displayed(self):
         return self.inequality == False and self.visible == False
@@ -62,7 +62,7 @@ class EI(Page):
 
 class UI(Page):
     form_model = 'player'
-    template_name = 'consent/Unequal_invisible.html'
+    template_name = 'inequality_visibility/Unequal_invisible.html'
 
     def is_displayed(self):
         return self.inequality == True and self.visible == False
@@ -70,7 +70,7 @@ class UI(Page):
 
 class UV(Page):
     form_model = 'player'
-    template_name = 'consent/Unequal_visible.html'
+    template_name = 'inequality_visibility/Unequal_visible.html'
 
     def is_displayed(self):
         return self.inequality == True and self.visible == True
