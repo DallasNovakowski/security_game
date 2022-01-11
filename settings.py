@@ -7,7 +7,7 @@ from os import popen
 SESSION_CONFIGS = [
     dict(
         name='security_game_pretest',
-        app_sequence=['consent', 'intro', 'security_game_pretest', 'questionnaires', 'attention_check', 'debrief', 'study_end'],
+        app_sequence=['consent', 'intro', 'security_game_pretest', 'questionnaires', 'attention_check', 'study_end'],
         num_demo_participants=5,
         completionlink='https://app.prolific.co/submissions/complete?cc=4E991BA2',
         oTree_version_used=popen('otree --version').read().strip()
