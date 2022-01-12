@@ -75,18 +75,38 @@ class ExCo(Page):
             'name'] == "inequality_visibility_security" or \
                session.config['name'] == 'security_game_group' or \
                session.config['name'] == 'ineq_sec'or \
-               session.config['name'] == 'ineq_real'
+               session.config['name'] == 'ineq_vis_expens'
 
     @staticmethod       # populates a participant variable with the respondent's consent status (for use across apps)
     def before_next_page(player: Player, timeout_happened):
         participant = player.participant
         participant.consent = player.consent
 
+    @staticmethod       # sends nonconsenting participants to the last app
+    def app_after_this_page(player, upcoming_apps):
+        if not player.consent:
+            return upcoming_apps[-1]
+
+class ReCo(Page):
+    form_model = 'player'
+    form_fields =['consent']
+    template_name = 'consent/RealConsent.html'
+
+    # Control whether consent page is displayed based on name in config
+    def is_displayed(player: Player):
+        session = player.subsession.session
+        return session.config['name'] == 'ineq_real'
+
+    @staticmethod       # populates a participant variable with the respondent's consent status (for use across apps)
+    def before_next_page(player: Player, timeout_happened):
+        participant = player.participant
+        participant.consent = player.consent
 
     @staticmethod       # sends nonconsenting participants to the last app
     def app_after_this_page(player, upcoming_apps):
         if not player.consent:
             return upcoming_apps[-1]
+
 
 pass
 
@@ -97,4 +117,4 @@ class AtBo(Page):
     template_name = 'consent/AttentionBoost.html'
 
 
-page_sequence = [Consent, ExCo, AtBo]
+page_sequence = [Consent, ExCo, ReCo, AtBo]

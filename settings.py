@@ -2,6 +2,8 @@
 from os import environ
 from os import popen
 
+
+
 # 'intro',
 
 SESSION_CONFIGS = [
@@ -14,12 +16,13 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='ineq_sec',
-        app_sequence=["consent", 'inequality_visibility', 'security_game', 'attention_check', 'debrief', 'study_end'],
+        app_sequence=["consent", 'inequality_visibility', 'security_game', 'attention_check', 'study_end'],
         num_demo_participants=20,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
         failed_attack=1,
+        security_price=.04,
         OTREE_REST_KEY="1234"
     ),
     dict(
@@ -30,6 +33,7 @@ SESSION_CONFIGS = [
         endowment=2,
         lost_from_attacks=1,
         failed_attack=1,
+        security_price=.04,
         OTREE_REST_KEY="1234"
     ),
     dict(
@@ -39,8 +43,21 @@ SESSION_CONFIGS = [
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
-        failed_attack=1
+        failed_attack=1,
+        security_price=.04,
     ),
+    dict(
+        name='ineq_vis_expens',
+        app_sequence=["consent", 'inequality_visibility', 'security_game', 'attention_check', 'debrief', 'study_end'],
+        num_demo_participants=20,
+        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+        endowment=1000,
+        lost_from_attacks=500,
+        failed_attack=500,
+        security_price=20,
+        OTREE_REST_KEY="1234"
+    ),
+
     dict(
         name="security_game_merit",
         display_name="meritocracy_manip",

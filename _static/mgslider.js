@@ -20,22 +20,31 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 //from og
 let efficacy = js_vars.efficacy * 100;      // import and transform constants
-console.log(efficacy)
 let price = js_vars.price;
-console.log(price)
 let base_prob = js_vars.theft_success * 100;
 let endowment = (Math.round(js_vars.endowment * 100) / 100).toFixed(2);
 let lost_from_attacks = (Math.round(js_vars.lost_from_attacks * 100) / 100).toFixed(2);
 let failed_attack = (Math.round(js_vars.failed_attack * 100) / 100).toFixed(2)
 
-let slider = document.getElementById("sliders_here");
+// let slider = document.getElementById("sliders_here");
+
+if(endowment>2){
+    document.getElementById("failed_attack").innerHTML = Math.round(failed_attack,0);
+    document.getElementById("lost_from_attacks").innerHTML = Math.round(lost_from_attacks,0);
+    document.getElementById("endowment").innerHTML = Math.round(endowment,0);
+    document.getElementById("price").innerHTML = Math.round(price,0);
+} else {
+    document.getElementById("failed_attack").innerHTML = failed_attack;
+    document.getElementById("lost_from_attacks").innerHTML = lost_from_attacks;
+    document.getElementById("endowment").innerHTML = endowment;
+    document.getElementById("price").innerHTML = price;
+}
 
 
-document.getElementById("failed_attack").innerHTML = failed_attack;
-document.getElementById("lost_from_attacks").innerHTML = lost_from_attacks;
+
 document.getElementById("efficacy").innerHTML = efficacy;       // pass constants to html for in-text  BRINGING PRICE OBJECT BREAKS ALL HTML ITEMS - removing "= efficacy" doesn't seem to break things
-document.getElementById("endowment").innerHTML = endowment;
-document.getElementById("price").innerHTML = price;
+
+
 
 
 
@@ -153,16 +162,19 @@ mgslider.prototype.change = function () {
     document.getElementById(this.id("cur")).innerHTML = this.f2s(this.value(), false);
     document.getElementById(this.id("input")).value = this.value();
     document.getElementById(this.id("protected")).innerHTML = this.f2s(this.value()* efficacy, false);
-    document.getElementById(this.id("paid")).innerHTML = (this.value() * price).toFixed(2);
-    document.getElementById(this.id("money_left")).innerHTML = (endowment - this.value() * price).toFixed(2);
+    if (this.value() * price>50) {
+        document.getElementById(this.id("paid")).innerHTML = (this.value() * price);
+        document.getElementById(this.id("money_left")).innerHTML = (endowment - this.value() * price);
+    } else {
+        document.getElementById(this.id("paid")).innerHTML = (this.value() * price).toFixed(2);
+            document.getElementById(this.id("money_left")).innerHTML = (endowment - this.value() * price).toFixed(2);
+
+    }
 
     document.getElementById(this.id("new_prob")).innerHTML = this.f2s(base_prob - this.value()* efficacy, false);
 
 
 
-    // document.getElementById(this.id("name")).innerHTML = this.f2s(ope, false);
-    //
-    console.log(document.getElementById(this.id("paid")).innerHTML)
 };
 
 mgslider.prototype.reveal = function (event) {

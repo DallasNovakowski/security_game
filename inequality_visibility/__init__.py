@@ -5,9 +5,13 @@ from otree.api import *
 def creating_session(subsession):
     import random
     for player in subsession.get_players():
+        session = player.subsession.session
         player.inequality = random.choice([True, False])
-        player.visible = random.choice([True, False])
+        if session.config['name'] != 'ineq_real' or session.config['name'] != 'ineq_sec':
+            player.visible = random.choice([True, False])
+        else: player.visible = random.choice([True])
         print('set inequality to', player.inequality, 'and visibility to', player.visible)
+
 
 
 class Constants(BaseConstants):

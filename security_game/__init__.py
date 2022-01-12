@@ -11,11 +11,8 @@ class Constants(BaseConstants):
 
     players_per_group = None
     num_rounds = 1
-    security_price = .04
     security_efficacy = .01
-    security_price_04 = .04
     base_theft_success_50 = .5
-    security_price_02 = .02
     base_theft_success_75 = .75
     base_theft_success_60 = .6
     pass
@@ -28,6 +25,7 @@ def creating_session(subsession):
     session.endowment = session.config['endowment']
     session.lost_from_attacks = session.config['lost_from_attacks']
     session.failed_attack = session.config['failed_attack']
+    session.security_price = session.config['security_price']
     print("endowment for session is", session.endowment, ", and lost_from_attacks is",
           session.config['lost_from_attacks'], ", and failed_attack is", session.config['failed_attack'])
 
@@ -85,7 +83,7 @@ class Security_game(Page):
         return dict(
             efficacy=Constants.security_efficacy,
             endowment= player.subsession.session.config['endowment'],
-            price=Constants.security_price_04,
+            price=player.subsession.session.config["security_price"],
             theft_success=Constants.base_theft_success_50,
             lost_from_attacks=player.subsession.session.config['lost_from_attacks'],
             failed_attack=player.subsession.session.config['failed_attack'],
