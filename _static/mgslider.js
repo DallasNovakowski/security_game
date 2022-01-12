@@ -18,6 +18,28 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 
 
+//from og
+let efficacy = js_vars.efficacy * 100;      // import and transform constants
+console.log(efficacy)
+let price = js_vars.price;
+console.log(price)
+let base_prob = js_vars.theft_success * 100;
+let endowment = (Math.round(js_vars.endowment * 100) / 100).toFixed(2);
+let lost_from_attacks = (Math.round(js_vars.lost_from_attacks * 100) / 100).toFixed(2);
+let failed_attack = (Math.round(js_vars.failed_attack * 100) / 100).toFixed(2)
+
+let slider = document.getElementById("sliders_here");
+
+
+document.getElementById("failed_attack").innerHTML = failed_attack;
+document.getElementById("lost_from_attacks").innerHTML = lost_from_attacks;
+document.getElementById("efficacy").innerHTML = efficacy;       // pass constants to html for in-text  BRINGING PRICE OBJECT BREAKS ALL HTML ITEMS - removing "= efficacy" doesn't seem to break things
+document.getElementById("endowment").innerHTML = endowment;
+document.getElementById("price").innerHTML = price;
+
+
+
+
 var mgsliders = Array();
 
 mgsliders.lookup = function (which) {
@@ -95,8 +117,14 @@ mgslider.prototype.markup = function () {
             </tr>\
                 <td><br></td>\
             <tr>\
-                <td id='" + this.id("show") + "' class='mgslider-show' colspan='3'><i>" +
-        `Purchasing` + "</i>: <b><span id='" + this.id("cur") + "' class='mgslider-value'></span></b> units of security <br> <br> yoooooo + efficacy </td>\
+                <td id='" + this.id("show") + "' class='mgslider-show' colspan='3'>" +
+        `Purchasing` + " <b><span id='" + this.id("cur") + "' class='mgslider-value'></span></b> units of security, \
+                you will spend <b>$<span id='" + this.id("paid") + "' class='mgslider-value'></span></b>, \
+                with <b>$<span id='" + this.id("money_left") + "' class='mgslider-value'></span></b> remaining. <br> <br> \
+                You will reduce your likelihood of being successfully attacked by <b> <span id='" + this.id("protected") + "' class='mgslider-value'></span>%. </b> <br> <br> \
+                After your security purchase, <b> <span id='" + this.id("new_prob") + "' class='mgslider-value'></span>% </b> of attempted attacks against you will be successful. <br> <br> <br> \
+                Once you are satisfied with your decision, please click the \"next\" button to move to the next page. <br> <br>\
+</td>\
             </tr>\
         </table>\
         \
@@ -124,6 +152,17 @@ mgslider.prototype.value = function () {
 mgslider.prototype.change = function () {
     document.getElementById(this.id("cur")).innerHTML = this.f2s(this.value(), false);
     document.getElementById(this.id("input")).value = this.value();
+    document.getElementById(this.id("protected")).innerHTML = this.f2s(this.value()* efficacy, false);
+    document.getElementById(this.id("paid")).innerHTML = (this.value() * price).toFixed(2);
+    document.getElementById(this.id("money_left")).innerHTML = (endowment - this.value() * price).toFixed(2);
+
+    document.getElementById(this.id("new_prob")).innerHTML = this.f2s(base_prob - this.value()* efficacy, false);
+
+
+
+    // document.getElementById(this.id("name")).innerHTML = this.f2s(ope, false);
+    //
+    console.log(document.getElementById(this.id("paid")).innerHTML)
 };
 
 mgslider.prototype.reveal = function (event) {
@@ -148,5 +187,3 @@ mgslider.prototype.reveal = function (event) {
     document.getElementById(this.id()).value = now;
     this.change();
 };
-
-
