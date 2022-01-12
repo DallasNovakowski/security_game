@@ -13,6 +13,26 @@ SESSION_CONFIGS = [
         oTree_version_used=popen('otree --version').read().strip()
     ),
     dict(
+        name='ineq_sec',
+        app_sequence=["consent", 'inequality_visibility', 'security_game', 'attention_check', 'debrief', 'study_end'],
+        num_demo_participants=20,
+        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+        endowment=2,
+        lost_from_attacks=1,
+        failed_attack=1,
+        OTREE_REST_KEY="1234"
+    ),
+    dict(
+        name='ineq_real',
+        app_sequence=["consent", 'inequality_visibility', 'security_game', 'attention_check', 'debrief', 'study_end'],
+        num_demo_participants=20,
+        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+        endowment=2,
+        lost_from_attacks=1,
+        failed_attack=1,
+        OTREE_REST_KEY="1234"
+    ),
+    dict(
         name='inequality_visibility_security',
         app_sequence=["consent", 'inequality_visibility', 'security_game', 'attention_check', 'debrief', 'study_end'],
         num_demo_participants=20,
