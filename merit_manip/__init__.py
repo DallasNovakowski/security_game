@@ -7,7 +7,7 @@ def creating_session(subsession):
     for player in subsession.get_players():
         player.inequality = random.choice([True, False])
         player.merit = random.choice([True, False])
-        print('set inequality to', player.inequality, 'and merit to', player.merit)
+        # print('set inequality to', player.inequality, 'and merit to', player.merit)
 
 
 class Constants(BaseConstants):
