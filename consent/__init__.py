@@ -44,6 +44,7 @@ class Player(BasePlayer):
 
 
 # PAGES
+# consent page for pretests
 class Consent(Page):
     form_model = 'player'
     form_fields = ['consent']
@@ -63,6 +64,7 @@ class Consent(Page):
         if not player.consent:
             return upcoming_apps[-1]
 
+# consent page for hypothetical scenarios
 class ExCo(Page):
     form_model = 'player'
     form_fields =['consent']
@@ -87,6 +89,7 @@ class ExCo(Page):
         if not player.consent:
             return upcoming_apps[-1]
 
+#consent page for real payments
 class ReCo(Page):
     form_model = 'player'
     form_fields =['consent']

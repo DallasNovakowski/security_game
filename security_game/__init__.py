@@ -92,7 +92,7 @@ class Security_game(Page):
 
 class GameQs(Page):
     form_model = 'player'
-    form_fields = ['security_consumed']     # allows for security responses in page to ber recorded
+    form_fields = ['security_consumed']     # allows for security responses in page to be recorded
 
 
     pass

@@ -46,7 +46,7 @@ class Task_intro(Page):
 
 class EM(Page):
     form_model = 'player'
-    template_name = 'consent/Equal_merit.html'
+    template_name = 'merit_manip/Equal_merit.html'
 
     def is_displayed(self):         # this function passes the randomly-generated number for page-number pairing
         return self.inequality == False and self.merit == True
@@ -54,7 +54,7 @@ class EM(Page):
 
 class ER(Page):
     form_model = 'player'
-    template_name = 'consent/Equal_random.html'
+    template_name = 'merit_manip/Equal_random.html'
 
     def is_displayed(self):
         return self.inequality == False and self.merit == False
@@ -62,7 +62,7 @@ class ER(Page):
 
 class UM(Page):
     form_model = 'player'
-    template_name = 'consent/Unequal_merit.html'
+    template_name = 'merit_manip/Unequal_merit.html'
 
     def is_displayed(self):
         return self.inequality == True and self.merit == True
@@ -70,7 +70,7 @@ class UM(Page):
 
 class UR(Page):
     form_model = 'player'
-    template_name = 'consent/Unequal_random.html'
+    template_name = 'merit_manip/Unequal_random.html'
 
     def is_displayed(self):
         return self.inequality == True and self.merit == False
