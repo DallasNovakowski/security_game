@@ -66,7 +66,8 @@ SESSION_CONFIGS = [
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
-        failed_attack=1
+        failed_attack=1,
+        security_price=.04
     ),
     dict(
         name="security_game_group",
@@ -77,7 +78,8 @@ SESSION_CONFIGS = [
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
-        failed_attack=1
+        failed_attack=1,
+        security_price=.04
     )
 ]
 # for bots (need something - consent.tests?)
