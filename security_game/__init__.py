@@ -56,16 +56,28 @@ class Player(BasePlayer):
     pre_partner_attempt = make_likert("My partner is probably going to try stealing from me")
     pre_success_prob = make_likert("If my partner tries to steal from me, they'll probably succeed")
 
-    fair_game = make_likert("This game is fair")
-    fair_distribution = make_likert("The way incomes were given for this game is fair")
-    deserved_income = make_likert("I deserve my income for this game")
-    deserved_role = make_likert("I deserve my role for this game")
+    # fair_game = make_likert("This game is fair")
 
-    partner_fair = make_likert("My partner probably thinks this game is fair")
-    partner_envy = make_likert("My partner probably feels envious of me")
-    partner_jealous = make_likert("My partner probably feels jealous")
-    partner_admiration = make_likert("My partner probably admires me")
-    partner_frustrated = make_likert("My partner probably feels frustrated")
+    partner_reasonable_income_text = make_likert("My partner's assigned income is fair")
+    reasonable_income_text = make_likert("My assigned income is fair")
+    fair_distribution = make_likert("The way incomes were given for this game is fair")
+
+    earned_income = make_likert("I believe I have earned my income")
+    deserved_income = make_likert("I deserve my income for this game")
+    # deserved_role = make_likert("I deserve my role for this game")
+    partner_deserved_income = make_likert("My partner's income is deserved")
+    partner_earned_income = make_likert("I believe my partner has earned their income")
+
+    guilty = make_likert("I feel guilty for my position in this game")
+    want_money = make_likert("In this game, I want to try to keep as much of my money as possible")
+
+    p_partner_fair = make_likert("My partner probably thinks this game is fair")
+    # partner_admiration = make_likert("My partner probably admires me")
+
+    p_partner_envy = make_likert("My partner probably feels envious of me")
+    p_partner_jealous = make_likert("My partner probably feels jealous of me")
+    p_partner_frustrated = make_likert("My partner probably feels frustrated")
+    p_partner_bitter = make_likert("My partner probably feels bitter")
 
     # post game
     post_partner_attempt = make_likert("My partner is probably going to try stealing from me")
