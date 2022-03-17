@@ -111,7 +111,6 @@ class ReCo(Page):
         if not player.consent:
             return upcoming_apps[-1]
 
-
 pass
 
 

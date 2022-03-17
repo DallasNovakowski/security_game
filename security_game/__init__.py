@@ -58,8 +58,8 @@ class Player(BasePlayer):
 
     # fair_game = make_likert("This game is fair")
 
-    partner_reasonable_income_text = make_likert("My partner's assigned income is fair")
-    reasonable_income_text = make_likert("My assigned income is fair")
+    partner_reasonable_income = make_likert("My partner's assigned income is fair")
+    reasonable_income = make_likert("My assigned income is fair")
     fair_distribution = make_likert("The way incomes were given for this game is fair")
 
     earned_income = make_likert("I believe I have earned my income")
@@ -104,10 +104,11 @@ class Security_game(Page):
 
 class GameQs(Page):
     form_model = 'player'
-    form_fields = ['security_consumed']     # allows for security responses in page to be recorded
-
-
+    form_fields = ['p_partner_envy','p_partner_jealous','p_partner_frustrated', 'p_partner_bitter', 'partner_reasonable_income',
+    'reasonable_income','fair_distribution']
     pass
 
 
-page_sequence = [Security_game]
+
+
+page_sequence = [GameQs, Security_game]
