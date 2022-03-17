@@ -11,12 +11,12 @@ doc = """
 """
 
 
-class Constants(BaseConstants):
-    name_in_url = "sliders"
-    players_per_group = None
-    num_rounds = 1
+class C(BaseConstants):
+    NAME_IN_URL = "sliders"
+    PLAYERS_PER_GROUP = None
+    NUM_ROUNDS = 1
 
-    instructions_template = __name__ + "/instructions.html"
+    INSTRUCTIONS_TEMPLATE = __name__ + "/instructions.html"
 
 
 class Subsession(BaseSubsession):

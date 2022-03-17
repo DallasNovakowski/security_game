@@ -6,10 +6,10 @@ This application provides an attention check
 """
 
 
-class Constants(BaseConstants):
-    name_in_url = 'ac'
-    players_per_group = None
-    num_rounds = 1
+class C(BaseConstants):
+    NAME_IN_URL = 'ac'
+    PLAYERS_PER_GROUP = None
+    NUM_ROUNDS = 1
 
 
 class Subsession(BaseSubsession):

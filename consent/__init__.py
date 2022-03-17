@@ -3,10 +3,10 @@ from os import popen
 c = Currency  # old name for currency; you can delete this.
 
 
-class Constants(BaseConstants):
-    name_in_url = 'consent'
-    players_per_group = None
-    num_rounds = 1
+class C(BaseConstants):
+    NAME_IN_URL = 'consent'
+    PLAYERS_PER_GROUP = None
+    NUM_ROUNDS = 1
 
 
 def creating_session(self):
@@ -77,7 +77,8 @@ class ExCo(Page):
             'name'] == "inequality_visibility_security" or \
                session.config['name'] == 'security_game_group' or \
                session.config['name'] == 'ineq_sec'or \
-               session.config['name'] == 'ineq_vis_expens'
+               session.config['name'] == 'ineq_vis_expens' or \
+               session.config['name'] == 'ineq_sec_stake'
 
     @staticmethod       # populates a participant variable with the respondent's consent status (for use across apps)
     def before_next_page(player: Player, timeout_happened):
@@ -98,7 +99,7 @@ class ReCo(Page):
     # Control whether consent page is displayed based on name in config
     def is_displayed(player: Player):
         session = player.subsession.session
-        return session.config['name'] == 'ineq_real'
+        return session.config['name'] == 'ineq_real' or session.config['name'] == 'ineq_sec_real'
 
     @staticmethod       # populates a participant variable with the respondent's consent status (for use across apps)
     def before_next_page(player: Player, timeout_happened):

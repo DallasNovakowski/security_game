@@ -10,11 +10,11 @@ def creating_session(subsession):
         # print('set inequality to', player.inequality, 'and merit to', player.merit)
 
 
-class Constants(BaseConstants):
-    name_in_url = 'MTI'
-    players_per_group = None
-    num_rounds = 1
-    other_end = 1
+class C(BaseConstants):
+    NAME_IN_URL = 'MTI'
+    PLAYERS_PER_GROUP = None
+    NUM_ROUNDS = 1
+    OTHER_END = 1
 
 
 class Player(BasePlayer):

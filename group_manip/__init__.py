@@ -10,11 +10,11 @@ def creating_session(subsession):
         print('set outgroup to', player.outgroup, 'and agentic to', player.agentic)
 
 
-class Constants(BaseConstants):
-    name_in_url = 'gm'
-    players_per_group = None
-    num_rounds = 1
-    other_end = 1
+class C(BaseConstants):
+    NAME_IN_URL = 'gm'
+    PLAYERS_PER_GROUP = None
+    NUM_ROUNDS = 1
+    OTHER_END = 1
 
 
 class Player(BasePlayer):

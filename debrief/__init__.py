@@ -11,16 +11,16 @@ Examples are given for the lab and Amazon Mechanical Turk (AMT).
 """
 
 
-class Constants(BaseConstants):
-    name_in_url = 'debrief'
-    players_per_group = None
-    num_rounds = 1
-    completion_codes = ['5sbhyjd', 'fvb^GWEV^', 'BFD%%$y','SDvnklk_','SdfNNMM<<%', 'sdfHHSeC', 'asdfea.>>>','doug_rides_bulls', '4dfsg##d']
+class C(BaseConstants):
+    NAME_IN_URL = 'debrief'
+    PLAYERS_PER_GROUP = None
+    NUM_ROUNDS = 1
+    COMPLETION_CODES = ['5sbhyjd', 'fvb^GWEV^', 'BFD%%$y','SDvnklk_','SdfNNMM<<%', 'sdfHHSeC', 'asdfea.>>>','doug_rides_bulls', '4dfsg##d']
 
 
 class Subsession(BaseSubsession):
     def my_function(self):
-        return "".join(random.choices(Constants.completion_codes, k =10))
+        return "".join(random.choices(C.COMPLETION_CODES, k =10))
     pass
 
 
@@ -57,7 +57,8 @@ class Security_Debrief(Page):
     def is_displayed(player : Player):
         session = player.subsession.session
         return session.config['name'] == "security_game_merit" or session.config['name'] == "inequality_visibility_security" or \
-               session.config['name'] == 'security_game_group'
+               session.config['name'] == 'security_game_group' or \
+               session.config['name'] == 'ineq_sec_real'
 pass
 
 

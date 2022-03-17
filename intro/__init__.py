@@ -4,11 +4,11 @@ from otree.api import *
 c = Currency  # old name for currency; you can delete this.
 
 
-class Constants(BaseConstants):
-    name_in_url = 'intro'
-    players_per_group = None
-    num_rounds = 1
-    endowment = 2
+class C(BaseConstants):
+    NAME_IN_URL = 'intro'
+    PLAYERS_PER_GROUP = None
+    NUM_ROUNDS = 1
+    ENDOWMENT = 2
 
 
 class Subsession(BaseSubsession):

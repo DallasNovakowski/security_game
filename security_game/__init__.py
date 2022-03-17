@@ -6,15 +6,15 @@ doc = """
 The security game
 """
 
-class Constants(BaseConstants):
-    name_in_url = 'game'
+class C(BaseConstants):
+    NAME_IN_URL = 'game'
 
-    players_per_group = None
-    num_rounds = 1
-    security_efficacy = .01
-    base_theft_success_50 = .5
-    base_theft_success_75 = .75
-    base_theft_success_60 = .6
+    PLAYERS_PER_GROUP = None
+    NUM_ROUNDS = 1
+    SECURITY_EFFICACY = .01
+    BASE_THEFT_SUCCESS_50 = .5
+    # base_theft_success_75 = .75
+    # base_theft_success_60 = .6
     pass
 
 class Subsession(BaseSubsession):
@@ -93,10 +93,10 @@ class Security_game(Page):
     @staticmethod               # this function passes constants to javascript for manipulation in-page
     def js_vars(player):
         return dict(
-            efficacy=Constants.security_efficacy,
+            efficacy=C.SECURITY_EFFICACY,
             endowment= player.subsession.session.config['endowment'],
             price=player.subsession.session.config["security_price"],
-            theft_success=Constants.base_theft_success_50,
+            theft_success=C.BASE_THEFT_SUCCESS_50,
             lost_from_attacks=player.subsession.session.config['lost_from_attacks'],
             failed_attack=player.subsession.session.config['failed_attack'],
         )
