@@ -4,11 +4,11 @@ from otree.api import *
 c = Currency  # old name for currency; you can delete this.
 
 
-class Constants(BaseConstants):
-    name_in_url = 'survey'
-    players_per_group = None
-    num_rounds = 1
-    endowment = 2
+class C(BaseConstants):
+    NAME_IN_URL = 'survey'
+    PLAYERS_PER_GROUP = None
+    NUM_ROUNDS = 1
+    ENDOWMENT = 2
 
 
 class Subsession(BaseSubsession):
@@ -21,6 +21,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     submit_missing = models.IntegerField(initial=0)
+    prolific_id = models.StringField(default=str(""))
     age = models.IntegerField(label='What is your age?', min=13, max=125, blank=True)
     gender = models.StringField(
         choices=[['Male', 'Male'], ['Female', 'Female'], ['Other', 'Other']],
@@ -54,6 +55,11 @@ class Player(BasePlayer):
 class Demographics(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'education', "income"]
+
+    @staticmethod
+    def before_next_page(self, timeout_happened):
+        self.prolific_id = self.participant.label
+    pass
 
     @staticmethod
     def js_vars(player):    # highlights variables/fields that do not need to be filled (but that we'll be displaying a one-time warning message if they're left blank)

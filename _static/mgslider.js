@@ -33,11 +33,13 @@ if(endowment>2){
     document.getElementById("lost_from_attacks").innerHTML = Math.round(lost_from_attacks,0);
     document.getElementById("endowment").innerHTML = Math.round(endowment,0);
     document.getElementById("price").innerHTML = Math.round(price,0);
+    document.getElementById("base_prob").innerHTML = Math.round(base_prob,0);
 } else {
     document.getElementById("failed_attack").innerHTML = failed_attack;
     document.getElementById("lost_from_attacks").innerHTML = lost_from_attacks;
     document.getElementById("endowment").innerHTML = endowment;
     document.getElementById("price").innerHTML = price;
+    document.getElementById("base_prob").innerHTML = base_prob;
 }
 
 
@@ -128,8 +130,7 @@ mgslider.prototype.markup = function () {
             <tr>\
                 <td id='" + this.id("show") + "' class='mgslider-show' colspan='3'>" +
         `Purchasing` + " <b><span id='" + this.id("cur") + "' class='mgslider-value'></span></b> units of security, \
-                you will spend <b>$<span id='" + this.id("paid") + "' class='mgslider-value'></span></b>, \
-                with <b>$<span id='" + this.id("money_left") + "' class='mgslider-value'></span></b> remaining. <br> <br> \
+                you will have <b>$<span id='" + this.id("money_left") + "' class='mgslider-value'></span></b> remaining. <br> <br> \
                 You will reduce your likelihood of being successfully attacked by <b> <span id='" + this.id("protected") + "' class='mgslider-value'></span>%. </b> <br> <br> \
                 After your security purchase, <b> <span id='" + this.id("new_prob") + "' class='mgslider-value'></span>% </b> of attempted attacks against you will be successful. <br> <br> <br> \
                 Once you are satisfied with your decision, please click the \"next\" button to move to the next page. <br> <br>\
@@ -139,6 +140,8 @@ mgslider.prototype.markup = function () {
         \
         <input type='hidden' id='" + this.id("input") + "' name='" + this.field + "' value='' />";  
 };
+
+// you will spend <b>$<span id='" + this.id("paid") + "' class='mgslider-value'></span></b>, \
 
 
 
@@ -162,12 +165,14 @@ mgslider.prototype.change = function () {
     document.getElementById(this.id("cur")).innerHTML = this.f2s(this.value(), false);
     document.getElementById(this.id("input")).value = this.value();
     document.getElementById(this.id("protected")).innerHTML = this.f2s(this.value()* efficacy, false);
-    if (this.value() * price>50) {
-        document.getElementById(this.id("paid")).innerHTML = (this.value() * price);
+    if (
+        // this.value() *
+        price>.999999999) {
+        // document.getElementById(this.id("paid")).innerHTML = (this.value() * price);
         document.getElementById(this.id("money_left")).innerHTML = (endowment - this.value() * price);
     } else {
-        document.getElementById(this.id("paid")).innerHTML = (this.value() * price).toFixed(2);
-            document.getElementById(this.id("money_left")).innerHTML = (endowment - this.value() * price).toFixed(2);
+        // document.getElementById(this.id("paid")).innerHTML = (this.value() * price).toFixed(2);
+        document.getElementById(this.id("money_left")).innerHTML = (endowment - this.value() * price).toFixed(2);
 
     }
 

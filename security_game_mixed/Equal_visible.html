@@ -1,0 +1,19 @@
+{{ block content }}
+<p>
+    For this scenario, you have been assigned to Yellow.
+<br>
+    <br>
+    You and your partner (Blue) have <u>each been given ${{ session.config.endowment }}</u>. Blue knows how much money you each have received.
+<br>
+    <br>
+    Shortly, Blue will decide whether they will try to steal ${{ session.config.lost_from_attacks }} from you.
+    If Blue attempts to steal, but fails, you will lose nothing, and they will lose ${{session.config.failed_attack}}.
+<br>
+    <br>
+</p>
+
+
+{{ next_button }}
+
+
+{{ endblock }}

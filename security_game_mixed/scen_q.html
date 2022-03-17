@@ -1,0 +1,50 @@
+{{ block content }}
+
+<style >
+td {                                /*formats basic data, with padding and centered alignments*/
+  padding: 0.25em 0.5em 0.25em 1em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th {                                /*formats basic data, with padding and centered alignments*/
+  padding: 0.25em 0.5em 0.25em 1em;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+tr:nth-child(even) {                              /*adds alternating coloring for cells */
+  background-color: rgba(0, 0, 0, 0.05);
+}
+tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+</style>
+
+<table class="table">
+            <thead ><tr>
+            <th style="width: 30%;"></th>
+            <th style="width: 10%;">1 <br> Strongly disagree</th>
+            <th style="width: 10%;">2</th>
+           <th style="width: 10%;">3</th>
+            <th style="width: 10%;">4<br> Neither agree nor disagree</th>
+            <th style="width: 10%;">5</th>
+            <th style="width: 10%;">6</th>
+            <th style="width: 10%;">7 <br> Strongly agree</th>
+    </tr></thead>
+
+    {{ for field in form }}
+        <tr>
+            <th>{{ field.label }}</th>
+            {{ for choice in field }}
+                <td>{{ choice }}</td>
+            {{ endfor }}
+        </tr>
+    {{ endfor }}
+</table>
+
+
+{{ next_button }}
+
+
+{{ endblock }}

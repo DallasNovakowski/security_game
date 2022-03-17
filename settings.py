@@ -14,50 +14,61 @@ SESSION_CONFIGS = [
         completionlink='https://app.prolific.co/submissions/complete?cc=4E991BA2',
         oTree_version_used=popen('otree --version').read().strip()
     ),
+    # dict(
+    #     name='ineq_sec',
+    #     app_sequence=["consent", "survey", 'inequality_visibility', 'security_game', 'attention_check', 'study_end'],
+    #     num_demo_participants=20,
+    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+    #     endowment=2,
+    #     lost_from_attacks=1,
+    #     failed_attack=1,
+    #     security_price=.04,
+    #     OTREE_REST_KEY="1234"
+    # ),
     dict(
-        name='ineq_sec',
-        app_sequence=["consent", "survey", 'inequality_visibility', 'security_game', 'attention_check', 'study_end'],
+        name='ineq_sec_real',
+        app_sequence=["consent","survey", 'security_game_mixed', 'attention_check', 'debrief', 'study_end'],
         num_demo_participants=20,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
         failed_attack=1,
-        security_price=.04,
+        security_price=.02,
         OTREE_REST_KEY="1234"
     ),
     dict(
-        name='ineq_real',
-        app_sequence=["consent","survey", 'inequality_visibility', 'security_game', 'attention_check', 'debrief', 'study_end'],
+        name='ineq_sec_stake',
+        app_sequence=["consent", "survey", 'security_game_mixed', 'attention_check',
+                      'study_end'],
         num_demo_participants=20,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
         failed_attack=1,
-        security_price=.04,
+        security_price=.02,
         OTREE_REST_KEY="1234"
     ),
-    dict(
-        name='inequality_visibility_security',
-        app_sequence=["consent","survey", 'inequality_visibility', 'security_game', 'attention_check', 'study_end'],
-        num_demo_participants=20,
-        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-        endowment=2,
-        lost_from_attacks=1,
-        failed_attack=1,
-        security_price=.04,
-    ),
-    dict(
-        name='ineq_vis_expens',
-        app_sequence=["consent","survey", 'inequality_visibility', 'security_game', 'attention_check', 'study_end'],
-        num_demo_participants=20,
-        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-        endowment=1000,
-        lost_from_attacks=500,
-        failed_attack=500,
-        security_price=20,
-        OTREE_REST_KEY="1234"
-    ),
-
+    # dict(
+    #     name='inequality_visibility_security',
+    #     app_sequence=["consent","survey", 'inequality_visibility', 'security_game', 'attention_check', 'study_end'],
+    #     num_demo_participants=20,
+    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+    #     endowment=2,
+    #     lost_from_attacks=1,
+    #     failed_attack=1,
+    #     security_price=.02,
+    # ),
+    # dict(
+    #     name='ineq_stake',
+    #     app_sequence=["consent","survey", 'inequality_visibility', 'security_game', 'attention_check', 'study_end'],
+    #     num_demo_participants=20,
+    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+    #     endowment=1000,
+    #     lost_from_attacks=500,
+    #     failed_attack=500,
+    #     security_price=20,
+    #     OTREE_REST_KEY="1234"
+    # ),
     dict(
         name="security_game_merit",
         display_name="meritocracy_manip",
@@ -67,7 +78,7 @@ SESSION_CONFIGS = [
         endowment=2,
         lost_from_attacks=1,
         failed_attack=1,
-        security_price=.04
+        security_price=.02
     ),
     dict(
         name="security_game_group",
@@ -78,7 +89,7 @@ SESSION_CONFIGS = [
         endowment=2,
         lost_from_attacks=1,
         failed_attack=1,
-        security_price=.04
+        security_price=.02
     )
 ]
 # for bots (need something - consent.tests?)
