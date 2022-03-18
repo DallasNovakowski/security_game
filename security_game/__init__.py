@@ -93,10 +93,10 @@ class Security_game(Page):
     @staticmethod               # this function passes constants to javascript for manipulation in-page
     def js_vars(player):
         return dict(
-            efficacy=C.SECURITY_EFFICACY,
+            efficacy= C.SECURITY_EFFICACY,
             endowment= player.subsession.session.config['endowment'],
             price=player.subsession.session.config["security_price"],
-            theft_success=C.BASE_THEFT_SUCCESS_50,
+            theft_success= C.BASE_THEFT_SUCCESS_50,
             lost_from_attacks=player.subsession.session.config['lost_from_attacks'],
             failed_attack=player.subsession.session.config['failed_attack'],
         )
@@ -107,8 +107,6 @@ class GameQs(Page):
     form_fields = ['p_partner_envy','p_partner_jealous','p_partner_frustrated', 'p_partner_bitter', 'partner_reasonable_income',
     'reasonable_income','fair_distribution']
     pass
-
-
 
 
 page_sequence = [GameQs, Security_game]
