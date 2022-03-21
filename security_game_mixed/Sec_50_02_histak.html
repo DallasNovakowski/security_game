@@ -1,7 +1,3 @@
-{{ block title }}
-    Scenario stak
-{{ endblock }}
-
 {{ block content }}
 
  <style>
@@ -27,18 +23,24 @@
         }
     </style>
 
-
-
-<label class="col-form-label">
-    For this scenario, an attempted theft will succeed <u><span id="base_prob"> </span>%</u> of the time. Each unit of security costs $<span id="price"> </span>,
-    and
-<!--    each unit -->
-    reduces the chance of successful
-    thefts by <span id="efficacy"> </span>%.
+<b> Your partner (Blue) still has to decide whether to try stealing from you.
+<br> <br> After you decide how much of a security product to buy,
+    your partner will see their updated chances of successfully stealing.
+</b>
 <br>
     <br>
+
+<label class="col-form-label">
+    For this scenario, an attempted theft will succeed <u><span id="base_prob"> </span>%</u> of the time.
     A successful theft steals $<span id="lost_from_attacks" ></span> from you,
-    and a failed attempt to steal will make your partner lose $<span id="failed_attack" ></span>. </label>
+    and a failed attempt to steal will make your partner lose $<span id="failed_attack" ></span>.
+<br>
+    <br>
+        Each unit of security costs $<span id="price"> </span>, and reduces the chance of successful
+    thefts by <span id="efficacy"> </span>%.
+ </label>
+
+
 <br>
 <br>
 <p>Use the slider below to indicate how much security you

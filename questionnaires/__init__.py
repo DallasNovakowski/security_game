@@ -126,7 +126,6 @@ class DOSPERT(Page):
     @staticmethod
     def before_next_page(player, timeout_happened):
         player.submit_missing = 0
-
     pass
 
 

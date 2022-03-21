@@ -120,5 +120,9 @@ class security_intro(Page):
     pass
 
 
-page_sequence = [GroupWait, ImageDesc, Dots, NumDots, PartnerWait, TaskIntro, OA, OR,
+page_sequence = [
+    # GroupWait,
+    ImageDesc, Dots, NumDots,
+    # PartnerWait,
+    TaskIntro, OA, OR,
                  IA, IR, security_intro]

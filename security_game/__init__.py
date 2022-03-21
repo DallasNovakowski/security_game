@@ -47,6 +47,7 @@ def make_likert(label):
 
 
 class Player(BasePlayer):
+    submit_missing = models.IntegerField(initial=0)
     # game
     security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0, initial=99)
 
@@ -106,6 +107,26 @@ class GameQs(Page):
     form_model = 'player'
     form_fields = ['p_partner_envy','p_partner_jealous','p_partner_frustrated', 'p_partner_bitter', 'partner_reasonable_income',
     'reasonable_income','fair_distribution']
+
+    # @staticmethod
+    # def js_vars(player):    # highlights variables/fields that do not need to be filled (but that we'll be displaying a one-time warning message if they're left blank)
+    #     return dict(optional_fields = GameQs.form_fields
+    #                 #,required_fields = GameQs.form_fields[0:2]
+    #     )
+
+    @staticmethod
+    def error_message(player: Player, values):
+        errors = {f: 'Please fill in this field' for f in values if not values[f]}
+        if errors:
+            player.submit_missing += 1
+            if player.submit_missing < 2:
+                return errors
+
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        player.submit_missing = 0
+    pass
+
     pass
 
 

@@ -1,5 +1,7 @@
 {{ block content }}
 
+Please indicate how much you agree or disagree with the following statements:
+
 <style >
 td {                                /*formats basic data, with padding and centered alignments*/
   padding: 0.25em 0.5em 0.25em 1em;
@@ -33,18 +35,45 @@ tr:nth-child(odd) {
             <th style="width: 10%;">7 <br> Strongly agree</th>
     </tr></thead>
 
-    {{ for field in form }}
+
+    <tbody>
         <tr>
-            <th>{{ field.label }}</th>
-            {{ for choice in field }}
-                <td>{{ choice }}</td>
-            {{ endfor }}
+        <td>{{ form.p_partner_envy.label }} {{ formfield_errors 'p_partner_envy' }}
+        </td>
+        {{ for choice in form.p_partner_envy }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
         </tr>
-    {{ endfor }}
+
+        <tr>
+        <td>{{ form.p_partner_jealous.label }} {{ formfield_errors 'p_partner_jealous' }}
+        </td>
+        {{ for choice in form.p_partner_jealous }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.p_partner_frustrated.label }} {{ formfield_errors 'p_partner_frustrated' }}
+        </td>
+        {{ for choice in form.p_partner_frustrated }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.p_partner_bitter.label }} {{ formfield_errors 'p_partner_bitter' }}
+        </td>
+        {{ for choice in form.p_partner_bitter }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+    </tbody>
 </table>
 
 
-{{ next_button }}
+    {{ next_button }}
 
 
 {{ endblock }}
