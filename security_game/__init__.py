@@ -49,7 +49,7 @@ def make_likert(label):
 class Player(BasePlayer):
     submit_missing = models.IntegerField(initial=0)
     # game
-    security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0, initial=99)
+    security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
 
     # pre game
     pre_partner_know = make_likert("I know whether my partner will try stealing from me")
