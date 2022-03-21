@@ -207,7 +207,7 @@ class Sec_50_02(Page):
 
     def is_displayed(self):
         return self.round_number == self.participant.vars['task_rounds']['Sec_50_02'] and \
-               self.participant.vars['session_name'] == 'ineq_sec_stak'
+               self.participant.vars['session_name'] == 'ineq_sec_stake'
 
 
     @staticmethod
