@@ -14,21 +14,10 @@ SESSION_CONFIGS = [
         completionlink='https://app.prolific.co/submissions/complete?cc=4E991BA2',
         oTree_version_used=popen('otree --version').read().strip()
     ),
-    # dict(
-    #     name='ineq_sec',
-    #     app_sequence=["consent", "survey", 'inequality_visibility', 'security_game', 'attention_check', 'study_end'],
-    #     num_demo_participants=20,
-    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-    #     endowment=2,
-    #     lost_from_attacks=1,
-    #     failed_attack=1,
-    #     security_price=.04,
-    #     OTREE_REST_KEY="1234"
-    # ),
     dict(
         name='ineq_sec_real',
         app_sequence=["consent","survey", 'security_game_mixed', 'attention_check', 'debrief', 'study_end'],
-        num_demo_participants=20,
+        num_demo_participants=15,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
@@ -38,9 +27,8 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='ineq_sec_stake',
-        app_sequence=["consent", "survey", 'security_game_mixed', 'attention_check',
-                      'study_end'],
-        num_demo_participants=20,
+        app_sequence=["consent", "survey", 'security_game_mixed', 'attention_check','study_end'],
+        num_demo_participants=15,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
@@ -48,34 +36,11 @@ SESSION_CONFIGS = [
         security_price=.02,
         OTREE_REST_KEY="1234"
     ),
-    # dict(
-    #     name='inequality_visibility_security',
-    #     app_sequence=["consent","survey", 'inequality_visibility', 'security_game', 'attention_check', 'study_end'],
-    #     num_demo_participants=20,
-    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-    #     endowment=2,
-    #     lost_from_attacks=1,
-    #     failed_attack=1,
-    #     security_price=.02,
-    # ),
-    # dict(
-    #     name='ineq_stake',
-    #     app_sequence=["consent","survey", 'inequality_visibility', 'security_game', 'attention_check', 'study_end'],
-    #     num_demo_participants=20,
-    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-    #     endowment=1000,
-    #     lost_from_attacks=500,
-    #     failed_attack=500,
-    #     security_price=20,
-    #     OTREE_REST_KEY="1234"
-    # ),
     dict(
         name="security_game_merit",
         display_name="meritocracy_manip",
-        num_demo_participants=10,
-        app_sequence=["consent","survey",
-                      # "intro_notask",
-                      "slider_task", 'merit_manip', 'security_game', 'attention_check', 'study_end'],
+        num_demo_participants=15,
+        app_sequence=["consent","survey","slider_task", 'merit_manip', 'security_game', 'attention_check', 'study_end'],
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
@@ -85,10 +50,8 @@ SESSION_CONFIGS = [
     dict(
         name="security_game_group",
         display_name="group_agent",
-        num_demo_participants=10,
-        app_sequence=["consent","survey",
-                      # "intro_notask",
-                      "group_manip", 'security_game', 'attention_check', 'study_end'],
+        num_demo_participants=15,
+        app_sequence=["consent","survey", "group_manip", 'security_game', 'attention_check', 'study_end'],
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
         lost_from_attacks=1,
@@ -122,8 +85,8 @@ USE_POINTS = True
 
 ROOMS = [
     dict(
-        name='security_game',
-        display_name='security_game',
+        name='security_game_s',
+        display_name='security_game_s',
         # participant_label_file='_rooms/security_game.txt',
         # use_secure_urls=True,
         # participant_label = "5",
@@ -136,17 +99,19 @@ ROOMS = [
         # participant_label = "5",
     ),
     dict(
-        name='security_game_s',
-        display_name='security_game_s',
+        name='security_game_m',
+        display_name='security_game_m',
         # participant_label_file='_rooms/security_game.txt',
         # use_secure_urls=True,
         # participant_label = "5",
     ),
     dict(
-        name='security_game_pretest',
-        display_name='security_game_pretest',
+        name='security_game_g',
+        display_name='security_game_g',
         # participant_label_file='_rooms/security_game.txt',
-    ),
+        # use_secure_urls=True,
+        # participant_label = "5",
+    )
 ]
 
 
