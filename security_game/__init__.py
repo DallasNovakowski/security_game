@@ -52,27 +52,26 @@ class Player(BasePlayer):
     security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
 
     # pre game
-    pre_partner_know = make_likert("I know whether my partner will try stealing from me")
+
 
     pre_partner_attempt = make_likert("My partner is probably going to try stealing from me")
-    pre_success_prob = make_likert("If my partner tries to steal from me, they'll probably succeed")
-
+    # pre_success_prob = make_likert("If my partner tries to steal from me, they'll probably succeed")
+    # pre_partner_know = make_likert("I know whether my partner will try stealing from me")
     # fair_game = make_likert("This game is fair")
 
     partner_reasonable_income = make_likert("My partner's assigned income is fair")
     reasonable_income = make_likert("My assigned income is fair")
     fair_distribution = make_likert("The way incomes were given for this game is fair")
 
-    earned_income = make_likert("I believe I have earned my income")
-    deserved_income = make_likert("I deserve my income for this game")
+    # earned_income = make_likert("I believe I have earned my income")
+    # deserved_income = make_likert("I deserve my income for this game")
     # deserved_role = make_likert("I deserve my role for this game")
-    partner_deserved_income = make_likert("My partner's income is deserved")
-    partner_earned_income = make_likert("I believe my partner has earned their income")
+    # partner_deserved_income = make_likert("My partner's income is deserved")
+    # partner_earned_income = make_likert("I believe my partner has earned their income")
+    # guilty = make_likert("I feel guilty for my position in this game")
+    # want_money = make_likert("In this game, I want to try to keep as much of my money as possible")
 
-    guilty = make_likert("I feel guilty for my position in this game")
-    want_money = make_likert("In this game, I want to try to keep as much of my money as possible")
-
-    p_partner_fair = make_likert("My partner probably thinks this game is fair")
+    # p_partner_fair = make_likert("My partner probably thinks this game is fair")
     # partner_admiration = make_likert("My partner probably admires me")
 
     p_partner_envy = make_likert("My partner probably feels envious of me")
@@ -81,8 +80,9 @@ class Player(BasePlayer):
     p_partner_bitter = make_likert("My partner probably feels bitter")
 
     # post game
-    post_partner_attempt = make_likert("My partner is probably going to try stealing from me")
-    post_success_prob = make_likert("If my partner tries to steal from me, they'll probably succeed")
+
+    # post_partner_attempt = make_likert("My partner is probably going to try stealing from me")
+    # post_success_prob = make_likert("If my partner tries to steal from me, they'll probably succeed")
     pass
 
 
@@ -105,7 +105,7 @@ class Security_game(Page):
 
 class GameQs(Page):
     form_model = 'player'
-    form_fields = ['p_partner_envy','p_partner_jealous','p_partner_frustrated', 'p_partner_bitter', 'partner_reasonable_income',
+    form_fields = ['pre_partner_attempt','p_partner_envy','p_partner_jealous','p_partner_frustrated', 'p_partner_bitter', 'partner_reasonable_income',
     'reasonable_income','fair_distribution']
 
     # @staticmethod
