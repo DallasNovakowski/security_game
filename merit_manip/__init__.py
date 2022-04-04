@@ -75,5 +75,8 @@ class UR(Page):
     def is_displayed(self):
         return self.inequality == True and self.merit == False
 
+class GameDesc(Page):
+    form_model = 'player'
 
-page_sequence = [Task_intro, EM, ER, UM, UR]
+
+page_sequence = [Task_intro, EM, ER, UM, UR, GameDesc]
