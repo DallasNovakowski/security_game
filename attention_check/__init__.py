@@ -42,7 +42,7 @@ class Player(BasePlayer):
     comp_check = models.StringField(label="What best describes your role in this study?",
                                     choices=[['Deciding whether to accept an offer', 'Deciding whether to accept an offer'],
                                              ['Placing a bid', 'Placing a bid'],
-                                             ['Deciding whether to try stealing from my partner', 'Deciding whether to try stealing from my partner'],
+                                             ['Paying my partner a wage', 'Paying my partner a wage'],
                                              ['Deciding whether to purchase a security product', 'Deciding whether to purchase a security product'],
                                              ['Donating funds to a shared project', 'Donating funds to a shared project']],
                                    widget=widgets.RadioSelect)
