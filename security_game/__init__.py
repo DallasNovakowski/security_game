@@ -76,7 +76,6 @@ class Player(BasePlayer):
 
     p_partner_envy = make_likert("My partner probably feels envious of me")
     p_partner_jealous = make_likert("My partner probably feels jealous of me")
-    p_partner_frustrated = make_likert("My partner probably feels frustrated")
     p_partner_bitter = make_likert("My partner probably feels bitter")
 
     # post game

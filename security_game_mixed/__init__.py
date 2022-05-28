@@ -70,7 +70,6 @@ class Player(BasePlayer):
     pre_partner_attempt = make_likert("My partner is probably going to try stealing from me")
     p_partner_envy = make_likert("My partner probably feels envious of me")
     p_partner_jealous = make_likert("My partner probably feels jealous of me")
-    p_partner_frustrated = make_likert("My partner probably feels frustrated")
     p_partner_bitter = make_likert("My partner probably feels bitter")
     pass
 
@@ -113,7 +112,7 @@ class GroupWait(Page):
 
 class scen_q(Page):
     form_model = 'player'
-    form_fields = ['pre_partner_attempt','p_partner_envy','p_partner_jealous','p_partner_frustrated', 'p_partner_bitter']
+    form_fields = ['pre_partner_attempt','p_partner_envy','p_partner_jealous', 'p_partner_bitter']
 
     def is_displayed(self):
         return self.participant.vars['session_name'] == 'ineq_sec_stake' and \
@@ -137,7 +136,7 @@ class scen_q(Page):
 class scen_q1(Page):
     template_name = 'security_game_mixed/scen_q.html'
     form_model = 'player'
-    form_fields = ['pre_partner_attempt','p_partner_envy','p_partner_jealous','p_partner_frustrated', 'p_partner_bitter']
+    form_fields = ['pre_partner_attempt','p_partner_envy','p_partner_jealous', 'p_partner_bitter']
 
     def is_displayed(self):
         return self.participant.vars['session_name'] == 'ineq_sec_real' and \

@@ -62,14 +62,6 @@ tr:nth-child(odd) {
         </tr>
 
         <tr>
-        <td>{{ form.p_partner_frustrated.label }} {{ formfield_errors 'p_partner_frustrated' }}
-        </td>
-        {{ for choice in form.p_partner_frustrated }}
-            <td>{{ choice }}</td>
-        {{ endfor }}
-        </tr>
-
-        <tr>
         <td>{{ form.p_partner_bitter.label }} {{ formfield_errors 'p_partner_bitter' }}
         </td>
         {{ for choice in form.p_partner_bitter }}
