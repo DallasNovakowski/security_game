@@ -7,8 +7,8 @@ from otree.models import player
 c = Currency
 
 doc = """
-This app is designed as a Sec_ of the security game stimuli - 
-namely manupulating base probability of theft and security price
+This app is designed as a variant of the security game stimuli - 
+namely manupulating base probability of theft stake sizes within subjects, along with a between-subjects manipulation of inequality
 """
 
 

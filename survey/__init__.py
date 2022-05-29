@@ -3,6 +3,10 @@ from otree.api import *
 
 c = Currency  # old name for currency; you can delete this.
 
+doc = """
+This application collects demographics and prolific IDs
+"""
+
 
 class C(BaseConstants):
     NAME_IN_URL = 'survey'

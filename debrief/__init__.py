@@ -6,8 +6,7 @@ c = Currency  # old name for currency; you can delete this.
 
 
 doc = """
-This application provides a webpage instructing participants how to get paid.
-Examples are given for the lab and Amazon Mechanical Turk (AMT).
+This application is the dbrief - giving participants the option to re-consent, and describing the nature of the deception used
 """
 
 
@@ -56,11 +55,7 @@ class Security_Debrief(Page):
     form_fields = ['reconsent']
     def is_displayed(player : Player):
         session = player.subsession.session
-        return session.config['name'] == "security_game_merit" or session.config['name'] == "inequality_visibility_security" or \
-               session.config['name'] == 'security_game_group' or \
-               session.config['name'] == 'ineq_sec_real'
+        return session.config['name'] == 'ineq_sec_real'
 pass
-
-
 
 page_sequence = [Security_Debrief]

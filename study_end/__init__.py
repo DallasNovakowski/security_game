@@ -40,7 +40,7 @@ class Comments(Page):
 class PaymentInfo(Page):
     form_model = 'player'
 
-    def is_displayed(player):
+    def is_displayed(player):   # only display payment info if participants have consented to participate
         participant = player.participant
         return participant.consent == True
 
