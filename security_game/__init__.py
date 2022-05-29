@@ -104,7 +104,7 @@ class Security_game(Page):
 
 class GameQs(Page):
     form_model = 'player'
-    form_fields = ['pre_partner_attempt','p_partner_envy','p_partner_jealous','p_partner_frustrated', 'p_partner_bitter', 'partner_reasonable_income',
+    form_fields = ['pre_partner_attempt','p_partner_envy','p_partner_jealous', 'p_partner_bitter', 'partner_reasonable_income',
     'reasonable_income','fair_distribution']
 
     # @staticmethod

@@ -15,8 +15,8 @@ SESSION_CONFIGS = [
         oTree_version_used=popen('otree --version').read().strip()
     ),
     dict(
-        name='ineq_sec_real',
-        app_sequence=["consent","survey", 'security_game_mixed', 'attention_check', 'debrief', 'study_end'],
+        name='ineq_sec_stake',
+        app_sequence=["consent", "survey", 'security_game_mixed', 'attention_check','study_end'],
         num_demo_participants=15,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
@@ -26,8 +26,8 @@ SESSION_CONFIGS = [
         OTREE_REST_KEY="1234"
     ),
     dict(
-        name='ineq_sec_stake',
-        app_sequence=["consent", "survey", 'security_game_mixed', 'attention_check','study_end'],
+        name='ineq_sec_real',
+        app_sequence=["consent","survey", 'security_game_mixed', 'attention_check', 'debrief', 'study_end'],
         num_demo_participants=15,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         endowment=2,
