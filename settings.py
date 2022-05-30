@@ -17,7 +17,7 @@ SESSION_CONFIGS = [
     dict(
         name='ineq_sec_stake',
         app_sequence=["consent", "survey", 'security_game_mixed', 'attention_check','study_end'],
-        num_demo_participants=15,
+        num_demo_participants=5,
         completionlink='https://app.prolific.co/submissions/complete?cc=8C43E789',
         endowment=2,
         lost_from_attacks=1,
