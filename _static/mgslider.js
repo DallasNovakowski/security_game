@@ -131,8 +131,6 @@ mgslider.prototype.markup = function () {
                 <td id='" + this.id("show") + "' class='mgslider-show' colspan='3'>" +
         `Purchasing` + " <b><span id='" + this.id("cur") + "' class='mgslider-value'></span></b> units of security, \
                 you will have <b>$<span id='" + this.id("money_left") + "' class='mgslider-value'></span></b> remaining. <br> <br> \
-                You will reduce your likelihood of being successfully attacked by <b> <span id='" + this.id("protected") + "' class='mgslider-value'></span>%. </b> <br> <br> \
-                After your security purchase, <b> <span id='" + this.id("new_prob") + "' class='mgslider-value'></span>% </b> of attempted attacks against you will be successful. <br> <br> <br> \
                 Once you are satisfied with your decision, please click the \"next\" button to move to the next page. <br> <br>\
 </td>\
             </tr>\
@@ -164,7 +162,7 @@ mgslider.prototype.value = function () {
 mgslider.prototype.change = function () {
     document.getElementById(this.id("cur")).innerHTML = this.f2s(this.value(), false);
     document.getElementById(this.id("input")).value = this.value();
-    document.getElementById(this.id("protected")).innerHTML = this.f2s(this.value()* efficacy, false);
+    // document.getElementById(this.id("protected")).innerHTML = this.f2s(this.value()* efficacy, false);
     if (
         // this.value() *
         price>.999999999) {
@@ -176,7 +174,7 @@ mgslider.prototype.change = function () {
 
     }
 
-    document.getElementById(this.id("new_prob")).innerHTML = this.f2s(base_prob - this.value()* efficacy, false);
+    // document.getElementById(this.id("new_prob")).innerHTML = this.f2s(base_prob - this.value()* efficacy, false);
 
 
 

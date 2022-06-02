@@ -38,6 +38,14 @@ tr:nth-child(odd) {
 
     <tbody>
         <tr>
+        <td>{{ form.p_inequality.label }} {{ formfield_errors 'p_inequality' }}
+        </td>
+        {{ for choice in form.p_inequality }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
         <td>{{ form.pre_partner_attempt.label }} {{ formfield_errors 'pre_partner_attempt' }}
         </td>
         {{ for choice in form.pre_partner_attempt }}
