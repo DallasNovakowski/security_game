@@ -50,10 +50,16 @@ class Player(BasePlayer):
     submit_missing = models.IntegerField(initial=0)
     # game
     security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
+    security_desired = models.BooleanField(label='Would you like to purchase any units of security?')
 
+
+    #     models.StringField(
+    #     choices=[['yes', 'yes'], ['no', 'no']],
+    #     label='Would you like to purchase any security?',
+    #     widget=widgets.RadioSelect,
+    #  blank = True
+    # )
     # pre game
-
-
     pre_partner_attempt = make_likert("My partner is probably going to try stealing from me")
     # pre_success_prob = make_likert("If my partner tries to steal from me, they'll probably succeed")
     # pre_partner_know = make_likert("I know whether my partner will try stealing from me")
@@ -86,6 +92,23 @@ class Player(BasePlayer):
 
 
 # Pages
+class SecurityDesire(Page):
+    form_model = 'player'
+    form_fields = ['security_desired']     # allows for security responses in page to ber recorded
+
+    @staticmethod               # this function passes constants to javascript for manipulation in-page
+    def js_vars(player):
+        return dict(
+            efficacy= C.SECURITY_EFFICACY,
+            endowment= player.subsession.session.config['endowment'],
+            price=player.subsession.session.config["security_price"],
+            theft_success= C.BASE_THEFT_SUCCESS_50,
+            lost_from_attacks=player.subsession.session.config['lost_from_attacks'],
+            failed_attack=player.subsession.session.config['failed_attack'],
+        )
+    pass
+
+
 class Security_game(Page):
     form_model = 'player'
     form_fields = ['security_consumed']     # allows for security responses in page to ber recorded
@@ -129,4 +152,4 @@ class GameQs(Page):
     pass
 
 
-page_sequence = [GameQs, Security_game]
+page_sequence = [SecurityDesire,GameQs, Security_game]

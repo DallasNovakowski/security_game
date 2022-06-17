@@ -11,18 +11,29 @@ SESSION_CONFIGS = [
         name='security_game_pretest',
         app_sequence=['consent', 'intro', 'security_game_pretest', 'questionnaires', 'attention_check', 'study_end'],
         num_demo_participants=5,
-        completionlink='https://app.prolific.co/submissions/complete?cc=4E991BA2',
+        completionlink='https://app.prolific.co/submissions/complete?cc=blahblahblah',
         oTree_version_used=popen('otree --version').read().strip()
     ),
     dict(
         name='ineq_sec_stake',
         app_sequence=["consent", "survey", 'security_game_mixed', 'attention_check','study_end'],
         num_demo_participants=5,
-        completionlink='https://app.prolific.co/submissions/complete?cc=5025B5CB',
+        completionlink='https://app.prolific.co/submissions/complete?cc=blahblahblah',
         endowment=2,
         lost_from_attacks=1,
         failed_attack=1,
         security_price=.02,
+        OTREE_REST_KEY="1234"
+    ),
+    dict(
+        name='ineq_sec_uncertain',
+        app_sequence=["consent", "survey", "ineq_manip_2b", 'security_game', 'attention_check', 'study_end'],
+        num_demo_participants=5,
+        completionlink='https://app.prolific.co/submissions/complete?cc=blahblahblah',
+        endowment=300,
+        lost_from_attacks=150,
+        failed_attack=150,
+        security_price=2,
         OTREE_REST_KEY="1234"
     ),
     dict(
@@ -42,7 +53,7 @@ SESSION_CONFIGS = [
         num_demo_participants=15,
         app_sequence=["consent","survey","slider_task", 'merit_manip', 'security_game', 'attention_check', 'study_end'],
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-        endowment=2,
+        endowment=300,
         lost_from_attacks=1,
         failed_attack=1,
         security_price=.02

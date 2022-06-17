@@ -78,7 +78,8 @@ class ExCo(Page):
                session.config['name'] == 'security_game_group' or \
                session.config['name'] == 'ineq_sec'or \
                session.config['name'] == 'ineq_vis_expens' or \
-               session.config['name'] == 'ineq_sec_stake'
+               session.config['name'] == 'ineq_sec_stake' or \
+               session.config['name'] == 'ineq_sec_uncertain'
 
     @staticmethod       # populates a participant variable with the respondent's consent status (for use across apps)
     def before_next_page(player: Player, timeout_happened):
