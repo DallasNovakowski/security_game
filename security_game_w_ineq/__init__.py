@@ -80,8 +80,14 @@ class Task_intro(Page):
     form_model = 'player'
 
     def is_displayed(self):
-        return self.round_number == 1 and \
-               self.participant.vars['session_name'] == 'ineq_sec_stake'
+        return self.round_number == 1
+
+class NextScen(Page):
+    form_model = 'player'
+
+    def is_displayed(self):
+        return self.round_number == 2
+
 
 
 class scen_q(Page):
@@ -106,7 +112,6 @@ class scen_q(Page):
     pass
 
 
-
 class UVHS(Page):
     form_model = 'player'
     template_name = 'security_game_w_ineq/Unequal_visible_histak.html'
@@ -114,11 +119,13 @@ class UVHS(Page):
     def is_displayed(self):
         return self.round_number == self.participant.vars['task_rounds']['Sec_20_ineq']
 
+
 class EVHS(Page):
     form_model = 'player'
     template_name = 'security_game_w_ineq/Equal_visible_histak.html'
     def is_displayed(self):
         return self.round_number == self.participant.vars['task_rounds']['Sec_20_eq']
+
 
 class Sec_20_ineq(Page):
     form_model = 'player'
@@ -165,4 +172,4 @@ class Sec_20_eq(Page):
 
 
 
-page_sequence = [Task_intro, UVHS, EVHS, scen_q, Sec_20_ineq, Sec_20_eq]
+page_sequence = [Task_intro, NextScen, UVHS, EVHS, scen_q, Sec_20_ineq, Sec_20_eq]
