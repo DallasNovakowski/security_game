@@ -41,9 +41,9 @@ SESSION_CONFIGS = [
         app_sequence=["consent", "survey", "security_game_w_ineq", 'attention_check', 'study_end'],
         num_demo_participants=5,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblahblah',
-        endowment=300,
-        lost_from_attacks=150,
-        failed_attack=30,
+        endowment=200,
+        lost_from_attacks=100,
+        failed_attack=20,
         security_price=2,
         OTREE_REST_KEY="1234"
     ),
