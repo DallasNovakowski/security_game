@@ -37,13 +37,13 @@ SESSION_CONFIGS = [
         OTREE_REST_KEY="1234"
     ),
     dict(
-        name='w_ineq_sec_asym',
+        name='w_ineq_sec_uncertain',
         app_sequence=["consent", "survey", "security_game_w_ineq", 'attention_check', 'study_end'],
         num_demo_participants=5,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblahblah',
-        endowment=200,
-        lost_from_attacks=100,
-        failed_attack=20,
+        endowment=300,
+        lost_from_attacks=150,
+        failed_attack=150,
         security_price=2,
         OTREE_REST_KEY="1234"
     ),

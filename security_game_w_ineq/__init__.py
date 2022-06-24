@@ -15,12 +15,12 @@ namely manupulating base probability of theft stake sizes within subjects, along
 class C(BaseConstants):
     NAME_IN_URL = 'security_game_Sec_w'
     PLAYERS_PER_GROUP = None
-    SECURITY_EFFICACY = .003
-    BASE_THEFT_SUCCESS = .2
-    ENDOWMENT = 200
+    SECURITY_EFFICACY = .1
+    BASE_THEFT_SUCCESS = .6
+    ENDOWMENT = 300
     SECURITY_PRICE = 2
-    FAILED_ATTACK = 20
-    LOST_FROM_ATTACKS = 100
+    FAILED_ATTACK = 150
+    LOST_FROM_ATTACKS = 150
     TASKS = ['Sec_20_ineq', 'Sec_20_eq']
     NUM_ROUNDS = len(TASKS)
 

@@ -32,13 +32,13 @@ if(endowment>2){
     // document.getElementById("failed_attack").innerHTML = Math.round(failed_attack,0);
     // document.getElementById("lost_from_attacks").innerHTML = Math.round(lost_from_attacks,0);
     document.getElementById("endowment").innerHTML = Math.round(endowment,0);
-    // document.getElementById("price").innerHTML = Math.round(price,0);
+    document.getElementById("price").innerHTML = Math.round(price,0);
     // document.getElementById("base_prob").innerHTML = Math.round(base_prob,0);
 } else {
     // document.getElementById("failed_attack").innerHTML = failed_attack;
     // document.getElementById("lost_from_attacks").innerHTML = lost_from_attacks;
     document.getElementById("endowment").innerHTML = endowment;
-    // document.getElementById("price").innerHTML = price;
+    document.getElementById("price").innerHTML = price;
     // document.getElementById("base_prob").innerHTML = base_prob;
 }
 
