@@ -40,7 +40,7 @@ SESSION_CONFIGS = [
         name='w_ineq_sec_uncertain',
         app_sequence=["consent", "survey", "security_game_w_ineq", 'attention_check', 'study_end'],
         num_demo_participants=5,
-        completionlink='https://app.prolific.co/submissions/complete?cc=blahblahblah',
+        completionlink='https://app.prolific.co/submissions/complete?cc=552ABCA3',
         endowment=300,
         lost_from_attacks=150,
         failed_attack=150,
