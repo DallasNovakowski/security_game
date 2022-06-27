@@ -121,6 +121,13 @@ ROOMS = [
         # participant_label = "5",
     ),
     dict(
+        name='security_game_wu',
+        display_name='security_game_wu',
+        # participant_label_file='_rooms/security_game.txt',
+        # use_secure_urls=True,
+        # participant_label = "5",
+    ),
+    dict(
         name='security_game_m',
         display_name='security_game_m',
         # participant_label_file='_rooms/security_game.txt',
