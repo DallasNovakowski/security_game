@@ -113,7 +113,7 @@ class GroupWait(Page):
 
 class scen_q(Page):
     form_model = 'player'
-    form_fields = ['pre_partner_attempt','p_partner_envy','p_partner_jealous', 'p_partner_bitter']
+    form_fields = ['p_inequality','pre_partner_attempt','p_partner_envy','p_partner_jealous', 'p_partner_bitter']
 
     def is_displayed(self):
         return self.participant.vars['session_name'] == 'ineq_sec_stake' and \
