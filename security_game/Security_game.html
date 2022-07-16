@@ -24,6 +24,20 @@
     </style>
 
 
+<b> Your partner (Blue) still has to decide whether to try stealing from you.
+</b>
+<br>
+    <br>
+
+<label class="col-form-label">
+    A successful theft steals money from you, and a failed attempt to steal will make your partner lose money.
+<br>
+    <br>
+        Each unit of security costs $<span id="price"> </span>, and reduces the chance of successful
+    thefts.
+ </label>
+
+
 <br>
 <br>
 <p>Use the slider below to indicate how much security you
@@ -42,7 +56,7 @@
 
     <script>
         $(document).ready(function (event) {
-            slider1 = new mgslider("security_consumed", 0, 50, 1);
+            slider1 = new mgslider("security_consumed", 0, 100, 1);
             slider1.print(document.getElementById("sliders_here"));
             // console.log(slider1)
         });

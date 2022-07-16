@@ -25,17 +25,17 @@ SESSION_CONFIGS = [
         security_price=.02,
         OTREE_REST_KEY="1234"
     ),
-    dict(
-        name='ineq_sec_uncertain',
-        app_sequence=["consent", "survey", "ineq_manip_2b", 'security_game', 'attention_check', 'study_end'],
-        num_demo_participants=5,
-        completionlink='https://app.prolific.co/submissions/complete?cc=blahblahblah',
-        endowment=300,
-        lost_from_attacks=150,
-        failed_attack=150,
-        security_price=2,
-        OTREE_REST_KEY="1234"
-    ),
+    # dict(
+    #     name='ineq_sec_uncertain',
+    #     app_sequence=["consent", "survey", "ineq_manip_2b", 'security_game', 'attention_check', 'study_end'],
+    #     num_demo_participants=5,
+    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblahblah',
+    #     endowment=300,
+    #     lost_from_attacks=150,
+    #     failed_attack=150,
+    #     security_price=2,
+    #     OTREE_REST_KEY="1234"
+    # ),
     dict(
         name='w_ineq_sec_uncertain',
         app_sequence=["consent", "survey", "security_game_w_ineq", 'attention_check', 'study_end'],
@@ -48,14 +48,18 @@ SESSION_CONFIGS = [
         OTREE_REST_KEY="1234"
     ),
     dict(
-        name='ineq_sec_real',
-        app_sequence=["consent","survey", 'security_game_mixed', 'attention_check', 'debrief', 'study_end'],
-        num_demo_participants=15,
+        name='ineq_sec_real_prime',
+        app_sequence=["consent", "survey", "priming_intro", 'security_game', 'security_game_w_ineq', 'attention_check', 'debrief', 'study_end'],
+        num_demo_participants=5,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-        endowment=2,
-        lost_from_attacks=1,
-        failed_attack=1,
-        security_price=.02,
+        p_endowment=150,
+        endowment=300,
+        lost_from_attacks=100,
+        p_lost_from_attacks=100,
+        failed_attack=100,
+        p_failed_attack=100,
+        security_price=2,
+        p_security_price=.5,
         OTREE_REST_KEY="1234"
     ),
     dict(

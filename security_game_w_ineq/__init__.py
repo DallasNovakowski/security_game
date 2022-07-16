@@ -41,8 +41,17 @@ def creating_session(subsession: Subsession):
             session = p.subsession.session
             p.participant.vars['session_name'] = p.session.config['name']
             # session = p.subsession.session
+            if p.participant.vars['session_name'] != 'w_ineq_sec_uncertain':
+                p.inequality = random.choice([True, False])
+                p.participant.vars['ineq'] = p.inequality
+            if p.participant.vars['session_name'] == 'w_ineq_sec_uncertain':
+                p.inequality = None
+                p.participant.vars['ineq'] = p.field_maybe_none('inequality')
     for p in subsession.get_players():
         p.page_in_round = str(p.participant.vars['rounds_task'][subsession.round_number])
+    if subsession.round_number == 2:
+        p.inequality = p.participant.vars['ineq']
+
 
 pass
 
@@ -61,7 +70,7 @@ class Player(BasePlayer):
     submit_missing = models.IntegerField(initial=0)
     security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
     page_in_round = models.StringField()
-    # inequality = models.BooleanField(blank=True)
+    inequality = models.BooleanField(blank=True)
 
     p_inequality = make_likert("In this game, the money has been split unequally")
     pre_partner_attempt = make_likert("My partner is probably going to try stealing from me")
@@ -80,13 +89,16 @@ class Task_intro(Page):
     form_model = 'player'
 
     def is_displayed(self):
-        return self.round_number == 1
+        session = self.subsession.session
+        return self.round_number == 1 and session.config['name'] == 'w_ineq_sec_uncertain'
+
 
 class NextScen(Page):
     form_model = 'player'
 
     def is_displayed(self):
-        return self.round_number == 2
+        session = self.subsession.session
+        return self.round_number == 2 and session.config['name'] == 'w_ineq_sec_uncertain'
 
 
 
@@ -95,8 +107,10 @@ class scen_q(Page):
     form_fields = ['p_inequality', 'pre_partner_attempt', 'p_partner_envy', 'p_partner_jealous', 'p_partner_bitter']
 
     def is_displayed(self):
-        return self.round_number == self.participant.vars['task_rounds']['Sec_20_ineq'] or \
-               self.round_number == self.participant.vars['task_rounds']['Sec_20_eq']
+        return self.round_number == self.participant.vars['task_rounds']['Sec_20_ineq'] and self.subsession.session.config['name'] == 'w_ineq_sec_uncertain' or \
+               self.round_number == self.participant.vars['task_rounds']['Sec_20_eq'] and self.subsession.session.config['name'] == 'w_ineq_sec_uncertain' or \
+               self.round_number == self.participant.vars['task_rounds']['Sec_20_ineq'] and self.subsession.session.config['name'] != 'w_ineq_sec_uncertain' and self.participant.vars['ineq'] == True or \
+               self.round_number == self.participant.vars['task_rounds']['Sec_20_eq'] and self.subsession.session.config['name'] != 'w_ineq_sec_uncertain' and self.participant.vars['ineq'] == False
 
     @staticmethod
     def error_message(player: Player, values):
@@ -117,14 +131,18 @@ class UVHS(Page):
     template_name = 'security_game_w_ineq/Unequal_visible_histak.html'
 
     def is_displayed(self):
-        return self.round_number == self.participant.vars['task_rounds']['Sec_20_ineq']
+        return self.round_number == self.participant.vars['task_rounds']['Sec_20_ineq'] and self.subsession.session.config['name'] == 'w_ineq_sec_uncertain' or \
+               self.round_number == self.participant.vars['task_rounds']['Sec_20_ineq'] and \
+        self.participant.vars['ineq'] == True and self.subsession.session.config['name'] != 'w_ineq_sec_uncertain'
 
 
 class EVHS(Page):
     form_model = 'player'
     template_name = 'security_game_w_ineq/Equal_visible_histak.html'
     def is_displayed(self):
-        return self.round_number == self.participant.vars['task_rounds']['Sec_20_eq']
+        return self.round_number == self.participant.vars['task_rounds']['Sec_20_eq'] and self.subsession.session.config['name'] == 'w_ineq_sec_uncertain' or \
+               self.round_number == self.participant.vars['task_rounds']['Sec_20_eq'] and \
+               self.participant.vars['ineq'] == False and self.subsession.session.config['name'] != 'w_ineq_sec_uncertain'
 
 
 class Sec_20_ineq(Page):
@@ -134,7 +152,9 @@ class Sec_20_ineq(Page):
 
 
     def is_displayed(self):
-        return self.round_number == self.participant.vars['task_rounds']['Sec_20_ineq']
+        return self.round_number == self.participant.vars['task_rounds']['Sec_20_ineq'] and self.subsession.session.config['name'] == 'w_ineq_sec_uncertain' or \
+               self.round_number == self.participant.vars['task_rounds']['Sec_20_ineq'] and \
+               self.participant.vars['ineq'] == True and self.subsession.session.config['name'] != 'w_ineq_sec_uncertain'
 
     @staticmethod
     def js_vars(player):
@@ -156,7 +176,9 @@ class Sec_20_eq(Page):
 
 
     def is_displayed(self):
-        return self.round_number == self.participant.vars['task_rounds']['Sec_20_eq']
+        return self.round_number == self.participant.vars['task_rounds']['Sec_20_eq'] and self.subsession.session.config['name'] == 'w_ineq_sec_uncertain' or \
+               self.round_number == self.participant.vars['task_rounds']['Sec_20_eq'] and \
+               self.participant.vars['ineq'] == False and self.subsession.session.config['name'] != 'w_ineq_sec_uncertain'
 
     @staticmethod
     def js_vars(player):

@@ -50,51 +50,25 @@ class Player(BasePlayer):
     submit_missing = models.IntegerField(initial=0)
     # game
     security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
-    security_desired = models.BooleanField(label='Would you like to purchase any units of security?')
+    p_inequality = make_likert("In this game, the money has been split unequally")
 
-
-    #     models.StringField(
-    #     choices=[['yes', 'yes'], ['no', 'no']],
-    #     label='Would you like to purchase any security?',
-    #     widget=widgets.RadioSelect,
-    #  blank = True
-    # )
-    # pre game
     pre_partner_attempt = make_likert("My partner is probably going to try stealing from me")
-    # pre_success_prob = make_likert("If my partner tries to steal from me, they'll probably succeed")
-    # pre_partner_know = make_likert("I know whether my partner will try stealing from me")
-    # fair_game = make_likert("This game is fair")
-
-    partner_reasonable_income = make_likert("My partner's assigned income is fair")
-    reasonable_income = make_likert("My assigned income is fair")
-    fair_distribution = make_likert("The way incomes were given for this game is fair")
-
-    # earned_income = make_likert("I believe I have earned my income")
-    # deserved_income = make_likert("I deserve my income for this game")
-    # deserved_role = make_likert("I deserve my role for this game")
-    # partner_deserved_income = make_likert("My partner's income is deserved")
-    # partner_earned_income = make_likert("I believe my partner has earned their income")
-    # guilty = make_likert("I feel guilty for my position in this game")
-    # want_money = make_likert("In this game, I want to try to keep as much of my money as possible")
-
-    # p_partner_fair = make_likert("My partner probably thinks this game is fair")
-    # partner_admiration = make_likert("My partner probably admires me")
+    #
+    # partner_reasonable_income = make_likert("My partner's assigned income is fair")
+    # reasonable_income = make_likert("My assigned income is fair")
+    # fair_distribution = make_likert("The way incomes were given for this game is fair")
 
     p_partner_envy = make_likert("My partner probably feels envious of me")
     p_partner_jealous = make_likert("My partner probably feels jealous of me")
     p_partner_bitter = make_likert("My partner probably feels bitter")
 
-    # post game
-
-    # post_partner_attempt = make_likert("My partner is probably going to try stealing from me")
-    # post_success_prob = make_likert("If my partner tries to steal from me, they'll probably succeed")
     pass
 
 
 # Pages
 class SecurityDesire(Page):
     form_model = 'player'
-    form_fields = ['security_desired']     # allows for security responses in page to ber recorded
+    # form_fields = ['security_desired']     # allows for security responses in page to ber recorded
 
     @staticmethod               # this function passes constants to javascript for manipulation in-page
     def js_vars(player):
@@ -117,18 +91,20 @@ class Security_game(Page):
     def js_vars(player):
         return dict(
             efficacy= C.SECURITY_EFFICACY,
-            endowment= player.subsession.session.config['endowment'],
-            price=player.subsession.session.config["security_price"],
+            endowment= player.subsession.session.config['p_endowment'],
+            price=player.subsession.session.config["p_security_price"],
             theft_success= C.BASE_THEFT_SUCCESS_50,
-            lost_from_attacks=player.subsession.session.config['lost_from_attacks'],
-            failed_attack=player.subsession.session.config['failed_attack'],
+            lost_from_attacks=player.subsession.session.config['p_lost_from_attacks'],
+            failed_attack=player.subsession.session.config['p_failed_attack'],
         )
     pass
 
 class GameQs(Page):
     form_model = 'player'
-    form_fields = ['pre_partner_attempt','p_partner_envy','p_partner_jealous', 'p_partner_bitter', 'partner_reasonable_income',
-    'reasonable_income','fair_distribution']
+    form_fields = ['p_inequality','pre_partner_attempt','p_partner_envy','p_partner_jealous', 'p_partner_bitter'
+    #     , 'partner_reasonable_income',
+    # 'reasonable_income','fair_distribution'
+                   ]
 
     # @staticmethod
     # def js_vars(player):    # highlights variables/fields that do not need to be filled (but that we'll be displaying a one-time warning message if they're left blank)
@@ -151,5 +127,12 @@ class GameQs(Page):
 
     pass
 
+class NextScen(Page):
+    form_model = 'player'
 
-page_sequence = [SecurityDesire,GameQs, Security_game]
+    def is_displayed(self):
+        return self.subsession.session.config['name'] == 'ineq_sec_real_prime'
+
+
+
+page_sequence = [GameQs, Security_game, NextScen]

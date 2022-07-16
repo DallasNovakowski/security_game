@@ -101,7 +101,7 @@ class ReCo(Page):
     # Control whether consent page is displayed based on name in config
     def is_displayed(player: Player):
         session = player.subsession.session
-        return session.config['name'] == 'ineq_real' or session.config['name'] == 'ineq_sec_real'
+        return session.config['name'] == 'ineq_real' or session.config['name'] == 'ineq_sec_real_prime'
 
     @staticmethod       # populates a participant variable with the respondent's consent status (for use across apps)
     def before_next_page(player: Player, timeout_happened):

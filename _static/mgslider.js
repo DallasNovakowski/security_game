@@ -28,7 +28,7 @@ let price = js_vars.price;
 
 // let slider = document.getElementById("sliders_here");
 
-if(endowment>2){
+if(price>=2){
     // document.getElementById("failed_attack").innerHTML = Math.round(failed_attack,0);
     // document.getElementById("lost_from_attacks").innerHTML = Math.round(lost_from_attacks,0);
     document.getElementById("endowment").innerHTML = Math.round(endowment,0);
@@ -37,18 +37,14 @@ if(endowment>2){
 } else {
     // document.getElementById("failed_attack").innerHTML = failed_attack;
     // document.getElementById("lost_from_attacks").innerHTML = lost_from_attacks;
-    document.getElementById("endowment").innerHTML = endowment;
-    document.getElementById("price").innerHTML = price;
+    document.getElementById("endowment").innerHTML = Math.round(endowment,0)
+    document.getElementById("price").innerHTML = price.toFixed(2)
+    // Math.round(price,2);
     // document.getElementById("base_prob").innerHTML = base_prob;
 }
 
 
-
 // document.getElementById("efficacy").innerHTML = efficacy;       // pass constants to html for in-text  BRINGING PRICE OBJECT BREAKS ALL HTML ITEMS - removing "= efficacy" doesn't seem to break things
-
-
-
-
 
 
 var mgsliders = Array();
