@@ -55,7 +55,7 @@ class Security_Debrief(Page):
     form_fields = ['reconsent']
     def is_displayed(player : Player):
         session = player.subsession.session
-        return session.config['name'] == 'ineq_sec_real'
+        return session.config['name'] == 'ineq_sec_real' or session.config['name'] == 'ineq_sec_real_prime'
 pass
 
 page_sequence = [Security_Debrief]

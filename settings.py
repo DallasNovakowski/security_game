@@ -49,7 +49,8 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='ineq_sec_real_prime',
-        app_sequence=["consent", "survey", "priming_intro", 'security_game', 'security_game_w_ineq', 'attention_check', 'debrief', 'study_end'],
+        app_sequence=["consent", "survey", "priming_intro", 'security_game', 'security_game_w_ineq',
+                      'attention_check', 'debrief', 'study_end'],
         num_demo_participants=5,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         p_endowment=150,
