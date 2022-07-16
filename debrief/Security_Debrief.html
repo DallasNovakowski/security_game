@@ -8,25 +8,27 @@
 </p>
 
 <p>
-<div><span> You were told that you would be completing this study with a partner, but the information on this partner was not true: <u>there was no partner</u>.
+<div><span> You were told that you would be completing this study with a partner, but the information on this
+    partner was not true: <u>there was no partner</u>.
     This deception was necessary to enable the payment of large bonuses – data on the actions of your partner were not important for the research questions at hand,
     and would have consumed the budget for bonuses.
     <br>
 <br>
 
-    However, the potential bonus is still real: three participants will be randomly selected from this study to receive bonus payments based on their decisions in the task.
-    Since there is no partner, all payments will be calculated from the scenario with a starting successful theft rate of 60%, assuming that the partner does try
-    to steal from the selected participants.
+    However, the potential bonus is still real: three participants will be randomly selected from this study
+    to receive bonus payments based on their decisions in the task, from the second scenario, where you received $300.
+    Since there is no partner, all payments will be calculated from the scenario with a starting successful
+    theft rate of 60%, and assumes that the partner does try to steal from the selected participants, with successful thefts stealing $100.
 <br>
 <br>
-
     Selected participants' final bonuses will still be influenced by their decision to purchase security products.
+    Each unit of the security product reduces the probability of a successful theft by 0.5%, meaning if someone purchased
+    the maximum 100 units of security, they would reduce success rate of thefts by 50%.
 <br>
 <br>
-
-    For instance, a selected participant purchasing 25 units of security will have $225 remaining
-    when their partner attempts a theft at a 35% chance of success (adjusted from 60% success). If this theft is successful, the participant will get paid $75.
-    If the theft is unsuccessful, the participant gets paid $225.
+    For instance, a selected participant purchasing 50 units of security will have $200 remaining
+    when their partner attempts a theft at a 35% chance of success (adjusted from 60% success).
+    If this theft is successful, the participant will get paid $100. If the theft is unsuccessful, the participant gets paid $200.
  </span></div>
 </p>
 
@@ -51,15 +53,23 @@
     This expectation of desperation may be critical in driving people’s willingness to consume products that protect them from harmful competitive behaviours. </span></div>
 </p>
 
-<p>
+
 <div><span>
-If our results show that inequality indeed leads to security consumption, it will highlight economic disparities as an
+If our results show that inequality indeed leads to security consumption, it will highlight economic gaps as an
     important factor for managers and policy makers to consider when attempting to understand, predict, and satisfy people’s need for security.
 
 Thank you for participating in this study! Your time and effort are very appreciated.
+    </span></div>
 
+    <br>
+<br>
+
+{{ form.reconsent.label }} <br><br>
+{{ form.reconsent}} {{ formfield_errors 'reconsent' }}
+    <br>
+    <p>
 If you have any further comments or questions about this research project, please contact us:
-</span></div>
+
 </p>
 
 <strong>CORRESPONDIONG RESEARCHER:</strong>
@@ -77,11 +87,7 @@ If you have any further comments or questions about this research project, pleas
         mehdi.mourali@haskayne.ucalgary.ca</span></em></a> </div>
 
 
-<br>
-<br>
 
-{{ form.reconsent.label }} <br><br>
-{{ form.reconsent}} {{ formfield_errors 'reconsent' }}
         <br>
 
 
