@@ -54,8 +54,9 @@ class Pri_intro(Page):
         )
     pass
 
-class Equalsmallerstak(Page):
+class ESS(Page):
+    template_name = 'priming_intro/Equalsmallerstak.html'
     form_model = 'player'
 
 
-page_sequence = [Pri_intro,Equalsmallerstak]
+page_sequence = [Pri_intro,ESS]

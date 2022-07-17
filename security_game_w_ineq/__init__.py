@@ -145,7 +145,7 @@ class EVHS(Page):
                self.participant.vars['ineq'] == False and self.subsession.session.config['name'] != 'w_ineq_sec_uncertain'
 
 
-class Sec_20_ineq(Page):
+class S20I(Page):
     form_model = 'player'
     template_name = 'security_game_w_ineq/Sec_20.html'
     form_fields = ['security_consumed']
@@ -169,7 +169,7 @@ class Sec_20_ineq(Page):
     pass
 
 
-class Sec_20_eq(Page):
+class S20E(Page):
     form_model = 'player'
     template_name = 'security_game_w_ineq/Sec_20.html'
     form_fields = ['security_consumed']
@@ -194,4 +194,4 @@ class Sec_20_eq(Page):
 
 
 
-page_sequence = [Task_intro, NextScen, UVHS, EVHS, scen_q, Sec_20_ineq, Sec_20_eq]
+page_sequence = [Task_intro, NextScen, UVHS, EVHS, scen_q, S20I, S20E]
