@@ -14,7 +14,7 @@ class C(BaseConstants):
     NAME_IN_URL = 'MTI'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
-    OTHER_END = 1
+    OTHER_END = 150
 
 
 class Player(BasePlayer):
@@ -79,4 +79,8 @@ class GameDesc(Page):
     form_model = 'player'
 
 
-page_sequence = [Task_intro, EM, ER, UM, UR, GameDesc]
+page_sequence = [
+    # Task_intro,
+                 EM, ER, UM, UR
+    # , GameDesc
+]

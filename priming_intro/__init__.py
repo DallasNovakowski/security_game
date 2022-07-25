@@ -42,6 +42,10 @@ class Player(BasePlayer):
 class Pri_intro(Page):
     form_model = 'player'
 
+    def is_displayed(self):
+        return self.subsession.session.config['name'] == 'ineq_sec_real_prime'
+
+
     @staticmethod               # this function passes constants to javascript for manipulation in-page
     def js_vars(player):
         return dict(
@@ -54,9 +58,31 @@ class Pri_intro(Page):
         )
     pass
 
+
+class Pri_intro_hyp(Page):
+    form_model = 'player'
+
+    def is_displayed(self):
+        return self.subsession.session.config['name'] != 'ineq_sec_real_prime'
+
+
+    @staticmethod               # this function passes constants to javascript for manipulation in-page
+    def js_vars(player):
+        return dict(
+            efficacy= C.SECURITY_EFFICACY,
+            endowment= player.subsession.session.config['endowment'],
+            price=player.subsession.session.config["security_price"],
+            theft_success= C.BASE_THEFT_SUCCESS_50,
+            lost_from_attacks=player.subsession.session.config['lost_from_attacks'],
+            failed_attack=player.subsession.session.config['failed_attack'],
+        )
+    pass
+
+
 class ESS(Page):
     template_name = 'priming_intro/Equalsmallerstak.html'
     form_model = 'player'
 
 
-page_sequence = [Pri_intro,ESS]
+
+page_sequence = [Pri_intro,Pri_intro_hyp,ESS]

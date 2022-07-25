@@ -50,6 +50,22 @@ def creating_session(subsession: Subsession):
 # PAGES
 
 
+class PayoffDescription(Page):
+    form_model = 'player'
+
+    @staticmethod               # this function passes constants to javascript for manipulation in-page
+    def js_vars(player):
+        return dict(
+            efficacy= C.SECURITY_EFFICACY,
+            endowment= player.subsession.session.config['p_endowment'],
+            price=player.subsession.session.config["p_security_price"],
+            theft_success= C.BASE_THEFT_SUCCESS_50,
+            lost_from_attacks=player.subsession.session.config['p_lost_from_attacks'],
+            failed_attack=player.subsession.session.config['p_failed_attack'],
+        )
+    pass
+
+
 class Security_Debrief(Page):
     form_model = 'player'
     form_fields = ['reconsent']

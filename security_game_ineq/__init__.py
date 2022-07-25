@@ -7,7 +7,7 @@ The security game
 """
 
 class C(BaseConstants):
-    NAME_IN_URL = 'game'
+    NAME_IN_URL = 'game_i'
 
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
@@ -90,11 +90,11 @@ class Security_game(Page):
     def js_vars(player):
         return dict(
             efficacy= C.SECURITY_EFFICACY,
-            endowment= player.subsession.session.config['p_endowment'],
-            price=player.subsession.session.config["p_security_price"],
+            endowment= player.subsession.session.config['endowment'],
+            price=player.subsession.session.config["security_price"],
             theft_success= C.BASE_THEFT_SUCCESS_50,
-            lost_from_attacks=player.subsession.session.config['p_lost_from_attacks'],
-            failed_attack=player.subsession.session.config['p_failed_attack'],
+            lost_from_attacks=player.subsession.session.config['lost_from_attacks'],
+            failed_attack=player.subsession.session.config['failed_attack'],
         )
     pass
 
@@ -132,13 +132,6 @@ class NextScen(Page):
     def is_displayed(self):
         return self.subsession.session.config['name'] == 'ineq_sec_real_prime'
 
-class NextScenH(Page):
-    form_model = 'player'
-
-    def is_displayed(self):
-        return self.subsession.session.config['name'] == 'security_game_merit'
 
 
-
-
-page_sequence = [GameQs, Security_game, NextScen,NextScenH]
+page_sequence = [GameQs, Security_game, NextScen]

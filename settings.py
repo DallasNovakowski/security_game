@@ -63,16 +63,32 @@ SESSION_CONFIGS = [
         p_security_price=.5,
         OTREE_REST_KEY="1234"
     ),
+    # dict(
+    #     name="security_game_merit_old",
+    #     display_name="meritocracy_manip_old",
+    #     num_demo_participants=15,
+    #     app_sequence=["consent","survey","slider_task", 'merit_manip', 'security_game', 'attention_check', 'study_end'],
+    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+    #     endowment=300,
+    #     lost_from_attacks=1,
+    #     failed_attack=1,
+    #     security_price=.02
+    # ),
     dict(
         name="security_game_merit",
         display_name="meritocracy_manip",
         num_demo_participants=15,
-        app_sequence=["consent","survey","slider_task", 'merit_manip', 'security_game', 'attention_check', 'study_end'],
+        app_sequence=["consent", "survey", "slider_task", "priming_intro", 'security_game', 'merit_manip', 'security_game_ineq', 'attention_check',
+                      'study_end'],
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+        p_endowment=150,
         endowment=300,
-        lost_from_attacks=1,
-        failed_attack=1,
-        security_price=.02
+        lost_from_attacks=100,
+        p_lost_from_attacks=100,
+        failed_attack=100,
+        p_failed_attack=100,
+        security_price=2,
+        p_security_price=.5
     ),
     dict(
         name="security_game_group",

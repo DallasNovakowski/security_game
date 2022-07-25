@@ -1,0 +1,69 @@
+{{ block content }}
+
+ <style>
+        .mgslider-wrapper {
+            border-spacing: 10px;
+        }
+        .mgslider-limit {
+            width: 10%;
+            min-width: 75px;
+            height: 40px;
+            margin: 100px;
+            text-align: center;
+            background: #eee;
+            border: 1px solid #888;
+        }
+        .mgslider-limit, .mgslider-value {
+            font-variant-numeric: tabular-nums;
+        }
+        .mgslider-before {
+            height: 16px;
+            width: 100%;
+            background: #1e5bff;
+        }
+    </style>
+
+
+<b> Your partner (Blue) still has to decide whether to try stealing from you.
+</b>
+<br>
+    <br>
+
+<label class="col-form-label">
+    A successful theft steals money from you, and a failed attempt to steal will make your partner lose money.
+<br>
+    <br>
+        Each unit of security costs $<span id="price"> </span>, and reduces the chance of successful
+    thefts.
+ </label>
+
+
+<br>
+<br>
+<p>Use the slider below to indicate how much security you
+    would purchase from a budget of $<span id="endowment" ></span>.</p>
+
+
+<br>
+
+    {{ formfield_errors 'security_consumed' }}
+
+    <p>Click the blue bar to reveal the slider.</p>
+<br>
+    <div id="sliders_here"></div>
+
+    <script src="{{ static 'mgslider.js' }}"></script>
+
+    <script>
+        $(document).ready(function (event) {
+            slider1 = new mgslider("security_consumed", 0, 100, 1);
+            slider1.print(document.getElementById("sliders_here"));
+            // console.log(slider1)
+        });
+
+    </script>
+
+    {{ next_button }}
+
+
+{{ endblock }}
