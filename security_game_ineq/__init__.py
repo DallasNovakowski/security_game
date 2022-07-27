@@ -49,7 +49,7 @@ def make_likert(label):
 class Player(BasePlayer):
     submit_missing = models.IntegerField(initial=0)
     # game
-    prolific_id = models.StringField(default=str(""))
+    # prolific_id = models.StringField(default=str(""))
     security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
     p_inequality = make_likert("In this game, the money has been split unequally")
 

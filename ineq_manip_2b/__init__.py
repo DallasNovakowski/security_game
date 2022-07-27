@@ -17,7 +17,7 @@ class C(BaseConstants):
 
 class Player(BasePlayer):
     # Utility variables
-    prolific_id = models.StringField(default=str(""))
+    # prolific_id = models.StringField(default=str(""))
     # Study variables
     inequality = models.BooleanField(blank=True)
     pass
