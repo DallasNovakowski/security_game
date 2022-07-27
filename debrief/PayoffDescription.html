@@ -1,31 +1,68 @@
 {{ block content }}
-<p>
-   <u>For the first scenario</u>, you started with $150. After your decision whether to buy a security product, you had $?? [endowment-consumed*price] remaining.
 
-    If your partner decided to try stealing from you, they would steal $100 with a starting chance of success of ??% [starting_prob].
+<!--efficacy is <span id="efficacy"> </span>-->
 
-    After your decision to buy a security product, their final chances of successfully stealing were ??% [starting_prob-consumed*efficacy].
+<!--price is <span id="price"> </span>-->
 
-
-    Your partner did try to steal $100 from you.  They were ??.
-
-    Your final payoff for this scenario was ??
+<!--reduction is <span id="reduced"> </span>-->
 
 <br>
-    <br>
-    <u>For the second scenario </u>, you started with $300. After your decision whether to buy a security product, you had ?? remaining
 
-    If your partner decided to try stealing from you, they would steal $100 with a starting chance of success of ??%.
+One participant from this study will be randomly selected to receive a bonus payment based on their decision in the second scenario,
+where you received $300.
+<br>
+<br>
 
-    After your decision to buy a security product, their final chances of successfully stealing were ??%.
+
+<b>For your potential payoff:</b>
+<br><br>
+You consumed <span id="consumed"> </span> units of the security product, spending $<span id="spent"> </span>.
+After your purchasing decision, the new probability of a theft being successful was <span id="new_prob"></span>%. <br><br>
 
 
-    Your partner did try to steal $100 from you.  They were ??.
+<span id="success_theft"></span> <br><br>
 
-    Your final payoff for this scenario was ??
+If selected for the bonus payment, your final payoff will be $<span id="final_payoff"></span>.
+The bonus will be added to the selected participant’s Prolific account within 72 hours of the study completion time. <br><br>
 
-</p>
 
+<script>
+    let consumed = js_vars.consumed;
+    let efficacy = js_vars.efficacy;
+    let price = js_vars.price;
+    let starting_prob = js_vars.theft_success;
+
+    let reduced = efficacy*consumed
+    let new_prob = (starting_prob-reduced).toFixed(2)
+
+    let final_payoff = js_vars.final_payoff
+    let success_theft = js_vars.success_theft
+
+    // var eitherOneOrZero = Math.random() < new_prob ? 1 : 0;
+
+//     if (eitherOneOrZero == 1){
+//         document.getElementById("final_payoff").innerHTML = 300-consumed*price-150;
+//     } else {
+//         document.getElementById("final_payoff").innerHTML = 300-consumed*price;
+// }
+
+    document.getElementById("consumed").innerHTML = consumed;
+    // document.getElementById("efficacy").innerHTML = efficacy*100;
+    // document.getElementById("price").innerHTML = price;
+    document.getElementById("spent").innerHTML = consumed*price;
+    // document.getElementById("reduced").innerHTML = reduced*100;
+    document.getElementById("new_prob").innerHTML = new_prob*100;
+    document.getElementById("final_payoff").innerHTML = final_payoff;
+
+    if (success_theft==1){
+            document.getElementById("success_theft").innerHTML = "Your partner tried to steal and was successful in stealing $100.";
+    } else {
+        document.getElementById("success_theft").innerHTML = "Your partner tried to steal and was not successful, and ended up losing $100. You lost nothing."
+    }
+
+
+
+</script>
 
 {{ next_button }}
 

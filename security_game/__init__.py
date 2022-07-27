@@ -136,7 +136,7 @@ class NextScenH(Page):
     form_model = 'player'
 
     def is_displayed(self):
-        return self.subsession.session.config['name'] == 'security_game_merit'
+        return self.subsession.session.config['name'] == 'security_game_merit' or self.subsession.session.config['name'] == 'security_game_group'
 
 
 

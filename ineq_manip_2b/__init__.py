@@ -31,6 +31,10 @@ class Group(BaseGroup):
 class Task_intro(Page):
     form_model = 'player'
 
+    def is_displayed(self):
+        return self.subsession.session.config['name'] != 'ineq_sec_real_prime'
+
+
     @staticmethod
     def before_next_page(self, timeout_happened):
         self.prolific_id = self.participant.label

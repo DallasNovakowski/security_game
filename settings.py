@@ -49,7 +49,9 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='ineq_sec_real_prime',
-        app_sequence=["consent", "survey", "priming_intro", 'security_game', 'security_game_w_ineq',
+        app_sequence=["consent", "survey", "priming_intro", 'security_game',
+                      "ineq_manip_2b",'security_game_ineq',
+                                                                             # 'security_game_w_ineq',
                       'attention_check', 'debrief', 'study_end'],
         num_demo_participants=5,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
@@ -78,8 +80,8 @@ SESSION_CONFIGS = [
         name="security_game_merit",
         display_name="meritocracy_manip",
         num_demo_participants=15,
-        app_sequence=["consent", "survey", "slider_task", "priming_intro", 'security_game', 'merit_manip', 'security_game_ineq', 'attention_check',
-                      'study_end'],
+        app_sequence=["consent", "survey", "priming_intro", 'security_game', "slider_task",
+                      'merit_manip', 'security_game_ineq', 'attention_check', 'study_end'],
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
         p_endowment=150,
         endowment=300,
@@ -90,16 +92,32 @@ SESSION_CONFIGS = [
         security_price=2,
         p_security_price=.5
     ),
+    # dict(
+    #     name="security_game_group",
+    #     display_name="group_agent",
+    #     num_demo_participants=15,
+    #     app_sequence=["consent","survey", "group_manip", 'security_game', 'attention_check', 'study_end'],
+    #     completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+    #     endowment=2,
+    #     lost_from_attacks=1,
+    #     failed_attack=1,
+    #     security_price=.02
+    # )
     dict(
         name="security_game_group",
         display_name="group_agent",
         num_demo_participants=15,
-        app_sequence=["consent","survey", "group_manip", 'security_game', 'attention_check', 'study_end'],
+        app_sequence=["consent", "survey", "priming_intro", 'security_game', "min_group", "group_manip",
+                      'security_game_ineq', 'attention_check', 'study_end'],
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-        endowment=2,
-        lost_from_attacks=1,
-        failed_attack=1,
-        security_price=.02
+        p_endowment=150,
+        endowment=300,
+        lost_from_attacks=100,
+        p_lost_from_attacks=100,
+        failed_attack=100,
+        p_failed_attack=100,
+        security_price=2,
+        p_security_price=.5
     )
 ]
 # for bots (need something - consent.tests?)
@@ -116,7 +134,7 @@ SESSION_CONFIG_DEFAULTS = dict(
 
 SESSION_FIELDS = ['params']
 
-PARTICIPANT_FIELDS =['consent']
+PARTICIPANT_FIELDS =['consent', "payoff_consumed", "f_poff", "success_theft"] # necessary for passing data between apps
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans

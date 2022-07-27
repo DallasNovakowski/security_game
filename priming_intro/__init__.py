@@ -29,8 +29,6 @@ def creating_session(subsession):
     print("endowment for session is", session.endowment, ", and lost_from_attacks is",
           session.config['lost_from_attacks'], ", and failed_attack is", session.config['failed_attack'])
 
-# session.params = {}
-
 class Group(BaseGroup):
     pass
 

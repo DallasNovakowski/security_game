@@ -2,16 +2,16 @@ from otree.api import *
 
 
 # This function assigns participants to treatment
-def creating_session(subsession):
-    import random
-    for player in subsession.get_players():
-        player.outgroup = random.choice([True, False])
-        player.agentic = random.choice([True, False])
-        print('set outgroup to', player.outgroup, 'and agentic to', player.agentic)
+# def creating_session(subsession):
+#     import random
+#     for player in subsession.get_players():
+#         player.outgroup = random.choice([True, False])
+#         player.agentic = random.choice([True, False])
+#         print('set outgroup to', player.outgroup, 'and agentic to', player.agentic)
 
 
 class C(BaseConstants):
-    NAME_IN_URL = 'gm'
+    NAME_IN_URL = 'mg'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     OTHER_END = 150
@@ -22,9 +22,9 @@ class Player(BasePlayer):
     prolific_id = models.StringField(default=str(""))
 
     # Study variables
-    num_dots = models.IntegerField(label='How many dots were in the image?', min=5, max=100)
-    agentic = models.BooleanField(blank=True)
-    outgroup = models.BooleanField(blank=True)
+    num_dots = models.IntegerField(label='How many dots were in the image?', min=1, max=100)
+    # agentic = models.BooleanField(blank=True)
+    # outgroup = models.BooleanField(blank=True)
     pass
 
 
@@ -122,10 +122,9 @@ class security_intro(Page):
 
 page_sequence = [
     # GroupWait,
-    # ImageDesc, Dots, NumDots,
+    ImageDesc, Dots, NumDots,
     # PartnerWait,
-    # TaskIntro,
-    OA, OR,
-                 IA, IR
-    # , security_intro
+    TaskIntro
+    # , OA, OR,
+    #              IA, IR, security_intro
 ]
