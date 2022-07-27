@@ -55,13 +55,15 @@ class Player(BasePlayer):
 
     pre_partner_attempt = make_likert("My partner is probably going to try stealing from me")
 
-    # partner_reasonable_income = make_likert("My partner's assigned income is fair")
-    # reasonable_income = make_likert("My assigned income is fair")
-    # fair_distribution = make_likert("The way incomes were given for this game is fair")
-
     p_partner_envy = make_likert("My partner probably feels envious of me")
     p_partner_jealous = make_likert("My partner probably feels jealous of me")
     p_partner_bitter = make_likert("My partner probably feels bitter")
+
+    partner_reasonable_income = make_likert("My partner's assigned income is fair")
+    reasonable_income = make_likert("My assigned income is fair")
+    fair_distribution = make_likert("The way incomes were given for this game is fair")
+
+
     payoff_consumed = models.IntegerField()
     f_poff = models.CurrencyField()
     success_theft = models.IntegerField()
@@ -147,9 +149,10 @@ class Security_game(Page):
 class GameQs(Page):
     form_model = 'player'
     form_fields = ['p_inequality','pre_partner_attempt','p_partner_envy','p_partner_jealous', 'p_partner_bitter'
-    #     , 'partner_reasonable_income',
-    # 'reasonable_income','fair_distribution'
                    ]
+
+    def is_displayed(self):
+        return self.subsession.session.config['name'] == 'ineq_sec_real_prime'
 
     # @staticmethod
     # def js_vars(player):    # highlights variables/fields that do not need to be filled (but that we'll be displaying a one-time warning message if they're left blank)
@@ -172,6 +175,39 @@ class GameQs(Page):
 
     pass
 
+
+class GameQs_f(Page):
+    form_model = 'player'
+    form_fields = ['p_inequality', 'pre_partner_attempt', 'p_partner_envy', 'p_partner_jealous', 'p_partner_bitter',
+                   'partner_reasonable_income', 'reasonable_income', 'fair_distribution']
+
+    def is_displayed(self):
+        return self.subsession.session.config['name'] == 'security_game_group' or self.subsession.session.config['name'] == 'security_game_merit'
+
+
+    # @staticmethod
+    # def js_vars(player):    # highlights variables/fields that do not need to be filled (but that we'll be displaying a one-time warning message if they're left blank)
+    #     return dict(optional_fields = GameQs.form_fields
+    #                 #,required_fields = GameQs.form_fields[0:2]
+    #     )
+
+    @staticmethod
+    def error_message(player: Player, values):
+        errors = {f: 'Please fill in this field' for f in values if not values[f]}
+        if errors:
+            player.submit_missing += 1
+            if player.submit_missing < 2:
+                return errors
+
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        player.submit_missing = 0
+    pass
+
+    pass
+
+
+
 class NextScen(Page):
     form_model = 'player'
 
@@ -180,6 +216,6 @@ class NextScen(Page):
 
 
 
-page_sequence = [GameQs, Security_game
+page_sequence = [GameQs,GameQs_f, Security_game
     # , NextScen
                  ]

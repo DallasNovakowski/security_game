@@ -1,0 +1,118 @@
+{{ block content }}
+
+Please indicate how much you agree or disagree with the following statements:
+
+<style >
+td {                                /*formats basic data, with padding and centered alignments*/
+  padding: 0.25em 0.5em 0.25em 1em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th {                                /*formats basic data, with padding and centered alignments*/
+  padding: 0.25em 0.5em 0.25em 1em;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+tr:nth-child(even) {                              /*adds alternating coloring for cells */
+  background-color: rgba(0, 0, 0, 0.05);
+}
+tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+</style>
+
+<table class="table">
+            <thead ><tr>
+            <th style="width: 30%;"></th>
+            <th style="width: 10%;">1 <br> Strongly disagree</th>
+            <th style="width: 10%;">2</th>
+           <th style="width: 10%;">3</th>
+            <th style="width: 10%;">4<br> Neither agree nor disagree</th>
+            <th style="width: 10%;">5</th>
+            <th style="width: 10%;">6</th>
+            <th style="width: 10%;">7 <br> Strongly agree</th>
+    </tr></thead>
+
+
+    <tbody>
+        <tr>
+        <td>{{ form.p_inequality.label }} {{ formfield_errors 'p_inequality' }}
+        </td>
+        {{ for choice in form.p_inequality }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.pre_partner_attempt.label }} {{ formfield_errors 'pre_partner_attempt' }}
+        </td>
+        {{ for choice in form.pre_partner_attempt }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.p_partner_envy.label }} {{ formfield_errors 'p_partner_envy' }}
+        </td>
+        {{ for choice in form.p_partner_envy }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.p_partner_jealous.label }} {{ formfield_errors 'p_partner_jealous' }}
+        </td>
+        {{ for choice in form.p_partner_jealous }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+        <tr>
+        <td>{{ form.p_partner_bitter.label }} {{ formfield_errors 'p_partner_bitter' }}
+        </td>
+        {{ for choice in form.p_partner_bitter }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+
+            <tr>
+        <td>{{ form.partner_reasonable_income.label }} {{ formfield_errors 'partner_reasonable_income' }}
+        </td>
+        {{ for choice in form.partner_reasonable_income }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+            <tr>
+        <td>{{ form.reasonable_income.label }} {{ formfield_errors 'reasonable_income' }}
+        </td>
+        {{ for choice in form.reasonable_income }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+            <tr>
+        <td>{{ form.fair_distribution.label }} {{ formfield_errors 'fair_distribution' }}
+        </td>
+        {{ for choice in form.fair_distribution }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
+
+
+
+
+
+
+    </tbody>
+</table>
+
+
+    {{ next_button }}
+
+
+{{ endblock }}
