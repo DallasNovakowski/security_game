@@ -54,7 +54,7 @@ SESSION_CONFIGS = [
                                                                              # 'security_game_w_ineq',
                       'attention_check', 'debrief', 'study_end'],
         num_demo_participants=5,
-        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+        completionlink='https://app.prolific.co/submissions/complete?cc=552ABCA3',
         p_endowment=250,
         endowment=300,
         lost_from_attacks=100,
