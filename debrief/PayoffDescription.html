@@ -51,7 +51,7 @@ The bonus will be added to the selected participant’s Prolific account within 
     // document.getElementById("price").innerHTML = price;
     document.getElementById("spent").innerHTML = consumed*price;
     // document.getElementById("reduced").innerHTML = reduced*100;
-    document.getElementById("new_prob").innerHTML = new_prob*100;
+    document.getElementById("new_prob").innerHTML = (new_prob*100).toFixed(2);
     document.getElementById("final_payoff").innerHTML = final_payoff;
 
     if (success_theft==1){
