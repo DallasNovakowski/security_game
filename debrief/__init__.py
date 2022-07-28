@@ -38,7 +38,9 @@ class Player(BasePlayer):
             [True, 'Yes, I re-consent to my data being used in this study'],
             [False, 'No, I wish to withdraw my data from this study'],
         ],
-        label='Now that you have full knowledge, please indicate whether you consent to your data being used in this study, or you would prefer to withdraw your data (which will not affect your base compensation, but disqualify you from the bonus payment).'
+        label='Now that you have full knowledge, please indicate whether you consent to '
+              'your data being used in this study, or you would prefer to withdraw your data '
+              '(withdrawing will not affect your base compensation, but disqualify you from the bonus payment).'
     )
     pass
 
