@@ -55,14 +55,14 @@ SESSION_CONFIGS = [
                       'attention_check', 'debrief', 'study_end'],
         num_demo_participants=5,
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-        p_endowment=150,
+        p_endowment=250,
         endowment=300,
         lost_from_attacks=100,
-        p_lost_from_attacks=100,
+        p_lost_from_attacks=50,
         failed_attack=100,
-        p_failed_attack=100,
+        p_failed_attack=50,
         security_price=2,
-        p_security_price=.5,
+        p_security_price=2,
         OTREE_REST_KEY="1234"
     ),
     # dict(
@@ -83,14 +83,15 @@ SESSION_CONFIGS = [
         app_sequence=["consent", "survey", "priming_intro", 'security_game', "slider_task",
                       'merit_manip', 'security_game_ineq', 'attention_check', 'study_end'],
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-        p_endowment=150,
+        p_endowment=250,
         endowment=300,
         lost_from_attacks=100,
-        p_lost_from_attacks=100,
+        p_lost_from_attacks=50,
         failed_attack=100,
-        p_failed_attack=100,
+        p_failed_attack=50,
         security_price=2,
-        p_security_price=.5
+        p_security_price=2,
+        OTREE_REST_KEY="1234"
     ),
     # dict(
     #     name="security_game_group",
@@ -110,14 +111,15 @@ SESSION_CONFIGS = [
         app_sequence=["consent", "survey", "priming_intro", 'security_game', "min_group", "group_manip",
                       'security_game_ineq', 'attention_check', 'study_end'],
         completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
-        p_endowment=150,
+        p_endowment=250,
         endowment=300,
         lost_from_attacks=100,
-        p_lost_from_attacks=100,
+        p_lost_from_attacks=50,
         failed_attack=100,
-        p_failed_attack=100,
+        p_failed_attack=50,
         security_price=2,
-        p_security_price=.5
+        p_security_price=2,
+        OTREE_REST_KEY="1234"
     )
 ]
 # for bots (need something - consent.tests?)
