@@ -38,8 +38,7 @@ class Player(BasePlayer):
             [True, 'Yes, I re-consent to my data being used in this study'],
             [False, 'No, I wish to withdraw my data from this study'],
         ],
-        label='Given the use of deception in this study, you may have changed your willingness to participate in this study. '
-              'Please indicate whether you consent to your data being used in this study, or you would prefer to withdraw your data (which will not affect your compensation).'
+        label='Now that you have full knowledge, please indicate whether you consent to your data being used in this study, or you would prefer to withdraw your data (which will not affect your base compensation, but disqualify you from the bonus payment).'
     )
     pass
 
