@@ -55,7 +55,7 @@ class ImageDesc(Page):
 
 class Dots(Page):
     form_model = 'player'
-    timeout_seconds = 4
+    timeout_seconds = 3
     template_name = 'group_manip/group_stim.html'
     pass
 
