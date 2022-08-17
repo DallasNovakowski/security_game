@@ -45,6 +45,14 @@ tr:nth-child(odd) {
         {{ endfor }}
         </tr>
 
+       <tr>
+        <td>{{ form.stolen_okay.label }} {{ formfield_errors 'stolen_okay' }}
+        </td>
+        {{ for choice in form.stolen_okay }}
+            <td>{{ choice }}</td>
+        {{ endfor }}
+        </tr>
+
         <tr>
         <td>{{ form.pre_partner_attempt.label }} {{ formfield_errors 'pre_partner_attempt' }}
         </td>
@@ -101,11 +109,6 @@ tr:nth-child(odd) {
             <td>{{ choice }}</td>
         {{ endfor }}
         </tr>
-
-
-
-
-
 
 
     </tbody>

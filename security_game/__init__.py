@@ -29,6 +29,17 @@ def creating_session(subsession):
     print("endowment for session is", session.endowment, ", and lost_from_attacks is",
           session.config['lost_from_attacks'], ", and failed_attack is", session.config['failed_attack'])
 
+    if session.config['name'] == 'security_game_merit':
+        print("this is a merit game")
+        import random
+        for player in subsession.get_players():
+            player.merit = random.choice([True, False])
+            player.participant.vars['merit'] = player.merit
+            print('merit is', player.participant.vars['merit'])
+
+
+
+
 # session.params = {}
 
 class Group(BaseGroup):
@@ -61,6 +72,7 @@ class Player(BasePlayer):
     p_partner_envy = make_likert("My partner probably feels envious of me")
     p_partner_jealous = make_likert("My partner probably feels jealous of me")
     p_partner_bitter = make_likert("My partner probably feels bitter")
+    merit = models.BooleanField(blank=True)
     pass
 
 
@@ -138,6 +150,11 @@ class NextScenH(Page):
     def is_displayed(self):
         return self.subsession.session.config['name'] == 'security_game_merit' or self.subsession.session.config['name'] == 'security_game_group'
 
+    @staticmethod
+    def app_after_this_page(player, upcoming_apps):
+        print('upcoming_apps is', upcoming_apps)
+        if player.merit==False:
+            return "merit_manip"
 
 
 

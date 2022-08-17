@@ -53,6 +53,8 @@ class Player(BasePlayer):
     security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
     p_inequality = make_likert("In this game, the money has been split unequally")
 
+    stolen_okay = make_likert("It is okay with me if some of my money gets stolen")
+
     pre_partner_attempt = make_likert("My partner is probably going to try stealing from me")
 
     p_partner_envy = make_likert("My partner probably feels envious of me")
@@ -61,7 +63,7 @@ class Player(BasePlayer):
 
     partner_reasonable_income = make_likert("My partner's assigned income is fair")
     reasonable_income = make_likert("My assigned income is fair")
-    fair_distribution = make_likert("The way incomes were given for this game is fair")
+    fair_distribution = make_likert("The way that money was split for this game is fair")
 
 
     payoff_consumed = models.IntegerField()
@@ -178,7 +180,7 @@ class GameQs(Page):
 
 class GameQs_f(Page):
     form_model = 'player'
-    form_fields = ['p_inequality', 'pre_partner_attempt', 'p_partner_envy', 'p_partner_jealous', 'p_partner_bitter',
+    form_fields = ['p_inequality','stolen_okay', 'pre_partner_attempt', 'p_partner_envy', 'p_partner_jealous', 'p_partner_bitter',
                    'partner_reasonable_income', 'reasonable_income', 'fair_distribution']
 
     def is_displayed(self):

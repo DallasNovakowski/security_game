@@ -37,6 +37,7 @@ def creating_session(subsession: Subsession):
         session.params[param] = session.config.get(param, defaults[param])
 
 
+
 class Group(BaseGroup):
     pass
 

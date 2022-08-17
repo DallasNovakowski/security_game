@@ -82,7 +82,7 @@ SESSION_CONFIGS = [
         num_demo_participants=15,
         app_sequence=["consent", "survey", "priming_intro", 'security_game', "slider_task",
                       'merit_manip', 'security_game_ineq', 'attention_check', 'study_end'],
-        completionlink='https://app.prolific.co/submissions/complete?cc=blahblah',
+        completionlink='https://app.prolific.co/submissions/complete?cc=552ABCA3',
         p_endowment=250,
         endowment=300,
         lost_from_attacks=100,
