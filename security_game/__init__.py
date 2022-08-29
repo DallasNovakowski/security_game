@@ -33,9 +33,12 @@ def creating_session(subsession):
         print("this is a merit game")
         import random
         for player in subsession.get_players():
-            player.merit = random.choice([True, False])
-            player.participant.vars['merit'] = player.merit
-            print('merit is', player.participant.vars['merit'])
+            player.inequality_merit = random.choice(["equal_random", "unequal_random","unequal_merit"])
+            player.participant.vars['inequality_merit'] = player.inequality_merit
+            # player.merit = random.choice([True, False])
+            # player.participant.vars['merit'] = player.merit
+            # print('merit is', player.participant.vars['inequality_merit'])
+            # print('is this equal random?', player.participant.vars['inequality_merit'] == "equal_random")
 
 
 
@@ -72,7 +75,8 @@ class Player(BasePlayer):
     p_partner_envy = make_likert("My partner probably feels envious of me")
     p_partner_jealous = make_likert("My partner probably feels jealous of me")
     p_partner_bitter = make_likert("My partner probably feels bitter")
-    merit = models.BooleanField(blank=True)
+    # merit = models.BooleanField(blank=True)
+    inequality_merit = models.StringField(blank=True)
     pass
 
 
@@ -152,10 +156,9 @@ class NextScenH(Page):
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
-        print('upcoming_apps is', upcoming_apps)
-        if player.merit==False:
+        # print('upcoming_apps is', upcoming_apps)
+        # if player.merit==False:
+        if player.inequality_merit == "equal_random" or player.inequality_merit == "unequal_random":
             return "merit_manip"
-
-
 
 page_sequence = [GameQs, Security_game, NextScen,NextScenH]

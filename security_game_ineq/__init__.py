@@ -49,10 +49,11 @@ def make_likert(label):
 class Player(BasePlayer):
     submit_missing = models.IntegerField(initial=0)
     # game
-    # prolific_id = models.StringField(default=str(""))
-    security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
-    p_inequality = make_likert("In this game, the money has been split unequally")
 
+    security_consumed = models.CurrencyField(label="How much security would you like to purchase?", min=0)
+    # p_inequality = make_likert("In this game, the money has been split unequally")
+
+    want_money = make_likert("I want to keep as much of my money as possible")
     stolen_okay = make_likert("It is okay with me if some of my money gets stolen")
 
     pre_partner_attempt = make_likert("My partner is probably going to try stealing from me")
@@ -61,10 +62,11 @@ class Player(BasePlayer):
     p_partner_jealous = make_likert("My partner probably feels jealous of me")
     p_partner_bitter = make_likert("My partner probably feels bitter")
 
-    partner_reasonable_income = make_likert("My partner's assigned income is fair")
-    reasonable_income = make_likert("My assigned income is fair")
-    fair_distribution = make_likert("The way that money was split for this game is fair")
+    partner_reasonable_income = make_likert("I think my partner's assigned income is fair")
+    reasonable_income = make_likert("I think my assigned income is fair")
+    fair_distribution = make_likert("I think the way that money was split for this game is fair")
 
+    p_partner_fair_distribution = make_likert("My partner probably thinks that the money was split fairly in this game")
 
     payoff_consumed = models.IntegerField()
     f_poff = models.CurrencyField()
@@ -180,8 +182,8 @@ class GameQs(Page):
 
 class GameQs_f(Page):
     form_model = 'player'
-    form_fields = ['p_inequality','stolen_okay', 'pre_partner_attempt', 'p_partner_envy', 'p_partner_jealous', 'p_partner_bitter',
-                   'partner_reasonable_income', 'reasonable_income', 'fair_distribution']
+    form_fields = ['want_money','stolen_okay', 'pre_partner_attempt', 'p_partner_envy', 'p_partner_jealous', 'p_partner_bitter',
+                   'partner_reasonable_income', 'reasonable_income', 'fair_distribution', 'p_partner_fair_distribution']
 
     def is_displayed(self):
         return self.subsession.session.config['name'] == 'security_game_group' or self.subsession.session.config['name'] == 'security_game_merit'
