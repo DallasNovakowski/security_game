@@ -49,13 +49,13 @@ class PartnerWait(Page):
 
 class ImageDesc(Page):
     form_model = 'player'
-    template_name = 'group_manip/stim_desc.html'
+    template_name = 'min_group/stim_desc.html'
     pass
 
 
 class Dots(Page):
     form_model = 'player'
-    timeout_seconds = 4
+    timeout_seconds = 3
     template_name = 'group_manip/group_stim.html'
     pass
 
@@ -69,10 +69,6 @@ class NumDots(Page):
 class TaskIntro(Page):
     form_model = 'player'
 
-    @staticmethod
-    def before_next_page(self, timeout_happened):
-        self.prolific_id = self.participant.label
-    pass
 
 
 # conditional pages by treatment

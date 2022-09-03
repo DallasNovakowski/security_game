@@ -158,7 +158,8 @@ class NextScenH(Page):
     def app_after_this_page(player, upcoming_apps):
         # print('upcoming_apps is', upcoming_apps)
         # if player.merit==False:
-        if player.inequality_merit == "equal_random" or player.inequality_merit == "unequal_random":
-            return "merit_manip"
+        if player.subsession.session.config['name'] == 'security_game_merit':
+            if player.inequality_merit == "equal_random" or player.inequality_merit == "unequal_random":
+                return "merit_manip"
 
 page_sequence = [GameQs, Security_game, NextScen,NextScenH]

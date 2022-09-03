@@ -1,9 +1,12 @@
 {{ block content }}
 
-You have been paired with an Overestimator.
+You are an Overestimator
 <br>
 <br>
-You have been given <u>${{ session.config.endowment }}</u>, but your partner has been given <u>${{C.OTHER_END}}</u>.
+<u>You have been paired with an Overestimator.</u>
+<br>
+<br>
+You have been given <u>${{ session.config.endowment }}</u>, but your partner has been given only <u>${{C.OTHER_END}}</u>.
     Your partner knows how much money you each have received.
 <br>
 <br>
@@ -11,8 +14,7 @@ The money given to you and your partner was randomly assigned.
 <br>
 <br>
 This random process chose between evenly splitting the money between you and your partner,
-or giving one person more than the other ($150 for one, $300 for the other).
-
+or giving one person more than the other ($1 for one, $2 for the other).
 <br>
 <br>
 {{ next_button }}
