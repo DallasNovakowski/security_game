@@ -5,10 +5,10 @@ from otree.api import *
 def creating_session(subsession):
     import random
     for player in subsession.get_players():
-        player.group_agent = random.choice(["ingroup_random", "outgroup_random","outgroup_agent"])
+        # player.group_agent = random.choice(["ingroup_random", "outgroup_random","outgroup_agent"])
         #
-        # player.outgroup = random.choice([True, False])
-        # player.agentic = random.choice([True, False])
+        player.outgroup = random.choice([True, False])
+        player.agentic = random.choice([True, False])
         # print('set outgroup to', player.outgroup, 'and agentic to', player.agentic)
 
 
@@ -24,7 +24,7 @@ class Player(BasePlayer):
 
     # Study variables
     num_dots = models.IntegerField(label='How many dots were in the image?', min=5, max=100)
-    group_agent = models.StringField(blank=True)
+    # group_agent = models.StringField(blank=True)
     agentic = models.BooleanField(blank=True)
     outgroup = models.BooleanField(blank=True)
     pass
@@ -71,10 +71,6 @@ class NumDots(Page):
 class TaskIntro(Page):
     form_model = 'player'
 
-    @staticmethod
-    def before_next_page(self, timeout_happened):
-        self.prolific_id = self.participant.label
-    pass
 
 
 # conditional pages by treatment
@@ -83,8 +79,8 @@ class OA(Page):
     template_name = 'group_manip/outgroup_agent.html'
 
     def is_displayed(self):
-
-        return self.group_agent == "outgroup_agent"
+        return self.outgroup == True and self.agentic == True
+        # return self.group_agent == "outgroup_agent"
         pass
 
 
@@ -94,18 +90,19 @@ class OR(Page):
 
 
     def is_displayed(self):
-        return self.group_agent == "outgroup_random"
+        return self.outgroup == True and self.agentic == False
+        # return self.group_agent == "outgroup_random"
     pass
 
 
-# class IA(Page):
-#     form_model = 'player'
-#     template_name = 'group_manip/ingroup_agent.html'
-#
-#
-#     def is_displayed(self):
-#         return self.outgroup == False and self.agentic == True
-#     pass
+class IA(Page):
+    form_model = 'player'
+    template_name = 'group_manip/ingroup_agent.html'
+
+
+    def is_displayed(self):
+        return self.outgroup == False and self.agentic == True
+    pass
 
 
 class IR(Page):
@@ -114,7 +111,8 @@ class IR(Page):
 
 
     def is_displayed(self):
-        return self.group_agent == "ingroup_random"
+        return self.outgroup == False and self.agentic == False
+        # return self.group_agent == "ingroup_random"
     pass
 
 
@@ -128,7 +126,7 @@ page_sequence = [
     # ImageDesc, Dots, NumDots,
     # PartnerWait,
     # TaskIntro,
-    OA, OR, IR
-    # IA,
-    , security_intro
+    OA, OR, IR,
+    IA,
+    security_intro
 ]
