@@ -43,7 +43,7 @@ def creating_session(subsession):
         # print("this is a merit game")
         import random
         for player in subsession.get_players():
-            player.inequality_merit = random.choice(["equal_random", "unequal_random","unequal_unmerit"])
+            player.inequality_merit = random.choice(["equal_random", "unequal_random", "unequal_unmerit"])
             player.participant.vars['inequality_merit'] = player.inequality_merit
 
 

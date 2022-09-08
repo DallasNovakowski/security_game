@@ -266,15 +266,15 @@ class Results(Page):
 
 class Slider_Intro(Page):
     def is_displayed(self):
-        return self.subsession.session.config['name'] == 'security_game_merit'
-
-
+        return self.subsession.session.config['name'] == 'security_game_merit' or self.subsession.session.config['name'] == 'security_game_unmerit'
     pass
 
-class Slider_Intro_Um(Page):
-    def is_displayed(self):
-        return self.subsession.session.config['name'] == 'security_game_unmerit'
-    pass
+# class Slider_Intro_Um(Page):
+#     def is_displayed(self):
+#         return self.subsession.session.config['name'] == 'security_game_unmerit'
+#     pass
 
 
-page_sequence = [Slider_Intro, Slider_Intro_Um, Game, Results]
+page_sequence = [Slider_Intro,
+                 # Slider_Intro_Um,
+                 Game, Results]
