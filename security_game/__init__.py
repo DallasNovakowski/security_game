@@ -33,7 +33,7 @@ def creating_session(subsession):
         # print("this is a merit game")
         import random
         for player in subsession.get_players():
-            player.inequality_merit = random.choice(["equal_random", "unequal_random","unequal_merit"])
+            player.inequality_merit = random.choice(["equal_random", "unequal_random", "unequal_merit"])
             player.participant.vars['inequality_merit'] = player.inequality_merit
             # player.merit = random.choice([True, False])
             # player.participant.vars['merit'] = player.merit
@@ -157,7 +157,8 @@ class NextScenH(Page):
     form_model = 'player'
 
     def is_displayed(self):
-        return self.subsession.session.config['name'] == 'security_game_merit' or self.subsession.session.config['name'] == 'security_game_group'
+        return self.subsession.session.config['name'] == 'security_game_merit' or self.subsession.session.config['name'] == 'security_game_group' or \
+               self.subsession.session.config['name'] == 'security_game_unmerit'
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
