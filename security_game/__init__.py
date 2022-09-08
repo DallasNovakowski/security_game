@@ -30,7 +30,7 @@ def creating_session(subsession):
           session.config['lost_from_attacks'], ", and failed_attack is", session.config['failed_attack'])
 
     if session.config['name'] == 'security_game_merit':
-        print("this is a merit game")
+        # print("this is a merit game")
         import random
         for player in subsession.get_players():
             player.inequality_merit = random.choice(["equal_random", "unequal_random","unequal_merit"])
@@ -39,7 +39,12 @@ def creating_session(subsession):
             # player.participant.vars['merit'] = player.merit
             # print('merit is', player.participant.vars['inequality_merit'])
             # print('is this equal random?', player.participant.vars['inequality_merit'] == "equal_random")
-
+    if session.config['name'] == 'security_game_unmerit':
+        # print("this is a merit game")
+        import random
+        for player in subsession.get_players():
+            player.inequality_merit = random.choice(["equal_random", "unequal_random","unequal_unmerit"])
+            player.participant.vars['inequality_merit'] = player.inequality_merit
 
 
 
@@ -161,5 +166,8 @@ class NextScenH(Page):
         if player.subsession.session.config['name'] == 'security_game_merit':
             if player.inequality_merit == "equal_random" or player.inequality_merit == "unequal_random":
                 return "merit_manip"
+        if player.subsession.session.config['name'] == 'security_game_unmerit':
+            if player.inequality_merit == "equal_random" or player.inequality_merit == "unequal_random":
+                return "merit_manip"
 
-page_sequence = [GameQs, Security_game, NextScen,NextScenH]
+page_sequence = [GameQs, Security_game, NextScen, NextScenH]

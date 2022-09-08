@@ -44,7 +44,7 @@ class EM(Page):
     form_model = 'player'
     template_name = 'merit_manip/Equal_merit.html'
 
-    def is_displayed(self):         # this function passes the randomly-generated number for page-number pairing
+    def is_displayed(self):
         return False
             # self.inequality == False and self.participant.vars['merit']==True
 
@@ -77,6 +77,18 @@ class UM(Page):
 
 
 
+
+
+class UuM(Page):
+    form_model = 'player'
+    template_name = 'merit_manip/Unequal_unmerit.html'
+
+    def is_displayed(self):
+        # return self.inequality == True and self.participant.vars['merit'] == True
+        return self.participant.vars['inequality_merit'] == "unequal_unmerit"
+
+
+
 class GameDesc(Page):
     form_model = 'player'
 
@@ -84,6 +96,6 @@ class GameDesc(Page):
 page_sequence = [
     # Task_intro,
     #              EM,
-    ER, UM, UR
+    ER, UM, UuM, UR
     # , GameDesc
 ]

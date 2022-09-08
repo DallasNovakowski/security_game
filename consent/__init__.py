@@ -73,8 +73,8 @@ class ExCo(Page):
     # Control whether consent page is displayed based on name in config
     def is_displayed(player: Player):
         session = player.subsession.session
-        return session.config['name'] == "security_game_merit" or session.config[
-            'name'] == "inequality_visibility_security" or \
+        return session.config['name'] == "security_game_merit" or session.config['name'] == "security_game_unmerit" or\
+               session.config['name'] == "inequality_visibility_security" or \
                session.config['name'] == 'security_game_group' or \
                session.config['name'] == 'ineq_sec'or \
                session.config['name'] == 'ineq_vis_expens' or \
