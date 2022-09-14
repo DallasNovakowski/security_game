@@ -107,12 +107,10 @@ class Security_game(Page):
             failed_attack=player.subsession.session.config['failed_attack'],
         )
 
-    # @staticmethod
-    # def before_next_page(self, timeout_happened):
-    #     self.prolific_id = self.participant.label
-    #     self.participant.vars['consumed'] = self.security_consumed
-    #     print(self.participant.vars['consumed'])
-    # pass
+    def is_displayed(self):
+        return self.subsession.session.config['name'] != 'security_game_total_loss' or \
+               self.subsession.session.config['name'] == 'security_game_total_loss' and \
+               self.participant.vars['total_loss'] == False
 
 
     @staticmethod       # populates a participant variable with the respondent's consent status (for use across apps)
@@ -120,7 +118,7 @@ class Security_game(Page):
         participant = player.participant
 
         participant.vars['payoff_consumed'] = player.security_consumed
-        print("the value we're trying to display is,", player.participant.vars['payoff_consumed'])
+        # print("the value we're trying to display is,", player.participant.vars['payoff_consumed'])
 
         player.success_theft = max(random.choices([0, 1], weights=(C.BASE_THEFT_SUCCESS_50*100+
                                            player.participant.vars['payoff_consumed']*C.SECURITY_EFFICACY*100,
@@ -142,10 +140,62 @@ class Security_game(Page):
             # participant.f_poff = player.f_poff
             player.participant.vars['success_theft'] = player.success_theft
 
-        print("the theft success is", player.participant.vars['success_theft'])
+        # print("the theft success is", player.participant.vars['success_theft'])
 
     pass
 
+
+
+class Security_game_tot_los(Page):
+    form_model = 'player'
+    form_fields = ['security_consumed']     # allows for security responses in page to ber recorded
+
+    def is_displayed(self):
+        return self.subsession.session.config['name'] == 'security_game_total_loss' and \
+               self.participant.vars['total_loss'] == True
+
+
+    @staticmethod               # this function passes constants to javascript for manipulation in-page
+    def js_vars(player):
+        return dict(
+            efficacy= C.SECURITY_EFFICACY,
+            endowment= player.subsession.session.config['endowment'],
+            price=player.subsession.session.config["security_price"],
+            theft_success= C.BASE_THEFT_SUCCESS_50,
+            lost_from_attacks=player.subsession.session.config['lost_from_attacks'],
+            failed_attack=player.subsession.session.config['failed_attack'],
+        )
+
+    @staticmethod       # populates a participant variable with the respondent's consent status (for use across apps)
+    def before_next_page(player: Player, timeout_happened):
+        participant = player.participant
+
+        participant.vars['payoff_consumed'] = player.security_consumed
+        # print("the value we're trying to display is,", player.participant.vars['payoff_consumed'])
+
+        player.success_theft = max(random.choices([0, 1], weights=(C.BASE_THEFT_SUCCESS_50*100+
+                                           player.participant.vars['payoff_consumed']*C.SECURITY_EFFICACY*100,
+                                        C.BASE_THEFT_SUCCESS_50*100 -
+                                        player.participant.vars['payoff_consumed']*C.SECURITY_EFFICACY*100), k=1))
+
+
+        # player.payoff_consumed = player.participant.vars['payoff_consumed']
+        if player.success_theft == 1:
+            player.f_poff = 300 - player.participant.vars['payoff_consumed'] * player.subsession.session.config[
+                "security_price"] - 100
+            player.participant.vars['f_poff'] =player.f_poff
+            # participant.f_poff = player.f_poff
+            player.participant.vars['success_theft'] = player.success_theft
+        else:
+            player.f_poff = 300 - player.participant.vars['payoff_consumed'] * player.subsession.session.config[
+                "security_price"]
+            player.participant.vars['f_poff'] = player.f_poff
+            # participant.f_poff = player.f_poff
+            player.participant.vars['success_theft'] = player.success_theft
+
+        # print("the theft success is", player.participant.vars['success_theft'])
+
+    pass
 
 
 
@@ -221,6 +271,6 @@ class NextScen(Page):
 
 
 
-page_sequence = [GameQs,GameQs_f, Security_game
+page_sequence = [GameQs,GameQs_f, Security_game, Security_game_tot_los
     # , NextScen
                  ]

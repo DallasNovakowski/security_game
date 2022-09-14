@@ -32,7 +32,8 @@ class Task_intro(Page):
     form_model = 'player'
 
     def is_displayed(self):
-        return self.subsession.session.config['name'] != 'ineq_sec_real_prime'
+        return False
+            # self.subsession.session.config['name'] != 'ineq_sec_real_prime'
 
 
     @staticmethod

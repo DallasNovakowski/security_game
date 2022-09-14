@@ -28,10 +28,10 @@ def creating_session(subsession):
     session.security_price = session.config['security_price']
     print("endowment for session is", session.endowment, ", and lost_from_attacks is",
           session.config['lost_from_attacks'], ", and failed_attack is", session.config['failed_attack'])
-
+    import random
     if session.config['name'] == 'security_game_merit':
         # print("this is a merit game")
-        import random
+
         for player in subsession.get_players():
             player.inequality_merit = random.choice(["equal_random", "unequal_random", "unequal_merit"])
             player.participant.vars['inequality_merit'] = player.inequality_merit
@@ -41,11 +41,10 @@ def creating_session(subsession):
             # print('is this equal random?', player.participant.vars['inequality_merit'] == "equal_random")
     if session.config['name'] == 'security_game_unmerit':
         # print("this is a merit game")
-        import random
+        # import random
         for player in subsession.get_players():
             player.inequality_merit = random.choice(["equal_random", "unequal_random", "unequal_unmerit"])
             player.participant.vars['inequality_merit'] = player.inequality_merit
-
 
 
 # session.params = {}
@@ -119,6 +118,35 @@ class Security_game(Page):
         )
     pass
 
+    def is_displayed(self):
+        return self.subsession.session.config['name'] != 'security_game_total_loss' or \
+               self.subsession.session.config['name'] == 'security_game_total_loss' and \
+               self.participant.vars['total_loss'] == False
+
+
+
+
+class Security_game_tot_los(Page):
+    form_model = 'player'
+    form_fields = ['security_consumed']     # allows for security responses in page to ber recorded
+
+    @staticmethod               # this function passes constants to javascript for manipulation in-page
+    def js_vars(player):
+        return dict(
+            efficacy= C.SECURITY_EFFICACY,
+            endowment= player.subsession.session.config['p_endowment'],
+            price=player.subsession.session.config["p_security_price"],
+            theft_success= C.BASE_THEFT_SUCCESS_50,
+            lost_from_attacks=player.subsession.session.config['p_lost_from_attacks'],
+            failed_attack=player.subsession.session.config['p_failed_attack'],
+        )
+    pass
+
+    def is_displayed(self):
+        return self.subsession.session.config['name'] == 'security_game_total_loss' and \
+               self.participant.vars['total_loss'] == True
+
+
 class GameQs(Page):
     form_model = 'player'
     form_fields = ['p_inequality','pre_partner_attempt','p_partner_envy','p_partner_jealous', 'p_partner_bitter'
@@ -157,8 +185,10 @@ class NextScenH(Page):
     form_model = 'player'
 
     def is_displayed(self):
-        return self.subsession.session.config['name'] == 'security_game_merit' or self.subsession.session.config['name'] == 'security_game_group' or \
-               self.subsession.session.config['name'] == 'security_game_unmerit'
+        return self.subsession.session.config['name'] == 'security_game_merit' or \
+               self.subsession.session.config['name'] == 'security_game_group' or \
+               self.subsession.session.config['name'] == 'security_game_unmerit' or \
+               self.subsession.session.config['name'] == 'security_game_total_loss'
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
@@ -171,4 +201,4 @@ class NextScenH(Page):
             if player.inequality_merit == "equal_random" or player.inequality_merit == "unequal_random":
                 return "merit_manip"
 
-page_sequence = [GameQs, Security_game, NextScen, NextScenH]
+page_sequence = [GameQs, Security_game, Security_game_tot_los, NextScen, NextScenH]
