@@ -116,4 +116,4 @@ class ESS(Page):
 
 
 
-page_sequence = [Pri_intro,Pri_intro_hyp,Pri_intro_hyp_tot_los,ESS]
+page_sequence = [Pri_intro, Pri_intro_hyp, Pri_intro_hyp_tot_los, ESS]

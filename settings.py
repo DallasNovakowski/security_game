@@ -157,6 +157,25 @@ dict(
     security_price=2,
     p_security_price=2,
     OTREE_REST_KEY="1234"
+),
+dict(
+    name="security_game_vis",
+    display_name="ineq_vis",
+    num_demo_participants=15,
+    app_sequence=[
+        "consent", "survey",
+                  "priming_intro", 'security_game', "ineq_manip_2b",
+                  'security_game_ineq', 'attention_check', 'study_end'],
+    completionlink='https://app.prolific.co/submissions/complete?cc=CWD58TF0',
+    p_endowment=250,
+    endowment=300,
+    lost_from_attacks=100,
+    p_lost_from_attacks=50,
+    failed_attack=100,
+    p_failed_attack=50,
+    security_price=2,
+    p_security_price=2,
+    OTREE_REST_KEY="1234"
 )
 ]
 # for bots (need something - consent.tests?)

@@ -188,17 +188,19 @@ class NextScenH(Page):
         return self.subsession.session.config['name'] == 'security_game_merit' or \
                self.subsession.session.config['name'] == 'security_game_group' or \
                self.subsession.session.config['name'] == 'security_game_unmerit' or \
-               self.subsession.session.config['name'] == 'security_game_total_loss'
+               self.subsession.session.config['name'] == 'security_game_total_loss' or \
+               self.subsession.session.config['name'] == 'security_game_vis'
 
     @staticmethod
     def app_after_this_page(player, upcoming_apps):
         # print('upcoming_apps is', upcoming_apps)
         # if player.merit==False:
-        if player.subsession.session.config['name'] == 'security_game_merit':
+        if player.subsession.session.config['name'] == 'security_game_merit' or player.subsession.session.config['name'] == 'security_game_unmerit':
             if player.inequality_merit == "equal_random" or player.inequality_merit == "unequal_random":
                 return "merit_manip"
-        if player.subsession.session.config['name'] == 'security_game_unmerit':
-            if player.inequality_merit == "equal_random" or player.inequality_merit == "unequal_random":
-                return "merit_manip"
+        # if player.subsession.session.config['name'] == 'security_game_unmerit':
+        #     if player.inequality_merit == "equal_random" or player.inequality_merit == "unequal_random":
+        #         return "merit_manip"
 
-page_sequence = [GameQs, Security_game, Security_game_tot_los, NextScen, NextScenH]
+page_sequence = [GameQs, Security_game,
+                 Security_game_tot_los, NextScen, NextScenH]

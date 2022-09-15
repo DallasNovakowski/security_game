@@ -6,6 +6,7 @@ def creating_session(subsession):
     import random
     for player in subsession.get_players():
         player.inequality = random.choice([True, False])
+        player.visible = random.choice([True, False])
 
 
 class C(BaseConstants):
@@ -20,6 +21,7 @@ class Player(BasePlayer):
     # prolific_id = models.StringField(default=str(""))
     # Study variables
     inequality = models.BooleanField(blank=True)
+    visible = models.BooleanField(blank=True)
     pass
 
 class Subsession(BaseSubsession):
@@ -46,16 +48,34 @@ class ER(Page):
     template_name = 'ineq_manip_2b/Equal_random.html'
 
     def is_displayed(self):
-        return self.inequality == False
+        return (self.subsession.session.config['name'] == 'security_game_vis' and self.inequality == False and self.visible == True) or \
+               (self.subsession.session.config['name'] != 'security_game_vis' and self.inequality == False)
+
+class ERI(Page):
+    form_model = 'player'
+    template_name = 'ineq_manip_2b/Equal_random_invis.html'
+
+    def is_displayed(self):
+        return (self.subsession.session.config['name'] == 'security_game_vis' and self.inequality == False and self.visible == False)
+
 
 class UR(Page):
     form_model = 'player'
     template_name = 'ineq_manip_2b/Unequal_random.html'
 
     def is_displayed(self):
-        return self.inequality == True
+        return (self.subsession.session.config['name'] == 'security_game_vis' and self.inequality == True and self.visible == True) or \
+               (self.subsession.session.config['name'] != 'security_game_vis' and self.inequality == True)
+
+class URI(Page):
+    form_model = 'player'
+    template_name = 'ineq_manip_2b/Unequal_random_invis.html'
+
+    def is_displayed(self):
+        return (self.subsession.session.config['name'] == 'security_game_vis' and self.inequality == True and self.visible == False)
+
 
 class GameDesc(Page):
     form_model = 'player'
 
-page_sequence = [Task_intro, ER, UR]
+page_sequence = [Task_intro, ER, ERI, UR, URI]
