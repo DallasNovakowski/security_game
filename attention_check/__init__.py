@@ -46,6 +46,19 @@ class Player(BasePlayer):
                                              ['Deciding whether to purchase a security product', 'Deciding whether to purchase a security product'],
                                              ['Donating funds to a shared project', 'Donating funds to a shared project']],
                                    widget=widgets.RadioSelect)
+
+    # if self.subsession.session.config['name'] == 'security_game_vis'
+
+    vis_check = models.StringField(label="Was your partner aware of how much money you received?",
+                                    choices=[
+                                        ['Yes', 'Yes'],
+                                        ['No', 'No'],
+                                        ['No information was given','No information was given'],
+                                        ['Unsure','Unsure']
+                                             ],
+                                   widget=widgets.RadioSelect)
+
+
     # pass
 
 class ac1(Page):
@@ -64,7 +77,7 @@ class ac1(Page):
 
 class cc(Page):
     form_model = 'player'
-    form_fields = ['comp_check']
+    form_fields = ['comp_check','vis_check']
     template_name = 'attention_check/comprehension_check.html'
     pass
 
