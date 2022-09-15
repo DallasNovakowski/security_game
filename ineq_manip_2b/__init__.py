@@ -6,7 +6,6 @@ def creating_session(subsession):
     import random
     for player in subsession.get_players():
         player.inequality = random.choice([True, False])
-        player.visible = random.choice([True, False])
 
 
 class C(BaseConstants):
@@ -21,7 +20,6 @@ class Player(BasePlayer):
     # prolific_id = models.StringField(default=str(""))
     # Study variables
     inequality = models.BooleanField(blank=True)
-    visible = models.BooleanField(blank=True)
     pass
 
 class Subsession(BaseSubsession):
@@ -48,7 +46,7 @@ class ER(Page):
     template_name = 'ineq_manip_2b/Equal_random.html'
 
     def is_displayed(self):
-        return (self.subsession.session.config['name'] == 'security_game_vis' and self.inequality == False and self.visible == True) or \
+        return (self.subsession.session.config['name'] == 'security_game_vis' and self.inequality == False and self.participant.vars['visible'] == True) or \
                (self.subsession.session.config['name'] != 'security_game_vis' and self.inequality == False)
 
 class ERI(Page):
@@ -56,7 +54,7 @@ class ERI(Page):
     template_name = 'ineq_manip_2b/Equal_random_invis.html'
 
     def is_displayed(self):
-        return (self.subsession.session.config['name'] == 'security_game_vis' and self.inequality == False and self.visible == False)
+        return (self.subsession.session.config['name'] == 'security_game_vis' and self.inequality == False and self.participant.vars['visible'] == False)
 
 
 class UR(Page):
@@ -64,7 +62,7 @@ class UR(Page):
     template_name = 'ineq_manip_2b/Unequal_random.html'
 
     def is_displayed(self):
-        return (self.subsession.session.config['name'] == 'security_game_vis' and self.inequality == True and self.visible == True) or \
+        return (self.subsession.session.config['name'] == 'security_game_vis' and self.inequality == True and self.participant.vars['visible'] == True) or \
                (self.subsession.session.config['name'] != 'security_game_vis' and self.inequality == True)
 
 class URI(Page):
@@ -72,7 +70,7 @@ class URI(Page):
     template_name = 'ineq_manip_2b/Unequal_random_invis.html'
 
     def is_displayed(self):
-        return (self.subsession.session.config['name'] == 'security_game_vis' and self.inequality == True and self.visible == False)
+        return (self.subsession.session.config['name'] == 'security_game_vis' and self.inequality == True and self.participant.vars['visible'] == False)
 
 
 class GameDesc(Page):

@@ -33,7 +33,10 @@ def creating_session(subsession):
         for player in subsession.get_players():
             player.total_loss = random.choice([True,False])
             player.participant.vars['total_loss'] = player.total_loss
-
+    if session.config['name'] == 'security_game_vis':
+        for player in subsession.get_players():
+            player.visible = random.choice([True,False])
+            player.participant.vars['visible'] = player.visible
 
 
 
@@ -42,6 +45,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     total_loss = models.BooleanField(blank=True)
+    visible = models.BooleanField(Blank=True)
     pass
 
 
@@ -74,8 +78,6 @@ class Pri_intro_hyp(Page):
                 self.subsession.session.config['name'] != 'security_game_total_loss') or \
                (self.subsession.session.config['name'] == 'security_game_total_loss' and \
                 self.participant.vars['total_loss'] == False)
-
-
 
     @staticmethod               # this function passes constants to javascript for manipulation in-page
     def js_vars(player):
@@ -110,10 +112,22 @@ class Pri_intro_hyp_tot_los(Page):
     pass
 
 
+class ESS_inv(Page):
+    template_name = 'priming_intro/Equalsmallerstak_inv.html'
+    form_model = 'player'
+
+    def is_displayed(self):
+        return self.subsession.session.config['name'] == 'security_game_vis' and self.participant.vars['visible'] == False
+
+
+
 class ESS(Page):
     template_name = 'priming_intro/Equalsmallerstak.html'
     form_model = 'player'
 
+    def is_displayed(self):
+        return (self.subsession.session.config['name'] != 'security_game_vis') or \
+                       (self.subsession.session.config['name'] == 'security_game_vis' and \
+                        self.participant.vars['visible'] == True)
 
-
-page_sequence = [Pri_intro, Pri_intro_hyp, Pri_intro_hyp_tot_los, ESS]
+page_sequence = [Pri_intro, Pri_intro_hyp, Pri_intro_hyp_tot_los, ESS,ESS_inv]
