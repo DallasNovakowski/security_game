@@ -241,6 +241,10 @@ ROOMS = [
     dict(
         name='security_game_um',
         display_name='security_game_um'
+    ),
+    dict(
+        name='security_game_vis',
+        display_name='security_game_vis'
     )
 ]
 
