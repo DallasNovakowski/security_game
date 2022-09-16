@@ -77,7 +77,7 @@ class ac1(Page):
 
 class cc(Page):
     form_model = 'player'
-    form_fields = ['comp_check','vis_check']
+    form_fields = ['comp_check', 'vis_check']
     template_name = 'attention_check/comprehension_check.html'
     pass
 
